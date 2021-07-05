@@ -23,9 +23,10 @@ Trust me, if you wanna try to make your own mod, I highly recommend this.
 
 # Credits
 ### Friday Night Funkin'
- - [ninjamuffin99](https://twitter.com/ninja_muffin99) - Programming	(Thanks you for this awesome game, good luck in the rest of it's development!!)
+ - [ninjamuffin99](https://twitter.com/ninja_muffin99) - Programming
  - [PhantomArcade3K](https://twitter.com/phantomarcade3k) and [Evilsk8r](https://twitter.com/evilsk8r) - Art
  - [Kawai Sprite](https://twitter.com/kawaisprite) - Music
+ - (Thank you guys for this awesome game, good luck in the rest of its development!!)
 
 This game was made with love to Newgrounds and its community. Extra love to Tom Fulp.
 ### Kade Engine
