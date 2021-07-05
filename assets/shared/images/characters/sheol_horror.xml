@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="sheol_horror.png">
+	<!-- Created with Adobe Animate version 20.5.1.31044 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="Horror AltDown0000" x="0" y="0" width="353" height="479"/>
+	<SubTexture name="Horror AltDown0001" x="353" y="0" width="353" height="479"/>
+	<SubTexture name="Horror AltDown0002" x="706" y="0" width="353" height="479"/>
+	<SubTexture name="Horror AltLeft0000" x="1059" y="0" width="353" height="481"/>
+	<SubTexture name="Horror AltLeft0001" x="1412" y="0" width="353" height="481"/>
+	<SubTexture name="Horror AltLeft0002" x="1765" y="0" width="353" height="481"/>
+	<SubTexture name="Horror AltRight0000" x="2118" y="0" width="353" height="479"/>
+	<SubTexture name="Horror AltRight0001" x="2471" y="0" width="353" height="479"/>
+	<SubTexture name="Horror AltRight0002" x="2824" y="0" width="353" height="479"/>
+	<SubTexture name="Horror AltUp0000" x="3177" y="0" width="353" height="479"/>
+	<SubTexture name="Horror AltUp0001" x="3530" y="0" width="353" height="479"/>
+	<SubTexture name="Horror AltUp0002" x="0" y="481" width="353" height="479"/>
+	<SubTexture name="Horror Down0000" x="353" y="481" width="353" height="479"/>
+	<SubTexture name="Horror Down0001" x="706" y="481" width="353" height="479"/>
+	<SubTexture name="Horror Down0002" x="1059" y="481" width="353" height="479"/>
+	<SubTexture name="Horror Idle0000" x="1412" y="481" width="353" height="481"/>
+	<SubTexture name="Horror Idle0001" x="1765" y="481" width="353" height="481"/>
+	<SubTexture name="Horror Idle0002" x="2118" y="481" width="353" height="481"/>
+	<SubTexture name="Horror Left0000" x="2471" y="481" width="353" height="481"/>
+	<SubTexture name="Horror Left0001" x="2824" y="481" width="353" height="481"/>
+	<SubTexture name="Horror Left0002" x="3177" y="481" width="353" height="481"/>
+	<SubTexture name="Horror Right0000" x="3530" y="481" width="353" height="479"/>
+	<SubTexture name="Horror Right0001" x="0" y="962" width="353" height="479"/>
+	<SubTexture name="Horror Right0002" x="353" y="962" width="353" height="479"/>
+	<SubTexture name="Horror Up0000" x="706" y="962" width="353" height="479"/>
+	<SubTexture name="Horror Up0001" x="1059" y="962" width="353" height="479"/>
+	<SubTexture name="Horror Up0002" x="1412" y="962" width="353" height="479"/>
+</TextureAtlas>

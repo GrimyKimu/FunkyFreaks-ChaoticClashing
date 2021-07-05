@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="chaosPortraits.png">
+	<!-- Created with Adobe Animate version 20.5.1.31044 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="DariDiss0000" x="0" y="0" width="209" height="221"/>
+	<SubTexture name="DariNormal0000" x="209" y="0" width="209" height="222"/>
+	<SubTexture name="SheolHorror0000" x="418" y="0" width="245" height="214"/>
+	<SubTexture name="SheolNormal0000" x="663" y="0" width="233" height="227"/>
+	<SubTexture name="SheolPout0000" x="0" y="227" width="242" height="242"/>
+	<SubTexture name="SheolSerious0000" x="242" y="227" width="233" height="227"/>
+	<SubTexture name="SheolSurprise0000" x="475" y="227" width="232" height="227"/>
+</TextureAtlas>

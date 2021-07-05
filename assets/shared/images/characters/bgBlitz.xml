@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="bgBlitz.png">
+	<!-- Created with Adobe Animate version 20.5.1.31044 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="NormalIdle0000" x="0" y="0" width="517" height="426"/>
+	<SubTexture name="NormalIdle0001" x="0" y="0" width="517" height="426"/>
+	<SubTexture name="NormalIdle0002" x="517" y="0" width="517" height="426"/>
+	<SubTexture name="NormalIdle0003" x="1034" y="0" width="517" height="426"/>
+	<SubTexture name="NormalIdle0004" x="1551" y="0" width="517" height="426"/>
+	<SubTexture name="NormalIdle0005" x="2068" y="0" width="517" height="426"/>
+	<SubTexture name="NormalIdle0006" x="2585" y="0" width="517" height="426"/>
+	<SubTexture name="NormalIdle0007" x="3102" y="0" width="517" height="426"/>
+	<SubTexture name="NormalIdle0008" x="0" y="426" width="517" height="426"/>
+	<SubTexture name="NormalIdle0009" x="0" y="426" width="517" height="426"/>
+	<SubTexture name="NormalIdle0010" x="517" y="426" width="517" height="426"/>
+	<SubTexture name="NormalIdle0011" x="517" y="426" width="517" height="426"/>
+	<SubTexture name="NormalIdle0012" x="1034" y="426" width="517" height="426"/>
+	<SubTexture name="NormalIdle0013" x="1034" y="426" width="517" height="426"/>
+	<SubTexture name="NormalIdle0014" x="1034" y="426" width="517" height="426"/>
+	<SubTexture name="NormalIdle0015" x="1551" y="426" width="517" height="426"/>
+	<SubTexture name="NormalIdle0016" x="2068" y="426" width="517" height="426"/>
+	<SubTexture name="NormalIdle0017" x="2585" y="426" width="517" height="426"/>
+	<SubTexture name="NormalIdle0018" x="3102" y="426" width="517" height="426"/>
+	<SubTexture name="NormalIdle0019" x="0" y="852" width="517" height="426"/>
+	<SubTexture name="NormalIdle0020" x="517" y="852" width="517" height="426"/>
+	<SubTexture name="NormalIdle0021" x="1034" y="852" width="517" height="426"/>
+	<SubTexture name="NormalIdle0022" x="1551" y="852" width="517" height="426"/>
+	<SubTexture name="NormalIdle0023" x="2068" y="852" width="517" height="426"/>
+	<SubTexture name="NormalIdle0024" x="2068" y="852" width="517" height="426"/>
+	<SubTexture name="NormalIdle0025" x="2585" y="852" width="517" height="426"/>
+	<SubTexture name="NormalIdle0026" x="2585" y="852" width="517" height="426"/>
+	<SubTexture name="NormalIdle0027" x="1034" y="426" width="517" height="426"/>
+	<SubTexture name="NormalIdle0028" x="1034" y="426" width="517" height="426"/>
+	<SubTexture name="NormalIdle0029" x="1034" y="426" width="517" height="426"/>
+	<SubTexture name="ScaryIdle0000" x="3102" y="852" width="517" height="426"/>
+	<SubTexture name="ScaryIdle0001" x="3102" y="852" width="517" height="426"/>
+	<SubTexture name="ScaryIdle0002" x="0" y="1278" width="517" height="426"/>
+	<SubTexture name="ScaryIdle0003" x="517" y="1278" width="517" height="426"/>
+	<SubTexture name="ScaryIdle0004" x="1034" y="1278" width="517" height="426"/>
+	<SubTexture name="ScaryIdle0005" x="1551" y="1278" width="517" height="426"/>
+	<SubTexture name="ScaryIdle0006" x="2068" y="1278" width="517" height="426"/>
+	<SubTexture name="ScaryIdle0007" x="2585" y="1278" width="517" height="426"/>
+	<SubTexture name="ScaryIdle0008" x="3102" y="1278" width="517" height="426"/>
+	<SubTexture name="ScaryIdle0009" x="3102" y="1278" width="517" height="426"/>
+	<SubTexture name="ScaryIdle0010" x="0" y="1704" width="517" height="426"/>
+	<SubTexture name="ScaryIdle0011" x="0" y="1704" width="517" height="426"/>
+	<SubTexture name="ScaryIdle0012" x="517" y="1704" width="517" height="426"/>
+	<SubTexture name="ScaryIdle0013" x="517" y="1704" width="517" height="426"/>
+	<SubTexture name="ScaryIdle0014" x="517" y="1704" width="517" height="426"/>
+	<SubTexture name="ScaryIdle0015" x="1034" y="1704" width="517" height="426"/>
+	<SubTexture name="ScaryIdle0016" x="1034" y="1704" width="517" height="426"/>
+	<SubTexture name="ScaryIdle0017" x="1551" y="1704" width="517" height="426"/>
+	<SubTexture name="ScaryIdle0018" x="2068" y="1704" width="517" height="426"/>
+	<SubTexture name="ScaryIdle0019" x="2585" y="1704" width="517" height="426"/>
+	<SubTexture name="ScaryIdle0020" x="3102" y="1704" width="517" height="426"/>
+	<SubTexture name="ScaryIdle0021" x="0" y="2130" width="517" height="426"/>
+	<SubTexture name="ScaryIdle0022" x="517" y="2130" width="517" height="426"/>
+	<SubTexture name="ScaryIdle0023" x="1034" y="2130" width="517" height="426"/>
+	<SubTexture name="ScaryIdle0024" x="1551" y="2130" width="517" height="426"/>
+	<SubTexture name="ScaryIdle0025" x="2068" y="2130" width="517" height="426"/>
+	<SubTexture name="ScaryIdle0026" x="2068" y="2130" width="517" height="426"/>
+	<SubTexture name="ScaryIdle0027" x="517" y="1704" width="517" height="426"/>
+	<SubTexture name="ScaryIdle0028" x="517" y="1704" width="517" height="426"/>
+	<SubTexture name="ScaryIdle0029" x="517" y="1704" width="517" height="426"/>
+</TextureAtlas>

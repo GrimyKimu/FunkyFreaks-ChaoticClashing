@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="fgHorror.png">
+	<!-- Created with Adobe Animate version 20.5.1.31044 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="fgHorror0000" x="0" y="0" width="1182" height="1102"/>
+	<SubTexture name="fgHorror0001" x="0" y="0" width="1182" height="1102"/>
+	<SubTexture name="fgHorror0002" x="1182" y="0" width="1182" height="1102"/>
+	<SubTexture name="fgHorror0003" x="1182" y="0" width="1182" height="1102"/>
+	<SubTexture name="fgHorror0004" x="2364" y="0" width="1182" height="1102"/>
+	<SubTexture name="fgHorror0005" x="2364" y="0" width="1182" height="1102"/>
+	<SubTexture name="fgHorror0006" x="3546" y="0" width="1182" height="1102"/>
+	<SubTexture name="fgHorror0007" x="3546" y="0" width="1182" height="1102"/>
+	<SubTexture name="fgHorror0008" x="4728" y="0" width="1182" height="1102"/>
+	<SubTexture name="fgHorror0009" x="4728" y="0" width="1182" height="1102"/>
+	<SubTexture name="fgHorror0010" x="5910" y="0" width="1182" height="1102"/>
+	<SubTexture name="fgHorror0011" x="0" y="1102" width="1182" height="1102"/>
+	<SubTexture name="fgHorror0012" x="1182" y="1102" width="1182" height="1102"/>
+	<SubTexture name="fgHorror0013" x="2364" y="1102" width="1182" height="1102"/>
+	<SubTexture name="fgHorror0014" x="3546" y="1102" width="1182" height="1102"/>
+	<SubTexture name="fgHorror0015" x="4728" y="1102" width="1182" height="1102"/>
+	<SubTexture name="fgHorror0016" x="5910" y="1102" width="1182" height="1102"/>
+	<SubTexture name="fgHorror0017" x="0" y="2204" width="1182" height="1102"/>
+	<SubTexture name="fgHorror0018" x="1182" y="2204" width="1182" height="1102"/>
+	<SubTexture name="fgHorror0019" x="2364" y="2204" width="1182" height="1102"/>
+	<SubTexture name="fgHorror0020" x="3546" y="2204" width="1182" height="1102"/>
+	<SubTexture name="fgHorror0021" x="4728" y="2204" width="1182" height="1102"/>
+	<SubTexture name="fgHorror0022" x="5910" y="2204" width="1182" height="1102"/>
+	<SubTexture name="fgHorror0023" x="0" y="3306" width="1182" height="1102"/>
+	<SubTexture name="fgHorror0024" x="1182" y="3306" width="1182" height="1102"/>
+	<SubTexture name="fgHorror0025" x="2364" y="3306" width="1182" height="1102"/>
+	<SubTexture name="fgHorror0026" x="3546" y="3306" width="1182" height="1102"/>
+	<SubTexture name="fgHorror0027" x="4728" y="3306" width="1182" height="1102"/>
+	<SubTexture name="fgHorror0028" x="5910" y="3306" width="1182" height="1102"/>
+	<SubTexture name="fgHorror0029" x="0" y="4408" width="1182" height="1102"/>
+	<SubTexture name="fgHorror0030" x="0" y="4408" width="1182" height="1102"/>
+	<SubTexture name="fgHorror0031" x="1182" y="4408" width="1182" height="1102"/>
+</TextureAtlas>
