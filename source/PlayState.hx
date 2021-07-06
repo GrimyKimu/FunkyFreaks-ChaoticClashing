@@ -676,7 +676,7 @@ class PlayState extends MusicBeatState
 		// healthBar
 		add(healthBar);
 
-		if ((curStage == 'nowhereScary' || curStage == 'arg') && curSong == 'chaos')
+		if (curStage == 'nowhereScary' || curStage == 'arg')
 		{
 			add(fgHorror);
 
@@ -716,7 +716,7 @@ class PlayState extends MusicBeatState
 		botPlayState.setFormat(Paths.font("vcr.ttf"), 42, FlxColor.WHITE, RIGHT, FlxTextBorderStyle.OUTLINE,FlxColor.BLACK);
 		botPlayState.scrollFactor.set();
 		
-		if(FlxG.save.data.botplay && !loadRep) add(botPlayState);
+		//if(FlxG.save.data.botplay && !loadRep) add(botPlayState);
 
 		iconP1 = new HealthIcon(SONG.player1, true);
 		iconP1.y = healthBar.y - (iconP1.height / 2);
@@ -1593,19 +1593,27 @@ class PlayState extends MusicBeatState
 					{
 						case 'Chaos':
 						{
+							//all of this is a bunch of simple math and shit to determine how much HP is drained during the "Chaos" level
+							var hpDrain:Float = 0.75;
+
+							if (storyDifficulty == 2)
+								hpDrain = 1.0;
+							else if (storyDifficulty == 0)
+								hpDrain = 0.4;
+
 							if (fgHorror.alpha < 0.9 && curBeat % 2 == 0 && !SONG.notes[Math.floor(curStep / 16)].altAnim)
 							{
 								fgHorror.alpha = fgHorror.alpha + 0.0035;
 							}
 							else if (fgHorror.alpha > 0 && curBeat % 2 == 0 && SONG.notes[Math.floor(curStep / 16)].altAnim)
 							{
-								fgHorror.alpha = fgHorror.alpha - 0.005;
+								fgHorror.alpha = fgHorror.alpha - 0.0055;
 							}
 
 							hpHorror.alpha = fgHorror.alpha + 0.1;
 
 							if (curBeat < 444)
-								health -= (.0022 * (fgHorror.alpha / 1));
+								health -= (.003 * (fgHorror.alpha / 1)) * (health / 2) * hpDrain;
 							else
 								fgHorror.alpha = fgHorror.alpha - 0.015;
 						}
