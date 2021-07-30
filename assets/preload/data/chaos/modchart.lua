@@ -9,13 +9,13 @@ end
 
 switch = false;
 num = 0.0;
-enemy = 1;
+enemy = .8;
 
 function start(song) -- do nothing
 	if difficulty == 0 then
-		enemy = 0.75
+		enemy = 0.5
 	elseif difficulty == 2 then
-		enemy = 1.5
+		enemy = 1.1
 	end
 
     for i = 4, 7 do 

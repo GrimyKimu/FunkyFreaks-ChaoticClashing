@@ -1,4 +1,4 @@
-:dari-normal:normal:Do forgive my younger sister. She is a sore sport.
+:dari-normal:normal:Do forgive my kid sister. She is a sore sport.
 :sheol-pout:loud:Am not!
 :dari-diss:normal:So she says.
 :dari-normal:normal:Regardless, I would like to apologize.
@@ -6,4 +6,7 @@
 :dari-normal:normal:You hold no resentment? Wonderful.
 :dari-normal:normal:Let us sing a song together.
 :dari-normal:normal:Sheol loves this song, it will soothe her fractured ego, and bury this axe.
+:sheol-pout:normal:>:p
+:dari-diss:normal:...
+:sheol-pout:normal:>:I
 :bf:loud:beep! Skebop, beepo!

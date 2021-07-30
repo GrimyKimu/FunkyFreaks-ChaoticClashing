@@ -1,6 +1,10 @@
+:sheol-normal:normal:...
 :sheol-surprise:normal:...?
-:sheol-serious:normal:...!
-:sheol-serious:normal:Woah, you’re pretty good! This is so fun!
-:sheol-serious:loud:But let’s turn this game up to eleven, and beyond!!
+:sheol-surprise:normal:How did you...?
+:sheol-surprise:normal:No, I'm not...
+:sheol-surprise:normal:I know I'm a guest of this world, but...?
+:sheol-surprise:normal:... 
+:sheol-serious:normal:Let’s turn this little game up to eleven, then.
 :sheol-serious:loud:Can you handle THIS!?
 :bf:loud:Boop, skebetipy bop!
+:dari-normal:normal:... ...
