@@ -32,7 +32,10 @@ class Character extends FlxSprite
 		this.isPlayer = isPlayer;
 
 		var tex:FlxAtlasFrames;
-		antialiasing = true;
+		if(FlxG.save.data.antialiasing)
+			{
+				antialiasing = true;
+			}
 
 		switch (curCharacter)
 		{
@@ -79,7 +82,7 @@ class Character extends FlxSprite
 				animation.addByIndices('danceLeft-alt', 'GF ALT', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
 				animation.addByIndices('danceRight-alt', 'GF ALT', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
 				
-				addOffset('sad', -86, -15);	// 669 * 636
+				addOffset('sad', 0, -15);	// 669 * 636 // x = -21.6?
 				addOffset('danceLeft-idle', 0, 0);	//712 * 651
 				addOffset('danceRight-idle', 0, 0);
 				addOffset('danceLeft-alt', 0, 75);	//712 * 726
@@ -274,6 +277,17 @@ class Character extends FlxSprite
 		}
 	}
 
+	public function loadOffsetFile(character:String)
+	{
+		var offset:Array<String> = CoolUtil.coolTextFile(Paths.txt('images/characters/' + character + "Offsets", 'shared'));
+
+		for (i in 0...offset.length)
+		{
+			var data:Array<String> = offset[i].split(' ');
+			addOffset(data[0], Std.parseInt(data[1]), Std.parseInt(data[2]));
+		}
+	}
+
 	override function update(elapsed:Float)
 	{
 		if (!curCharacter.startsWith('bf'))
@@ -309,7 +323,7 @@ class Character extends FlxSprite
 	/**
 	 * FOR GF DANCING SHIT
 	 */
-	public function dance()
+	public function dance(forced:Bool = false)
 	{
 		if (!debugMode)
 		{
@@ -325,7 +339,6 @@ class Character extends FlxSprite
 						else
 							playAnim('danceLeft');
 					}
-				
 				case 'gf-wSheol':
 					if (!animation.curAnim.name.startsWith('hair'))
 					{
@@ -366,7 +379,7 @@ class Character extends FlxSprite
 					}
 				}
 				default:
-					playAnim('idle');
+					playAnim('idle', forced);
 			}
 		}
 	}

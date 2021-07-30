@@ -119,6 +119,29 @@ class CpuStrums extends Option
 
 }
 
+class GraphicLoading extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+
+	public override function press():Bool
+	{
+		FlxG.save.data.cacheImages = !FlxG.save.data.cacheImages;
+		
+		display = updateDisplay();
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return  FlxG.save.data.cacheImages ? "Preload Characters" : "Do not Preload Characters";
+	}
+
+}
+
 class DownscrollOption extends Option
 {
 	public function new(desc:String)
@@ -221,6 +244,26 @@ class DistractionsAndEffectsOption extends Option
 	}
 }
 
+class StepManiaOption extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+	public override function press():Bool
+	{
+		FlxG.save.data.stepMania = !FlxG.save.data.stepMania;
+		display = updateDisplay();
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return "Colors by quantization " + (!FlxG.save.data.stepMania ? "off" : "on");
+	}
+}
+
 class ResetButtonOption extends Option
 {
 	public function new(desc:String)
@@ -261,6 +304,67 @@ class FlashingLightsOption extends Option
 	}
 }
 
+class AntialiasingOption extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+	public override function press():Bool
+	{
+		FlxG.save.data.antialiasing = !FlxG.save.data.antialiasing;
+		display = updateDisplay();
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return "Antialiasing " + (!FlxG.save.data.antialiasing ? "off" : "on");
+	}
+}
+
+class MissSoundsOption extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+	public override function press():Bool
+	{
+		FlxG.save.data.missSounds = !FlxG.save.data.missSounds;
+		display = updateDisplay();
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return "Miss Sounds " + (!FlxG.save.data.missSounds ? "off" : "on");
+	}
+}
+
+class ShowInput extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+	public override function press():Bool
+	{
+		FlxG.save.data.inputShow = !FlxG.save.data.inputShow;
+		display = updateDisplay();
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return (FlxG.save.data.inputShow ? "Extended Score Info" : "Minimalized Info");
+	}
+}
+
+
 class Judgement extends Option
 {
 	
@@ -291,7 +395,7 @@ class Judgement extends Option
 		FlxG.save.data.frames = Conductor.safeFrames;
 
 		Conductor.recalculateTimings();
-		return true;
+		return false;
 	}
 
 	override function getValue():String {
@@ -299,7 +403,7 @@ class Judgement extends Option
 		" - SIK: " + HelperFunctions.truncateFloat(45 * Conductor.timeScale, 0) +
 		"ms GD: " + HelperFunctions.truncateFloat(90 * Conductor.timeScale, 0) +
 		"ms BD: " + HelperFunctions.truncateFloat(135 * Conductor.timeScale, 0) + 
-		"ms SHT: " + HelperFunctions.truncateFloat(155 * Conductor.timeScale, 0) +
+		"ms SHT: " + HelperFunctions.truncateFloat(166 * Conductor.timeScale, 0) +
 		"ms TOTAL: " + HelperFunctions.truncateFloat(Conductor.safeZoneOffset,0) + "ms";
 	}
 
@@ -337,6 +441,28 @@ class FPSOption extends Option
 		return "FPS Counter " + (!FlxG.save.data.fps ? "off" : "on");
 	}
 }
+
+class ScoreScreen extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+
+	public override function press():Bool
+	{
+		FlxG.save.data.scoreScreen = !FlxG.save.data.scoreScreen;
+		display = updateDisplay();
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return (FlxG.save.data.scoreScreen ? "Show Score Screen" : "No Score Screen");
+	}
+}
+
 
 
 
@@ -459,6 +585,27 @@ class RainbowFPSOption extends Option
 	{
 		return "FPS Rainbow " + (!FlxG.save.data.fpsRain ? "off" : "on");
 	}
+}
+
+class Optimization extends Option
+{
+	public function new(desc:String)
+		{
+			super();
+			description = desc;
+		}
+	
+		public override function press():Bool
+		{
+			FlxG.save.data.optimize = !FlxG.save.data.optimize;
+			display = updateDisplay();
+			return true;
+		}
+	
+		private override function updateDisplay():String
+		{
+			return "Optimization " + (FlxG.save.data.optimize ? "ON" : "OFF");
+		}
 }
 
 class NPSDisplayOption extends Option
@@ -613,4 +760,149 @@ class BotPlay extends Option
 	
 	private override function updateDisplay():String
 		return "BotPlay " + (FlxG.save.data.botplay ? "on" : "off");
+}
+
+class CamZoomOption extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+	public override function press():Bool
+	{
+		FlxG.save.data.camzoom = !FlxG.save.data.camzoom;
+		display = updateDisplay();
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return "Camera Zoom " + (!FlxG.save.data.camzoom ? "off" : "on");
+	}
+}
+
+class LockWeeksOption extends Option
+{
+	var confirm:Bool = false;
+
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+	public override function press():Bool
+	{
+		if(!confirm)
+		{
+			confirm = true;
+			display = updateDisplay();
+			return true;
+		}
+		FlxG.save.data.weekUnlocked = 1;
+		StoryMenuState.weekUnlocked = [true, true];
+		trace('Weeks Locked');
+		display = updateDisplay();
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return confirm ? "Confirm Story Reset" : "Reset Story Progress";
+	}
+}
+
+class ResetScoreOption extends Option
+{
+	var confirm:Bool = false;
+
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+	public override function press():Bool
+	{
+		if(!confirm)
+		{
+			confirm = true;
+			display = updateDisplay();
+			return true;
+		}
+		FlxG.save.data.songScores = null;
+		for(key in Highscore.songScores.keys())
+		{
+			Highscore.songScores[key] = 0;
+		}
+		FlxG.save.data.songCombos = null;
+		for(key in Highscore.songCombos.keys())
+		{
+			Highscore.songCombos[key] = '';
+		}
+		confirm = false;
+		trace('Highscores Wiped');
+		display = updateDisplay();
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return confirm ? "Confirm Score Reset" : "Reset Score";
+	}
+}
+
+class ResetSettings extends Option
+{
+	var confirm:Bool = false;
+
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+	public override function press():Bool
+	{
+		if(!confirm)
+		{
+			confirm = true;
+			display = updateDisplay();
+			return true;
+		}
+		FlxG.save.data.weekUnlocked = null;
+		FlxG.save.data.newInput = null;
+		FlxG.save.data.downscroll = null;
+		FlxG.save.data.dfjk = null;
+		FlxG.save.data.accuracyDisplay = null;
+		FlxG.save.data.offset = null;
+		FlxG.save.data.songPosition = null;
+		FlxG.save.data.fps = null;
+		FlxG.save.data.changedHit = null;
+		FlxG.save.data.fpsRain = null;
+		FlxG.save.data.fpsCap = null;
+		FlxG.save.data.scrollSpeed = null;
+		FlxG.save.data.npsDisplay = null;
+		FlxG.save.data.frames = null;
+		FlxG.save.data.accuracyMod = null;
+		FlxG.save.data.watermark = null;
+		FlxG.save.data.ghost = null;
+		FlxG.save.data.distractions = null;
+		FlxG.save.data.flashing = null;
+		FlxG.save.data.resetButton = null;
+		FlxG.save.data.botplay = null;
+		FlxG.save.data.cpuStrums = null;
+		FlxG.save.data.strumline = null;
+		FlxG.save.data.customStrumLine = null;
+		FlxG.save.data.camzoom = null;
+		FlxG.save.data.stepMania = null;
+		KadeEngineData.initSave();
+		confirm = false;
+		trace('All settings have been reset');
+		display = updateDisplay();
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return confirm ? "Confirm Settings Reset" : "Reset Settings";
+	}
 }

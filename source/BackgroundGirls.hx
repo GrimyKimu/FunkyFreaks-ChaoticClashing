@@ -5,7 +5,7 @@ import flixel.graphics.frames.FlxAtlasFrames;
 
 class BackgroundGirls extends Character
 {	//I'm making this extend Character rather than FlxSprite, will that fix the broken bg characters bullshit?
-	//they aren't girls tho
+	//Blitz and Darian aren't girls, they nb
 
 	private var stupidVar:Bool = false;
 	//ok, I got way confused with the animations and how they're playing, and now I think stuff are backwards??
@@ -45,7 +45,7 @@ class BackgroundGirls extends Character
 
 	var danceDir:Bool = false;
 
-	public override function dance():Void 
+	public override function dance(forced:Bool = false):Void 
 	{
 		danceDir = !danceDir;
 
