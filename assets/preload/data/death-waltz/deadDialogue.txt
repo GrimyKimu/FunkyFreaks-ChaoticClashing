@@ -1,0 +1,5 @@
+data:1
+normal:Sheol: death_count
+normal:Sheol: Apparently, you've already died that many times.
+normal:Dari: Now back to realizing that the cosplay was not worth it.
+normal:Sheol: *crying externally*

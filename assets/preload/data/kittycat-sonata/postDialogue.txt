@@ -1,0 +1,13 @@
+data:3
+:normal:Blitz: So that’s how it is, huh.
+:normal:Dari: I- I am so sor-
+:normal:Blitz: Do NOT, apologize for something you didn’t do, Dari.
+:normal:Sheol: Wait, I don’t understand, I don’t-
+:normal:Sheol: We’re really just…?
+:normal:Dari: Yes, yes.
+change:1
+:normal:Dari: Enough is enough. 
+:normal:Dari: We need to be alone.
+change:1
+:normal:Dari: Be gone from here, and do not come back… 
+:normal:Dari: Please.

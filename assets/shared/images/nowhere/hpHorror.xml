@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="hpHorror.png">
+	<!-- Created with Adobe Animate version 20.5.1.31044 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="hpHorror0000" x="0" y="0" width="644" height="109"/>
+	<SubTexture name="hpHorror0001" x="0" y="0" width="644" height="109"/>
+	<SubTexture name="hpHorror0002" x="644" y="0" width="644" height="109"/>
+	<SubTexture name="hpHorror0003" x="1288" y="0" width="644" height="109"/>
+	<SubTexture name="hpHorror0004" x="0" y="109" width="644" height="109"/>
+	<SubTexture name="hpHorror0005" x="644" y="109" width="644" height="109"/>
+	<SubTexture name="hpHorror0006" x="1288" y="109" width="644" height="109"/>
+	<SubTexture name="hpHorror0007" x="0" y="218" width="644" height="109"/>
+	<SubTexture name="hpHorror0008" x="644" y="218" width="644" height="109"/>
+	<SubTexture name="hpHorror0009" x="1288" y="218" width="644" height="109"/>
+	<SubTexture name="hpHorror0010" x="0" y="327" width="644" height="109"/>
+	<SubTexture name="hpHorror0011" x="644" y="327" width="644" height="109"/>
+	<SubTexture name="hpHorror0012" x="1288" y="327" width="644" height="109"/>
+	<SubTexture name="hpHorror0013" x="0" y="436" width="644" height="109"/>
+	<SubTexture name="hpHorror0014" x="644" y="436" width="644" height="109"/>
+	<SubTexture name="hpHorror0015" x="1288" y="436" width="644" height="109"/>
+	<SubTexture name="hpHorror0016" x="0" y="545" width="644" height="109"/>
+	<SubTexture name="hpHorror0017" x="644" y="545" width="644" height="109"/>
+	<SubTexture name="hpHorror0018" x="1288" y="545" width="644" height="109"/>
+	<SubTexture name="hpHorror0019" x="0" y="654" width="644" height="109"/>
+	<SubTexture name="hpHorror0020" x="644" y="654" width="644" height="109"/>
+	<SubTexture name="hpHorror0021" x="1288" y="654" width="644" height="109"/>
+	<SubTexture name="hpHorror0022" x="0" y="763" width="644" height="109"/>
+	<SubTexture name="hpHorror0023" x="0" y="763" width="644" height="109"/>
+	<SubTexture name="hpHorror0024" x="644" y="763" width="644" height="109"/>
+	<SubTexture name="hpHorror0025" x="1288" y="763" width="644" height="109"/>
+	<SubTexture name="hpHorror0026" x="0" y="872" width="644" height="109"/>
+	<SubTexture name="hpHorror0027" x="644" y="872" width="644" height="109"/>
+	<SubTexture name="hpHorror0028" x="1288" y="872" width="644" height="109"/>
+	<SubTexture name="hpHorror0029" x="0" y="981" width="644" height="109"/>
+</TextureAtlas>

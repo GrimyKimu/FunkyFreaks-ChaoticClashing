@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="blitz.png">
+	<!-- Created with Adobe Animate version 20.5.1.31044 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="blitz_beaten0000" x="0" y="0" width="1281" height="733"/>
+	<SubTexture name="blitz_beaten0001" x="0" y="0" width="1281" height="733"/>
+	<SubTexture name="blitz_beaten0002" x="0" y="0" width="1281" height="733"/>
+	<SubTexture name="blitz_beaten0003" x="0" y="0" width="1281" height="733"/>
+	<SubTexture name="blitz_beaten0004" x="0" y="0" width="1281" height="733"/>
+	<SubTexture name="blitz_beaten0005" x="0" y="0" width="1281" height="733"/>
+	<SubTexture name="blitz_beaten0006" x="1281" y="0" width="1281" height="733"/>
+	<SubTexture name="blitz_beaten0007" x="1281" y="0" width="1281" height="733"/>
+	<SubTexture name="blitz_beaten0008" x="1281" y="0" width="1281" height="733"/>
+	<SubTexture name="blitz_beaten0009" x="1281" y="0" width="1281" height="733"/>
+	<SubTexture name="blitz_beaten0010" x="1281" y="0" width="1281" height="733"/>
+	<SubTexture name="blitz_beaten0011" x="1281" y="0" width="1281" height="733"/>
+	<SubTexture name="blitz_beaten0012" x="2562" y="0" width="1281" height="733"/>
+	<SubTexture name="blitz_beaten0013" x="2562" y="0" width="1281" height="733"/>
+	<SubTexture name="blitz_beaten0014" x="2562" y="0" width="1281" height="733"/>
+	<SubTexture name="blitz_beaten0015" x="2562" y="0" width="1281" height="733"/>
+	<SubTexture name="blitz_beaten0016" x="2562" y="0" width="1281" height="733"/>
+	<SubTexture name="blitz_beaten0017" x="2562" y="0" width="1281" height="733"/>
+	<SubTexture name="blitz_menace0000" x="0" y="733" width="1281" height="733"/>
+	<SubTexture name="blitz_menace0001" x="1281" y="733" width="1281" height="733"/>
+	<SubTexture name="blitz_menace0002" x="2562" y="733" width="1281" height="733"/>
+	<SubTexture name="blitz_menace0003" x="0" y="1466" width="1281" height="733"/>
+</TextureAtlas>

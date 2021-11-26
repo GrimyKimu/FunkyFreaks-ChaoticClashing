@@ -1,0 +1,10 @@
+make it so whenever the player attempts to transition into the storyMenu, 
+it checks for whether or not a Sain dialogue should begin
+
+During those transitions, also change a few variables in the storyMenu that also help it
+determine from what song and which diffs the transitions took place 
+
+E.G. Give the storyMenu info about the song:MARENOL and diff:False, and with that info, load in the right
+String Array file, and the proper Sain BG.
+
+That Sain BG will also have the same system as the main menu, where it reacts to what you have and haven't completed yet.

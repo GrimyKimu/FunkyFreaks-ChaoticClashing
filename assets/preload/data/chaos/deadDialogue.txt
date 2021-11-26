@@ -1,0 +1,10 @@
+data:2
+change:1
+loud:BF: ...!
+loud:Sheol: ...! 
+loud:Sheol: I knew it!
+loud:Sheol: Stop it!!
+normal:Blitz: ...
+normal:Darian: ...
+normal:Blitz: She's not correct, is she, dari dear?
+normal:Darian: ...

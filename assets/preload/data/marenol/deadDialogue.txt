@@ -1,0 +1,8 @@
+data:6
+normal:Sheol: ...
+change:1
+normal:Sheol: ...
+change:2
+normal:Sheol: Stop coming back.
+change:2
+normal:Sheol: Die.

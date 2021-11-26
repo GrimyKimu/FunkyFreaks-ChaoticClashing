@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="dari_assets.png">
+	<!-- Created with Adobe Animate version 20.5.1.31044 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="Down Note0000" x="6154" y="1532" width="491" height="673"/>
+	<SubTexture name="Down Note0001" x="6154" y="1532" width="491" height="673"/>
+	<SubTexture name="Down Note0002" x="6645" y="1532" width="491" height="673"/>
+	<SubTexture name="Down Note0003" x="6645" y="1532" width="491" height="673"/>
+	<SubTexture name="Idle0000" x="2392" y="1532" width="644" height="674"/>
+	<SubTexture name="Idle0001" x="2392" y="1532" width="644" height="674"/>
+	<SubTexture name="Idle0002" x="3036" y="1532" width="644" height="674"/>
+	<SubTexture name="Idle0003" x="3036" y="1532" width="644" height="674"/>
+	<SubTexture name="Idle0004" x="3680" y="1532" width="644" height="674"/>
+	<SubTexture name="Idle0005" x="3680" y="1532" width="644" height="674"/>
+	<SubTexture name="Idle0006" x="4324" y="1532" width="644" height="674"/>
+	<SubTexture name="Idle0007" x="4324" y="1532" width="644" height="674"/>
+	<SubTexture name="Idle0008" x="4968" y="1532" width="644" height="674"/>
+	<SubTexture name="Idle0009" x="4968" y="1532" width="644" height="674"/>
+	<SubTexture name="Idle0010" x="4968" y="1532" width="644" height="674"/>
+	<SubTexture name="Idle0011" x="4968" y="1532" width="644" height="674"/>
+	<SubTexture name="Idle0012" x="4968" y="1532" width="644" height="674"/>
+	<SubTexture name="Idle0013" x="4968" y="1532" width="644" height="674"/>
+	<SubTexture name="Left Note0000" x="7596" y="1348" width="542" height="673"/>
+	<SubTexture name="Left Note0001" x="7596" y="1348" width="542" height="673"/>
+	<SubTexture name="Left Note0002" x="5612" y="1532" width="542" height="673"/>
+	<SubTexture name="Left Note0003" x="5612" y="1532" width="542" height="673"/>
+	<SubTexture name="Right Note0000" x="7596" y="0" width="593" height="674"/>
+	<SubTexture name="Right Note0001" x="7596" y="0" width="593" height="674"/>
+	<SubTexture name="Right Note0002" x="7596" y="674" width="593" height="674"/>
+	<SubTexture name="Right Note0003" x="7596" y="674" width="593" height="674"/>
+	<SubTexture name="Up Note0000" x="844" y="1532" width="774" height="673"/>
+	<SubTexture name="Up Note0001" x="844" y="1532" width="774" height="673"/>
+	<SubTexture name="Up Note0002" x="1618" y="1532" width="774" height="673"/>
+	<SubTexture name="Up Note0003" x="1618" y="1532" width="774" height="673"/>
+	<SubTexture name="Waving0000" x="0" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0001" x="0" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0002" x="844" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0003" x="844" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0004" x="1688" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0005" x="2532" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0006" x="2532" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0007" x="2532" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0008" x="3376" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0009" x="3376" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0010" x="4220" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0011" x="4220" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0012" x="5064" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0013" x="5064" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0014" x="5908" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0015" x="5908" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0016" x="6752" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0017" x="6752" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0018" x="6752" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0019" x="0" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0020" x="0" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0021" x="0" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0022" x="844" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0023" x="844" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0024" x="844" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0025" x="1688" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0026" x="1688" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0027" x="1688" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0028" x="2532" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0029" x="2532" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0030" x="2532" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0031" x="0" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0032" x="0" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0033" x="0" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0034" x="844" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0035" x="844" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0036" x="844" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0037" x="1688" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0038" x="1688" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0039" x="1688" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0040" x="2532" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0041" x="2532" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0042" x="2532" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0043" x="0" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0044" x="0" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0045" x="0" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0046" x="844" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0047" x="844" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0048" x="844" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0049" x="1688" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0050" x="1688" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0051" x="1688" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0052" x="2532" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0053" x="2532" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0054" x="2532" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0055" x="0" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0056" x="0" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0057" x="0" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0058" x="844" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0059" x="844" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0060" x="844" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0061" x="1688" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0062" x="1688" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0063" x="1688" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0064" x="6752" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0065" x="6752" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0066" x="6752" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0067" x="6752" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0068" x="6752" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0069" x="6752" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0070" x="6752" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0071" x="6752" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0072" x="6752" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0073" x="6752" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0074" x="6752" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0075" x="6752" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0076" x="5908" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0077" x="5908" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0078" x="5064" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0079" x="5064" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0080" x="4220" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0081" x="4220" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0082" x="3376" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0083" x="3376" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0084" x="2532" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0085" x="2532" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0086" x="2532" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0087" x="2532" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0088" x="2532" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0089" x="2532" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0090" x="2532" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0091" x="2532" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0092" x="2532" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0093" x="2532" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0094" x="2532" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0095" x="2532" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0096" x="2532" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0097" x="2532" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0098" x="2532" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0099" x="2532" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0100" x="2532" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0101" x="2532" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0102" x="2532" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0103" x="2532" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0104" x="2532" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0105" x="2532" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0106" x="2532" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0107" x="2532" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0108" x="2532" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0109" x="1688" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0110" x="1688" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0111" x="844" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0112" x="844" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0113" x="844" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0114" x="844" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0115" x="3376" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0116" x="3376" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0117" x="3376" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0118" x="3376" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0119" x="3376" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0120" x="4220" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0121" x="4220" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0122" x="5064" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0123" x="5064" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0124" x="5908" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0125" x="5908" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0126" x="5908" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0127" x="5908" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0128" x="5064" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0129" x="5064" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0130" x="4220" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0131" x="4220" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0132" x="6752" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0133" x="6752" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0134" x="6752" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0135" x="6752" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0136" x="6752" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0137" x="6752" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0138" x="6752" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0139" x="6752" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0140" x="6752" y="766" width="844" height="766"/>
+	<SubTexture name="Waving0141" x="0" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0142" x="0" y="0" width="844" height="766"/>
+	<SubTexture name="Waving0143" x="0" y="1532" width="844" height="766"/>
+</TextureAtlas>

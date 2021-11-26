@@ -1,0 +1,40 @@
+data:6
+normal:BF: Beep!
+normal:No One: ...
+normal:Not A Single Soul: ... ...
+normal:Blitz: W-Was Sheol...
+normal:Blitz: Was Sheol actually right about-
+normal:Sheol: Hahaha! I knew it! I know that look in Dari’s eyes!
+normal:Sheol: You didn’t want to help calm me down-
+change:1:
+normal:Dari: Shut it! I-
+normal:Dari: N-no- I mean- Wait- Hold on- I- Wait- Hold- No- Wait no- Hold on- Give me a- Wait- Just hold- No wait- Just- I mean- Wait- No- Hold on- I am- Wait- Give me a- Just- Wait- N-no- I mean- Wait- Hold on- I- Wait- Hold- No- Wait no- Hold on- Give me a- Wait- Just hold- No wait- Just- I mean- Wait- No- Hold on- I am- Wait- Give me a- Just- Wait- N-no- I mean- Wait- Hold on- I- Wait- Hold- No- Wait no- Hold on- Give me a- Wait- Just hold- No wait- Just- I mean- Wait- No- Hold on- I am- Wait- Give me a- Just- Wait- N-no- I mean- Wait- Hold on- I- Wait- Hold- No- Wait no- Hold on- Give me a- Wait- Just hold- No wait- Just- I mean- Wait- No- Hold on- I am- Wait- Give me a- Just- Wait- 
+change:1:
+normal:Dari: Hey                      H-Hey,      Blitz.
+normal:Blitz: Uh, yeah?
+normal:Dari: Hey,   uh,  nothing,  uh nothing  special but,      uh,  can you,    uh,    just kinda sort of,     well  you   know-
+normal:Dari: Distract the puppet as well? You know, sing  with them, while not  holding back,  and stuff.
+normal:Blitz: Dari, what happened? What’s wrong?
+normal:Sheol: Yeah... You’re scaring me Dari...
+change:1:
+normal:Dari: HaahaAHHAhhHAHAHHhAHHAHHAHahhHAHaHAHHAAAAHAHhaHAHhHAHAHAHHAHAHhHAHAHAHHAHHAHaHAHAHAHAHAHHHAHAHAHAAHhahhahahahHAHhahahAHAHHaahaAHHAhhHAHAHHhAHHAHHAHahhHAHaHAHHAAAAHAHhaHAHhHAHAHAHHAHAHhHAHAHAHHAHHAHaHAHAHAHAHAHHHAHAHAHAAHhahhahahahHAHhahahAHAHHaahaAHHAhhHAHAHHhAHHAHHAHahhHAHaHAHHAAAAHAHhaHAHhHAHAHAHHAHAHhHAHAHAHHAHHAHaHAHAHAHAHAHHHAHAHAHAAHhahhahahahHAHhahahAHAHHaahaAHHAhhHAHAHHhAHHAHHAHahhHAHaHAHHAAAAHAHhaHAHhHAHAHAHHAHAHhHAHAHAHHAHHAHaHAHAHAHAHAHHHAHAHAHAAHhahhahahahHAHhahahAHAHHaahaAHHAhhHAHAHHhAHHAHHAHahhHAHaHAHHAAAAHAHhaHAHhHAHAHAHHAHAHhHAHAHAHHAHHAHaHAHAHAHAHAHHHAHAHAHAAHhahhahahahHAHhahahAHAHHaahaAHHAhhHAHAHHhAHHAHHAHahhHAHaHAHHAAAAHAHhaHAHhHAHAHAHHAHAHhHAHAHAHHAHHAHaHAHAHAHAHAHHHAHAHAHAAHhahhahahahHAHhahahAHAHHaahaAHHAhhHAHAHHhAHHAHHAHahhHAHaHAHHAAAAHAHhaHAHhHAHAHAHHAHAHhHAHAHAHHAHHAHaHAHAHAHAHAHHHAHAHAHAAHhahhahahahHAHhahahAHAHHaahaAHHAhhHAHAHHhAHHAHHAHahhHAHaHAHHAAAAHAHhaHAHhHAHAHAHHAHAHhHAHAHAHHAHHAHaHAHAHAHAHAHHHAHAHAHAAHhahhahahahHAHhahahAHAH
+change:1:
+normal:Dari: hahahaha, ehaha… Hah hah hah… 
+normal:Dari: *attempts to breathe slowly*
+normal:Blitz: What happened? What went wrong?
+normal:Dari: *staggered breathing*
+normal:Blitz: You know what, no, ok. Dari dear, please, just sit with Sheol.
+normal:Dari: Haaaaaaaah…
+change:1:
+normal:Blitz: ...
+normal:Blitz: I’ll have you know puppet-
+normal:Blitz: There are only two things I know of that can leave my dear elder sibling in such an awful state...
+normal:Blitz: First: Their emotions have been tampered with from the outside, and not even they can counter it. I doubt you're as controlling or even capable as our father, so that’s a no.
+normal:Blitz: Second: They’ve had an epiphany. An epiphany so great that would leave a lesser being destroyed, and others like our dear Dari, breaking down...
+normal:Blitz: Obviously, Sheol and I, as Darian’s younger siblings, are lesser beings.
+normal:Blitz: Whatever Darian discovered, I’ll discover soon as well...
+normal:Dari: No- wait- stop- You shoul-
+normal:Blitz: It’s too late, dear. 
+normal:Blitz: For every mistake, and I mean, EVERY mistake you make, you’ll bleed.
+normal:Blitz: I know you can come back whenever you die, we can all tell that.
+normal:Blitz: But there’s something else here too, and I’m willing to die to learn what broke my dear sibling.

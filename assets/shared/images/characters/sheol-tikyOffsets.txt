@@ -1,0 +1,6 @@
+idle 0 0
+singDOWN 61 -65
+singLEFT 119 -20
+singUP 65 0
+singRIGHT -5 -115
+cheer 80 95

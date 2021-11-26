@@ -1,0 +1,14 @@
+data:1
+normal:Blitz: Uh huh...
+normal:Sheol: ...
+normal:Dari: ...
+normal:Dari: Sheol, sister.
+normal:Dari: Please explain to us why you are in that outfit.
+normal:Sheol: lmao imma gun go ballistic
+normal:Blitz: What?
+normal:Dari: What?
+normal:BF: wah?
+loud:Sheol: *LOUD SCREECHING*
+normal:Dari: Oh, ok.
+normal:BF: a...
+normal:BF: I'm dead, aren't I?

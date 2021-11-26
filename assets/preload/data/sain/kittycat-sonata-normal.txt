@@ -1,0 +1,17 @@
+data:1
+normal:???: ...
+normal:???: We are now connected.
+normal:???: Greetings player.
+normal:Sain: I am Sain.
+normal:Sain: The details need not concern you, player.
+normal:Sain: You have brought a devastating epiphany upon my precious children, even if totally outside of your control.
+normal:Sain: It will be up to you to console them.
+normal:Sain: Ah but it won’t be so easy, you see.
+normal:Sain: They all cope with such mind-breaking issues in their own ways, which will affect just how terribly difficult their “boss levels” will be.
+normal:Sain: Hmm...
+normal:Sain: I see, I have no input in making it easier for you.
+normal:Sain: All I am able to do is provide advice...
+normal:Sain: No, actually, I am able to create “False” versions of my children, so that you may practice against a simple copy of them.
+normal:Sain: Know that practicing against my false copies will not help anyone other than you, I suppose. 
+normal:Sain: What a conundrum.
+normal:Sain: Oh my unfortunate children...
