@@ -291,33 +291,35 @@ class Character extends FlxSprite
 			}
 
 			case 'dari':
-			{
 				frames = Paths.getSparrowAtlas('characters/dari_assets');
 				animation.addByPrefix('idle', 'Idle', 24, false);
 				animation.addByPrefix('singUP', 'Up Note', 24, false);
 				animation.addByPrefix('singDOWN', 'Down Note', 24, false);
 				animation.addByPrefix('singLEFT', 'Left Note', 24, false);
 				animation.addByPrefix('singRIGHT', 'Right Note', 24, false);
+
 				animation.addByPrefix('cheer', 'Waving', 24, false);
 
 				loadOffsetFile(curCharacter);
 
 				playAnim('idle');
-			}
 
 			case 'blitz':
-			{
-				frames = Paths.getSparrowAtlas('characters/dari_assets');
+				frames = Paths.getSparrowAtlas('characters/blitz_assets');
 				animation.addByPrefix('idle', 'Idle', 24, true);
 				animation.addByPrefix('singUP', 'Up Note', 24, false);
 				animation.addByPrefix('singDOWN', 'Down Note', 24, false);
 				animation.addByPrefix('singLEFT', 'Left Note', 24, false);
 				animation.addByPrefix('singRIGHT', 'Right Note', 24, false);
-
+				
+				animation.addByPrefix('scarUP', 'slashUp', 24, false);
+				animation.addByPrefix('scarDOWN', 'slashDown', 24, false);
+				animation.addByPrefix('scarLEFT', 'slashLeft', 24, false);
+				animation.addByPrefix('scarRIGHT', 'slashRight', 24, false);
 				loadOffsetFile(curCharacter);
 
 				playAnim('idle');
-			}
+			
 		}
 
 		dance();

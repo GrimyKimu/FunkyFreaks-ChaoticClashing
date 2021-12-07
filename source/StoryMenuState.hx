@@ -273,7 +273,7 @@ class StoryMenuState extends MusicBeatState
 			var noPlay:Bool = false;
 			var superFail:String = '';
 
-			if(songOrigin == 'play-time' | 'chaos' | 'apology' | 'kittycat-sonata' && didLose)
+			if((songOrigin == 'play-time' || songOrigin == 'chaos' || songOrigin == 'apology' || songOrigin == 'kittycat-sonata') && didLose)
 			{
 				noPlay = true;
 			}
@@ -289,7 +289,6 @@ class StoryMenuState extends MusicBeatState
 
 				doof = new DialogueBox(dialogue, 'sain', false);
 				doof.scrollFactor.set();
-				doof.finishThing = startCountdown;
 
 				sainShallSpeak(doof);
 			}
@@ -313,7 +312,7 @@ class StoryMenuState extends MusicBeatState
 				songOrigin = null;
 				diffOrigin = null;
 				inCutscene = false;
-				didLose = null;
+				didLose = false;
 				FlxG.sound.playMusic(Paths.music('freakyMenu-goner'));
 			}
 		});
@@ -323,10 +322,10 @@ class StoryMenuState extends MusicBeatState
 	private var inCutscene:Bool = false;
 	private var doof:DialogueBox;
 	private var dialogue:Array<String> = ['sain: Aw shit, here we go again.'];
-	public var songOrigin:String;
-	public var diffOrigin:String;
-	public var didLose:Bool;
-	public var savedChildren:Array<Bool> = [false,false,false,false]; //0 = she, 1 = blitz, 2 = dari
+	public static var songOrigin:String = '';
+	public static var diffOrigin:String;
+	public static var didLose:Bool;
+	public static var savedChildren:Array<Bool> = [false,false,false,false]; //0 = she, 1 = blitz, 2 = dari
 
 	override function update(elapsed:Float)
 	{
@@ -473,10 +472,22 @@ class StoryMenuState extends MusicBeatState
 			PlayState.storyWeek = curWeek;
 			PlayState.campaignScore = 0;
 			PlayState.alreadyDied = false;
-			new FlxTimer().start(1, function(tmr:FlxTimer)
+			PlayState.dedCounter = 0;
+
+			if (!FlxG.save.data.weeksBeaten[0])
 			{
-				LoadingState.loadAndSwitchState(new PlayState(), true);
-			});
+				//play initial cutscene here
+				var video:MP4Handler = new MP4Handler();
+				video.stateCallback = new PlayState();
+				video.playMP4(Paths.video('speen'));
+			}
+			else
+			{
+				new FlxTimer().start(1, function(tmr:FlxTimer)
+				{
+					LoadingState.loadAndSwitchState(new PlayState(), true);
+				});
+			}
 		}
 		else
 		{

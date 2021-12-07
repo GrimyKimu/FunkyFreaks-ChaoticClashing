@@ -156,7 +156,7 @@ class PlayState extends MusicBeatState
 	public static var cpuStrums:FlxTypedGroup<StaticArrow> = null;
 
 	private var camZooming:Bool = true;
-	private var curSong:String = "";
+	public static var curSong:String = "";
 
 	private var gfSpeed:Int = 1;
 
@@ -208,6 +208,7 @@ class PlayState extends MusicBeatState
 	public var dialogue2:Array<String> = ['dad:lmao, 69', 'bf:nice'];
 	public var dialogueFree:Array<String> = ['dad: holy shet, it\'s freeplay mode???', 'bf:lmao cool'];
 	public var dialogueDeath:Array<String> = ['dad:lmao, you dieded', 'bf:*roblox oof*'];
+	public var dialogueFalse:Array<String> = ['sain:ah shit, look at you fake ass lookin mofos'];
 
 	public static var trainSound:FlxSound;
 
@@ -482,7 +483,7 @@ class PlayState extends MusicBeatState
 				dialogue = CoolUtil.coolTextFile(Paths.txt('data/$songLowercase/preDialogue'));
 				dialogueFree = CoolUtil.coolTextFile(Paths.txt('data/$songLowercase/freeDialogue'));
 				dialogueDeath = CoolUtil.coolTextFile(Paths.txt('data/$songLowercase/deadDialogue'));
-			case 'kittycat-sonata' | 'marenol' | 'muderous-blitz' | 'm-e-m-e' | 'creator':
+			case 'kittycat-sonata' | 'marenol' | 'murderous-blitz' | 'm-e-m-e' | 'creator':
 				//for the boss songs + 1st week final song
 				dialogue = CoolUtil.coolTextFile(Paths.txt('data/$songLowercase/preDialogue'));
 				dialogue2 = CoolUtil.coolTextFile(Paths.txt('data/$songLowercase/postDialogue'));
@@ -1149,7 +1150,7 @@ class PlayState extends MusicBeatState
 				case 0:
 					FlxG.sound.play(Paths.sound('intro3' + altSuffix), 0.6);
 				case 1:
-					var ready:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[0], week6Bullshit));
+					var ready:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[0]));
 					ready.scrollFactor.set();
 					ready.updateHitbox();
 
@@ -1164,7 +1165,7 @@ class PlayState extends MusicBeatState
 					});
 					FlxG.sound.play(Paths.sound('intro2' + altSuffix), 0.6);
 				case 2:
-					var set:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[1], week6Bullshit));
+					var set:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[1]));
 					set.scrollFactor.set();
 
 					set.screenCenter();
@@ -1178,7 +1179,7 @@ class PlayState extends MusicBeatState
 					});
 					FlxG.sound.play(Paths.sound('intro1' + altSuffix), 0.6);
 				case 3:
-					var go:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[2], week6Bullshit));
+					var go:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[2]));
 					go.scrollFactor.set();
 					go.updateHitbox();
 
@@ -1478,7 +1479,7 @@ class PlayState extends MusicBeatState
 		curSong = songData.song;
 		var truSongs = curSong.toLowerCase();
 
-		if (truSongs == 'marenol' || truSongs == 'murderous blitz' || truSongs == 'm-e-m-e')
+		if (truSongs == 'kittycat-sonata' || truSongs == 'marenol' || truSongs == 'murderous-blitz' || truSongs == 'm-e-m-e')
 			noGhost = true;
 
 		#if sys
@@ -2246,32 +2247,38 @@ class PlayState extends MusicBeatState
 				}
 
 			case 'KittyCat-Sonata':
-				if(curBeat >= 9999)
+				if(curBeat >= 150 && !triggeredAlready)
 				{
-					bleedAndDie('SCREAM', hpScars.members.length / 2);
+					bleedAndDie('', Std.int(hpScars.members.length / 2));
+					triggeredAlready = true;
 					Stage.swagBacks['lostRain'].visible = true;
+					FlxTween.tween(Stage.swagBacks['lostRain'], {alpha: 1.0}, (Conductor.crochet * 12 / 1000), {ease: FlxEase.elasticInOut});
 					FlxG.sound.play('thunder_1', 1.0);
+
+					
+					gf.dumbVar = true;
+					gf.dance();
 				}
 
-			case 'Muderous-Blitz':
+			case 'Murderous-Blitz':
 				if(curBeat >= 9999)
 				{
 					//at mvt II beginning
-					bleedAndDie('SCREAM', hpScars.members.length / 4);
+					bleedAndDie('', Std.int(hpScars.members.length / 4));
 					FlxG.sound.play('blitzScream', 0.6);
 				}
 
 				if(curBeat >= 9999)
 				{
 					//at mvt III beginning
-					bleedAndDie('SCREAM', hpScars.members.length / 4);
+					bleedAndDie('', Std.int(hpScars.members.length / 4));
 					FlxG.sound.play('blitzScream', 0.6);
 				}
 
 				if(curBeat >= 9999)
 				{
 					//at the end
-					bleedAndDie('SCREAM');
+					bleedAndDie('');
 					FlxG.sound.play('blitzScream', 0.6);
 
 				}
@@ -4647,29 +4654,31 @@ class PlayState extends MusicBeatState
 
 	function bleedAndDie(data:String, ?scarHeal:Int)
 	{
-		if (curSong.toLowerCase() != 'kittycat-sonata' && curSong.toLowerCase() != 'muderous-blitz')
+		if (curSong.toLowerCase() != 'kittycat-sonata' && curSong.toLowerCase() != 'murderous-blitz')
 			return;
 
 		if (scarHeal != null)
 		{
-			for (i in 0...scarHeal) {hpScars.remove(hpScars.members[0], true);}
+			for (i in 0...scarHeal) 
+				hpScars.remove(hpScars.members[0], true);
 			return;
 		}
 
 		var randoY = FlxG.random.float(healthBar.y - FlxG.height * 0.05,healthBar.y + FlxG.height * 0.05);
 		var randoX = FlxG.random.float(FlxG.width * 0.25,FlxG.width * 0.75);
 		var scarArray:Array<String> = ['hpScar-1','hpScar-2','hpScar-3'];
-		var randoScar = scarArray[FlxG.Random.int(0, 2)];
+		var randoScar = scarArray[FlxG.random.int(0, 2)];
 
 		FlxG.sound.play(Paths.sound('bloody-slash'), 0.8);
 
-		var yes:FlxSprite = new FlxSprite(randoX,randoY).loadGraphic(Paths.image(randoScar));
+		var yes:FlxSprite = new FlxSprite(randoX,randoY).loadGraphic(Paths.image('nowhere/' + randoScar));
+		//'weeb/pixelUI/arrows-pixels'
 		yes.angle = FlxG.random.float(0, 360);
 		hpScars.add(yes);
 
-		if (dad.animOffsets.exists('scar' + dataSuffix[direction]))
+		if (dad.animOffsets.exists('scar' + data))
 		{
-			dad.playAnim('scar' + dataSuffix[direction], true);
+			dad.playAnim('scar' + data, true);
 		}
 	}
 }

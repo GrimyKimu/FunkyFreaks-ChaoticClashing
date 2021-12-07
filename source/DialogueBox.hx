@@ -45,7 +45,7 @@ class DialogueBox extends FlxSpriteGroup
 	{
 		super();
 
-		deathCount = Playstate.dedCounter;
+		deathCount = PlayState.dedCounter;
 
 		var bg:FlxSprite = new FlxSprite(0).makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		bg.scrollFactor.set();
@@ -53,30 +53,11 @@ class DialogueBox extends FlxSpriteGroup
 		bg.screenCenter();
 		add(bg);
 
-		bgChildren = new FlxTypedGroup<FlxSprite>();
-		add(bgChildren);
-
 		this.curSong = curSong;
 		this.postGame = postGame;
 		//trace(curSong);
 
-		if (curSong == 'sain')
-		{
-			for (i in 0...3)
-			{
-				var yes:FlxSprite = new FlxSprite();
-				yes.frames = Paths.getSparrowAtlas('menuVariety/sain-$i');
-				//0 = sheol // 1 = blitz // 2 = dari // 3 = sain
-				yes.screenCenter();
-				yes.animation.addByPrefix('appear', 'appear', 24, true);
-				yes.animation.addByPrefix('idle', 'idle', 24, true);
-				yes.animation.addByPrefix('change', 'change', 24, true);
-				yes.visible = StoryMenuState.savedChildren[i];
-
-				yes.animation.play('appear', false);
-				bgChildren.add(yes);
-			}
-		}
+		
 
 		this.dialogueList = dialogueList;
 		if(cleanDialog())
@@ -105,6 +86,24 @@ class DialogueBox extends FlxSpriteGroup
 		}
 		curSlide = 0; //remember that index 0 is the FIRST object in any array!
 		trace("success in loading all the story CGs for this song");
+
+		if (curSong == 'sain')
+		{
+			for (i in 0...3)
+			{
+				var yes:FlxSprite = new FlxSprite();
+				yes.frames = Paths.getSparrowAtlas('menuVariety/sain-$i');
+				//0 = sheol // 1 = blitz // 2 = dari // 3 = sain
+				yes.screenCenter();
+				yes.animation.addByPrefix('appear', 'appear', 24, true);
+				yes.animation.addByPrefix('idle', 'idle', 24, true);
+				yes.animation.addByPrefix('change', 'change', 24, true);
+				yes.visible = StoryMenuState.savedChildren[i];
+
+				yes.animation.play('appear', false);
+				bgChildren['sain-$i'] = yes;
+			}
+		}
 		
 		new FlxTimer().start(0.83, function(tmr:FlxTimer)
 		{
@@ -137,7 +136,7 @@ class DialogueBox extends FlxSpriteGroup
 	var dialogueOpened:Bool = false;
 	var dialogueStarted:Bool = false;
 
-	private var bgChildren:FlxTypedGroup<FlxSprite>;
+	private var bgChildren:Map<String, FlxSprite> = [];
 
 	override function update(elapsed:Float)
 	{
@@ -157,10 +156,10 @@ class DialogueBox extends FlxSpriteGroup
 
 		if (curSong == 'sain')
 		{
-			for (i in 0...4)
+			for (i in 0...3)
 			{
-				if (bgChildren.members[i].animation.curAnim.name != 'appear' | 'change')
-					bgChildren.members[i].animation.play('idle', false);
+				if (bgChildren['sain-$i'].animation.curAnim.name != 'appear' || bgChildren['sain-$i'].animation.curAnim.name != 'change')
+					bgChildren['sain-$i'].animation.play('idle', false);
 			}
 		}
 
@@ -308,8 +307,8 @@ class DialogueBox extends FlxSpriteGroup
 			var rescueVar = Std.parseInt(splitName[1]);
 			dialogueList.remove(dialogueList[0]);
 			StoryMenuState.savedChildren[rescueVar] = true;
-			bgChildren.members[rescueVar].animation.play('appear', true);
-			bgChildren.members[rescueVar].visible = true;
+			bgChildren['sain-$rescueVar'].animation.play('appear', true);
+			bgChildren['sain-$rescueVar'].visible = true;
 
 			return true;
 		}

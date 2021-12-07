@@ -218,6 +218,7 @@ class Stage
 				lostRain.updateHitbox();
 				lostRain.antialiasing = true;
 				lostRain.scrollFactor.set(1.5, 1.5);
+				lostRain.alpha = 0;
 				lostRain.visible = false;
 				lostRain.animation.play('idle');
 				layInFront[2].push(lostRain);
