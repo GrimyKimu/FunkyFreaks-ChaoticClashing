@@ -61,18 +61,18 @@ class StoryMenuState extends MusicBeatState
 				['dari', 'bf-goner', '']
 			];
 		}
-		else if (FlxG.save.data.weeksBeaten[0] && FlxG.save.data.weeksBeaten[4])
+		else //if (FlxG.save.data.weeksBeaten[0] && FlxG.save.data.weeksBeaten[4])
 		{
 			return [
 				['', 'bf', '']
 			];
 		}
-		else
+		/*else
 		{
 			return [
 				['sheol', 'bf-blitz', 'bf-dari']
 			];
-		}
+		}*/
 	}
 
 	var weekCharacters = whatCharacters();

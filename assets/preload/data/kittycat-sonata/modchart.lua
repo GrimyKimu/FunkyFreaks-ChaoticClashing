@@ -1,50 +1,48 @@
--- "Apology"
-
-adjustVar = 0.0;
-multiVar = 1
-showOnlyStrums = false
+-- "KittyCaT-Sonata"
 
 function update(elapsed)
-	if adjustVar < 1 then
-		adjustVar = adjustVar + 0.001
+	camShenigans()
+end
+
+function beatHit(beat)
+	if (beat > 12 and beat < 231) or (beat > 394 and beat < 547) then
+		if math.fmod(beat, 3) == 0 then
+			cameraZoom = 0.76
+			camHudAngle = 2 * camVar
+		else
+			cameraZoom = 0.73
+			camHudAngle = 1 * camVar
+		end
+	elseif (beat > 252 and beat < 394) then
+		if math.fmod(beat, 2) == 0 then
+			cameraZoom = 0.78
+			camHudAngle = 2 * camVar
+		else
+			cameraZoom = 0.74
+			camHudAngle = 1 * camVar
+		end
 	end
 
-	local currentBeat = (songPos / 1000) * (bpm/60)
 
-	for i=0,7 do
-		local receptor = _G['receptor_'..i]
+	camVar = camVar * -1
 
-		receptor.x = (receptor.defaultX - 36 * math.sin((currentBeat + i * 0.5)/(3.5/multiVar) * math.pi) * adjustVar * multiVar)
-		receptor.y = (receptor.defaultY - 12 * math.sin((currentBeat + i * 0.8)/(1.5/multiVar) * math.pi) * adjustVar * multiVar)
+end
 
-		if (curStep > 763 and curStep < 778 ) or (curStep > 939)then
-			if curStep > 940 then
-				receptor:tweenAlpha(0, 1.5)
-			end
+function camShenigans()
+	local defaultCam = 0.7
+	local funnyVar = math.abs(camHudAngle / 15)
+	cameraAngle = camHudAngle * -0.8
+	hudZoom = cameraZoom + 0.3
 
-			if adjustVar > 0 then
-				adjustVar = adjustVar - 0.011
-			end
-		end
+	if camHudAngle > 0 then
+		camHudAngle = camHudAngle - (funnyVar)
+	elseif camHudAngle < 0 then
+		camHudAngle = camHudAngle + (funnyVar)
+	end
 
-		if curStep >= 568 and curStep < 940 then
-			showOnlyStrums = false -- brings the hud elements back
-			multiVar = 1.5
-	
-			receptor:tweenAlpha(1, 0.5)
-		end
-
-		if curStep >= 520 and curStep < 568 then
-			showOnlyStrums = true -- remove all hud elements besides notes and strums
-			if adjustVar > 0 then
-				adjustVar = adjustVar - 0.006
-			end
-
-			receptor:tweenAlpha(0, 1.5)
-		end
-
-		if curStep == 328 or curStep == 396 or curStep == 568 then
-			adjustVar = 0.0
-		end
+	if cameraZoom > defaultCam then
+		cameraZoom = cameraZoom - 0.005
+	elseif cameraZoom < defaultCam then
+		cameraZoom = defaultCam
 	end
 end

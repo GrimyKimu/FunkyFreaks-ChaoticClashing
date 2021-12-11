@@ -32467,7 +32467,7 @@
   ],
   "chartVersion": "2",
   "song": "MARENOL",
-  "needsVoices": false,
+  "needsVoices": true,
   "sections": 0,
   "validScore": true,
   "stage": "arg",

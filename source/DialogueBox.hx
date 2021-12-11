@@ -57,11 +57,12 @@ class DialogueBox extends FlxSpriteGroup
 		this.postGame = postGame;
 		//trace(curSong);
 
-		
+		FlxG.sound.music.stop();
 
 		this.dialogueList = dialogueList;
 		if(cleanDialog())
-			cleanDialog();
+			if(cleanDialog())
+				cleanDialog();
 
 		var changeSongName = StringTools.replace(curSong, "-", "");
 		var afterString = '';
@@ -87,6 +88,7 @@ class DialogueBox extends FlxSpriteGroup
 		curSlide = 0; //remember that index 0 is the FIRST object in any array!
 		trace("success in loading all the story CGs for this song");
 
+		/*
 		if (curSong == 'sain')
 		{
 			for (i in 0...3)
@@ -103,7 +105,7 @@ class DialogueBox extends FlxSpriteGroup
 				yes.animation.play('appear', false);
 				bgChildren['sain-$i'] = yes;
 			}
-		}
+		}*/
 		
 		new FlxTimer().start(0.83, function(tmr:FlxTimer)
 		{
@@ -158,8 +160,10 @@ class DialogueBox extends FlxSpriteGroup
 		{
 			for (i in 0...3)
 			{
+				/*
 				if (bgChildren['sain-$i'].animation.curAnim.name != 'appear' || bgChildren['sain-$i'].animation.curAnim.name != 'change')
 					bgChildren['sain-$i'].animation.play('idle', false);
+				*/
 			}
 		}
 
@@ -211,7 +215,8 @@ class DialogueBox extends FlxSpriteGroup
 
 		var oldSlide = curSlide;
 		if(cleanDialog())
-			cleanDialog();
+			if(cleanDialog())
+				cleanDialog();
 
 		if (isLoud)
 		{
@@ -234,14 +239,14 @@ class DialogueBox extends FlxSpriteGroup
 				FlxG.sound.load(Paths.sound('dari_2'), 0.4),
 				FlxG.sound.load(Paths.sound('dari_3'), 0.4)];
 
-			delayNum = 0.2;
+			delayNum = 0.045;
 		}
 		else if (curCharacter.toLowerCase().startsWith('sheol') || curCharacter.toLowerCase().startsWith('strange'))
 		{
 			swagDialogue.sounds = [FlxG.sound.load(Paths.sound('sheol_0'), 0.3),
 				FlxG.sound.load(Paths.sound('sheol_1'), 0.3)];
 
-			delayNum = 0.15;
+			delayNum = 0.035;
 		}
 		else if (curCharacter.toLowerCase().startsWith('blitz') || curCharacter.toLowerCase().startsWith('cat'))
 		{
@@ -249,14 +254,14 @@ class DialogueBox extends FlxSpriteGroup
 				FlxG.sound.load(Paths.sound('blitz_1'), 0.4), FlxG.sound.load(Paths.sound('blitz_2'), 0.4), 
 				FlxG.sound.load(Paths.sound('blitz_3'), 0.4)];
 
-			delayNum = 0.25;
+			delayNum = 0.04;
 		}
 		else if (curCharacter.toLowerCase().startsWith('bf'))
 		{
 			swagDialogue.sounds = [FlxG.sound.load(Paths.sound('bf_ai'), 0.5), 
 				FlxG.sound.load(Paths.sound('bf_ii'), 0.5), FlxG.sound.load(Paths.sound('bf_ah'), 0.5)];
 
-			delayNum = 0.1;
+			delayNum = 0.03;
 		}
 		else if (curCharacter.toLowerCase().startsWith('sain'))
 		{
@@ -264,7 +269,7 @@ class DialogueBox extends FlxSpriteGroup
 				FlxG.sound.load(Paths.sound('sain_1'), 0.4), FlxG.sound.load(Paths.sound('sain_2'), 0.4),
 				FlxG.sound.load(Paths.sound('sain_3'), 0.4)];
 
-			delayNum = 0.3;
+			delayNum = 0.05;
 		}
 		else
 		{
@@ -299,6 +304,7 @@ class DialogueBox extends FlxSpriteGroup
 		{
 			curSlide = curSlide + Std.parseInt(splitName[1]);
 			dialogueList.remove(dialogueList[0]);
+			trace('Slide changed to: ' + curSlide);
 			return true;
 		}
 

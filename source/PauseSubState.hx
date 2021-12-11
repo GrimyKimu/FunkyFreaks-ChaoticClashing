@@ -221,6 +221,7 @@ class PauseSubState extends MusicBeatSubstate
 						GlobalVideo.get().stop();
 						PlayState.instance.remove(PlayState.instance.videoSprite);
 						PlayState.instance.removedVideo = true;
+						PlayState.alreadyDied = true;
 					}
 					PlayState.instance.clean();
 					FlxG.resetState();
