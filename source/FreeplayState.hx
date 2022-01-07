@@ -116,17 +116,18 @@ class FreeplayState extends MusicBeatState
 			if (meta.isEX)
 			{
 				//if the song is one of the boss songs, it'll have False/True diffs
-				if (FileSystem.exists('assets/data/${format}/${format}-false.json'))
-					diffsThatExist.push("False");
-				if (FileSystem.exists('assets/data/${format}/${format}-true.json'))
-					diffsThatExist.push("True");
+				//if (FileSystem.exists('assets/data/${format}/${format}-false.json'))
+					
+				//if (FileSystem.exists('assets/data/${format}/${format}-true.json'))
+				diffsThatExist.push("True");
+				diffsThatExist.push("False");
 			}
 			else
 			{
 				//otherwise, it's just a normal song(that only has 1 diff anyway lol)
 				//haha it's all normal(hard) now mofo
-				if (FileSystem.exists('assets/data/${format}/${format}.json'))
-					diffsThatExist.push("Normal");
+				//if (FileSystem.exists('assets/data/${format}/${format}.json'))
+				diffsThatExist.push("Normal");
 			}
 			#end
 			/*if (diffsThatExist.contains("Easy"))
@@ -136,9 +137,9 @@ class FreeplayState extends MusicBeatState
 			/*if (diffsThatExist.contains("Hard"))
 				FreeplayState.loadDiff(2,format,meta.songName,diffs);*/
 			if (diffsThatExist.contains("False"))
-				FreeplayState.loadDiff(3,format,meta.songName,diffs);
+				FreeplayState.loadDiff(1,format,meta.songName,diffs);
 			if (diffsThatExist.contains("True"))
-				FreeplayState.loadDiff(4,format,meta.songName,diffs);
+				FreeplayState.loadDiff(1,format,meta.songName,diffs);
 
 			meta.diffs = diffsThatExist;
 
@@ -445,7 +446,9 @@ class FreeplayState extends MusicBeatState
 				PlayState.isStoryMode = false;
 				PlayState.storyDifficulty = curDifficulty;
 				PlayState.storyWeek = songs[curSelected].week;
-				trace('CUR WEEK: ' + PlayState.storyWeek);
+				trace('CUR WEEK: ' + PlayState.storyWeek);			
+				PlayState.alreadyDied = false;
+				PlayState.dedCounter = 0;
 				PlayState.isSM = false;
 				PlayState.songMultiplier = rate;
 

@@ -1,4 +1,5 @@
 data:1
+loud:Yes:(press [accept] to continue text)
 normal:Sheol: I've killed you death_count times already
 normal:Sheol: Lmao, you suck.
 normal:Dari: Wow, how rude.

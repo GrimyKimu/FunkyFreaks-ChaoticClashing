@@ -39,10 +39,7 @@ class HealthIcon extends FlxSprite
 	public function changeIcon(char:String)
 	{
 		loadGraphic(Paths.image('icons/icon-' + char), true, 150, 150);
-		if(char.endsWith('-pixel') || char.startsWith('senpai') || char.startsWith('spirit'))
-			antialiasing = false
-		else
-			antialiasing = FlxG.save.data.antialiasing;
+		antialiasing = FlxG.save.data.antialiasing;
 		animation.add(char, [0, 1], 0, false, isPlayer);
 		animation.play(char);
 	}

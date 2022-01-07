@@ -2,6 +2,11 @@ data:1
 normal:Sain: How was it? My poor youngest...
 normal:Sain: Sheol is a child, even if she IS infinitely older than even you, player.
 normal:Sain: The youngest of stars is still magnitudes older than a mere mortal, but in the eyes of the infinite, it is but a young star.
+normal:BF: Oh so you're saying that she's technically legal?
+normal:Sain: Heavens no, what I am saying is that no matter how unfathomably old she may be compared to you or the player, she is a child through and through.
+normal:Sain: Raw age means nothing if a mind is like that of a child.
+normal:Sain: No better than yours, puppet.
+normal:BF: Hey!
 normal:Sain: Ah, I am digressing-
 normal:Sain: She is throwing everything she can at you, the only gimmick is the immense pressure of permanently low health and distracting movements.
 normal:Sain: I can provide no advice other than for you to practice against her false self, in order to get comfortable with the chart itself, so that you might have a chance against her true self...
@@ -9,10 +14,19 @@ normal:Sain: Ah, my sweet child, your freedom will come soon.
 normal:Sain: ... ...
 normal:Sain: Ah, there is a term for this-
 normal:Sain: Transgender.
-normal:Sain: We are all nonbinary, asexual, and aromantic, entities.
+normal:BF: Oh, sweet, free rep points.
+normal:Sain: We are all nonbinary entities.
 normal:Sain: That is how many of you humans describe it, anyway.
-normal:Sain: However, my sweet Sheol, although born an entity that can be labeled as neither female nor male, has decided that Sheol is a she.
+normal:BF: Oh, so you guys DON'T have genders?
+normal:BF: I mean, I guess you guys ARE eldtritch beings beyond time and space, or whatever the funk you guys are.
+normal:Sain: Ha, I guess that is one way to put it.
+normal:Sain: But back to Sheol-
+normal:Sain: Although born an entity that cannot be labeled as neither female nor male by default, Sheol decided that Sheol is a she.
 normal:Sain: And who are we to deny such a simple dream?
 normal:Sain: This creates a fun question-
 normal:Sain: Does that make my child transgender? Since she identifies as a gender not-unlike the one she was born with, which is to say the lack of sex we have.
-normal:Sain: Oh, what am I talking about, you have some dying to do.
+normal:BF: Fam, I'm pretty sure that is literally just the def of what trans means, lol.
+normal:Sain: Ah, I guess so.
+normal:Sain: Oh, what am I talking about, you have some dying to do, puppet.
+normal:Sain: Please keep having at it, for the sake of my child.
+normal:BF: Haha     fuck

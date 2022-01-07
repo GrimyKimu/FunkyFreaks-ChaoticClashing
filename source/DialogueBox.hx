@@ -1,5 +1,8 @@
 package;
 
+import flixel.input.keyboard.FlxKey;
+import flixel.input.FlxInput.FlxInputState;
+import haxe.macro.Expr.Case;
 import flixel.graphics.FlxGraphic;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.system.FlxSound;
@@ -19,11 +22,10 @@ using StringTools;
 
 class DialogueBox extends FlxSpriteGroup
 {
-	var box:FlxSprite;
-
 	var curCharacter:String = '';
 	var isLoud:Bool;
 	var talkingRight:Bool = true;
+	var speedoTalk:Float = 1.0;
 
 	var dialogue:Alphabet;
 	var dialogueList:Array<String> = [];
@@ -47,12 +49,12 @@ class DialogueBox extends FlxSpriteGroup
 
 		deathCount = PlayState.dedCounter;
 
-		var bg:FlxSprite = new FlxSprite(0).makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+		var bg:FlxSprite = new FlxSprite(0).makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
 		bg.scrollFactor.set();
 		bg.updateHitbox();
 		bg.screenCenter();
 		add(bg);
-
+		
 		this.curSong = curSong;
 		this.postGame = postGame;
 		//trace(curSong);
@@ -60,11 +62,21 @@ class DialogueBox extends FlxSpriteGroup
 		FlxG.sound.music.stop();
 
 		this.dialogueList = dialogueList;
-		if(cleanDialog())
-			if(cleanDialog())
-				cleanDialog();
+		for(i in 0...999999999)
+		{
+			if (!cleanDialog())
+				break;
+		}
 
-		var changeSongName = StringTools.replace(curSong, "-", "");
+		timePassed = 0.0;
+
+		switch (curSong)
+		{
+			case 'm-e-m-e':
+				curSong = 'meme';
+			case 'murderous-blitz':
+				curSong = 'MB';
+		}
 		var afterString = '';
 
 		if (postGame)
@@ -76,8 +88,8 @@ class DialogueBox extends FlxSpriteGroup
 			//into a specific spot in the member[] array, making it easier to access again
 			//does this for every single slide that needs to be loaded, going from the 1st at index 0 in the array
 			var notI = i + 1;
-			trace("loading: " + 'story CGs/$changeSongName' + '$afterString' + '-$notI');
-			var yes = new FlxSprite(FlxG.width, FlxG.height).loadGraphic(Paths.image('story CGs/$changeSongName' + afterString + '-$notI'));
+			trace("loading: " + 'story CGs/$curSong' + '$afterString' + '-$notI');
+			var yes = new FlxSprite(FlxG.width, FlxG.height).loadGraphic(Paths.image('story CGs/$curSong' + afterString + '-$notI'));
 			yes.alpha = 0;
 			yes.scrollFactor.set();
 			yes.updateHitbox();
@@ -85,8 +97,13 @@ class DialogueBox extends FlxSpriteGroup
 			yes.antialiasing = FlxG.save.data.antialiasing;
 			insert(i, yes);
 		}
-		curSlide = 0; //remember that index 0 is the FIRST object in any array!
 		trace("success in loading all the story CGs for this song");
+
+		new FlxTimer().start(0.33, function(tmr:FlxTimer)
+		{
+			members[curSlide].alpha += 0.1;
+			bg.alpha -= 0.1;
+		}, 10);
 
 		/*
 		if (curSong == 'sain')
@@ -106,56 +123,30 @@ class DialogueBox extends FlxSpriteGroup
 				bgChildren['sain-$i'] = yes;
 			}
 		}*/
-		
-		new FlxTimer().start(0.83, function(tmr:FlxTimer)
-		{
-			members[curSlide].alpha += 1 / 5;
-		}, 5);
 
-		box = new FlxSprite(-20, 45);
-		
-		var hasDialog = true;
-		box.frames = Paths.getSparrowAtlas('speech_bubble_talking', 'shared');
-		box.animation.addByPrefix('normalOpen', 'Speech Bubble Normal Open', 24, false);
-		box.animation.addByPrefix('normal', 'speech bubble normal1 ', 24, true);
-		box.animation.addByPrefix('loudOpen', 'speech bubble loud open ', 24, false);
-		box.animation.addByPrefix('loud', 'AHH speech bubble ', 24, true);
-
-		box.animation.play('normalOpen');
-		box.updateHitbox();
-		add(box);
-		box.screenCenter(X);
-		box.y += 300;
-
-		swagDialogue = new FlxTypeText(240, 500, Std.int(FlxG.width * 0.6), "", 32);
+		swagDialogue = new FlxTypeText(FlxG.width * 0.05, FlxG.height * 0.05, Std.int(FlxG.width * 0.9), "", 36);
 		swagDialogue.font = 'VCR OSD MONO Bold';
-		swagDialogue.color = 0xFF3F2021;
+		swagDialogue.color = FlxColor.WHITE;
+		swagDialogue.setTypingVariation(0.6, true);
+		swagDialogue.setBorderStyle(FlxTextBorderStyle.OUTLINE_FAST, FlxColor.BLACK);
+		swagDialogue.finishSounds = true;
+		swagDialogue.autoSize = false;
+		swagDialogue.alignment = FlxTextAlign.CENTER;
 		add(swagDialogue);
 
+		dialogueOpened = true;
 		dialogue = new Alphabet(0, 80, "", false, true);
+		startDialogue();
 	}
 
 	var dialogueOpened:Bool = false;
 	var dialogueStarted:Bool = false;
 
 	private var bgChildren:Map<String, FlxSprite> = [];
+	private var timePassed:Float = 0.0;
 
 	override function update(elapsed:Float)
 	{
-		if (box.animation.curAnim != null)
-		{
-			if (box.animation.curAnim.name == 'normalOpen' && box.animation.curAnim.finished)
-			{
-				box.animation.play('normal');
-				dialogueOpened = true;
-			}
-			else if (box.animation.curAnim.name == 'loudOpen' && box.animation.curAnim.finished)
-			{
-				box.animation.play('loud');
-				dialogueOpened = true;
-			}
-		}
-
 		if (curSong == 'sain')
 		{
 			for (i in 0...3)
@@ -169,9 +160,9 @@ class DialogueBox extends FlxSpriteGroup
 
 		if (dialogueOpened && !dialogueStarted)
 		{
-			startDialogue();
 			dialogueStarted = true;
 		}
+		//swagDialogue.y = 500 + (12 * Math.sin(timePassed / 100));
 
 		if (PlayerSettings.player1.controls.ACCEPT && dialogueStarted == true)
 		{
@@ -186,7 +177,6 @@ class DialogueBox extends FlxSpriteGroup
 
 					new FlxTimer().start(0.2, function(tmr:FlxTimer)
 					{
-						box.alpha -= 1 / 5;
 						members[curSlide].alpha -= 1 / 5;
 						swagDialogue.alpha -= 1 / 5;
 					}, 5);
@@ -214,23 +204,10 @@ class DialogueBox extends FlxSpriteGroup
 		var delayNum = 0.1;
 
 		var oldSlide = curSlide;
-		if(cleanDialog())
-			if(cleanDialog())
-				cleanDialog();
-
-		if (isLoud)
+		for(i in 0...999999999)
 		{
-			if (box.animation.curAnim.name != 'loud')
-			{
-				box.animation.play('loudOpen');
-			}
-		}
-		else
-		{
-			if (box.animation.curAnim.name != 'normal')
-			{
-				box.animation.play('normalOpen');
-			}
+			if (!cleanDialog())
+				break;
 		}
 
 		if (curCharacter.toLowerCase().startsWith('dari') || curCharacter.toLowerCase().startsWith('scarfed'))
@@ -239,14 +216,14 @@ class DialogueBox extends FlxSpriteGroup
 				FlxG.sound.load(Paths.sound('dari_2'), 0.4),
 				FlxG.sound.load(Paths.sound('dari_3'), 0.4)];
 
-			delayNum = 0.045;
+			delayNum = 0.035;
 		}
 		else if (curCharacter.toLowerCase().startsWith('sheol') || curCharacter.toLowerCase().startsWith('strange'))
 		{
 			swagDialogue.sounds = [FlxG.sound.load(Paths.sound('sheol_0'), 0.3),
 				FlxG.sound.load(Paths.sound('sheol_1'), 0.3)];
 
-			delayNum = 0.035;
+			delayNum = 0.031;
 		}
 		else if (curCharacter.toLowerCase().startsWith('blitz') || curCharacter.toLowerCase().startsWith('cat'))
 		{
@@ -254,7 +231,7 @@ class DialogueBox extends FlxSpriteGroup
 				FlxG.sound.load(Paths.sound('blitz_1'), 0.4), FlxG.sound.load(Paths.sound('blitz_2'), 0.4), 
 				FlxG.sound.load(Paths.sound('blitz_3'), 0.4)];
 
-			delayNum = 0.04;
+			delayNum = 0.032;
 		}
 		else if (curCharacter.toLowerCase().startsWith('bf'))
 		{
@@ -269,13 +246,13 @@ class DialogueBox extends FlxSpriteGroup
 				FlxG.sound.load(Paths.sound('sain_1'), 0.4), FlxG.sound.load(Paths.sound('sain_2'), 0.4),
 				FlxG.sound.load(Paths.sound('sain_3'), 0.4)];
 
-			delayNum = 0.05;
+			delayNum = 0.036;
 		}
 		else
 		{
 			swagDialogue.sounds = [FlxG.sound.load(Paths.sound('pixelText'), 0.6)];
 
-			delayNum = 0.05;
+			delayNum = 0.01;
 		}
 
 		if (oldSlide != curSlide)
@@ -285,7 +262,8 @@ class DialogueBox extends FlxSpriteGroup
 		}
 
 		swagDialogue.resetText(dialogueList[0]);
-		swagDialogue.start(delayNum, true);
+		swagDialogue.start(delayNum * speedoTalk, true);
+		trace('$delayNum + $speedoTalk');
 	}
 
 	function cleanDialog():Bool
@@ -319,18 +297,18 @@ class DialogueBox extends FlxSpriteGroup
 			return true;
 		}
 
-		curCharacter = splitName[1];
-
 		if (splitName[0] == 'loud')
 		{
-			isLoud = true;
+			speedoTalk = 0.6;
 		}
 		else
 		{
-			isLoud = false;
+			speedoTalk = 1.0;
 		}
+
+		curCharacter = splitName[1];		
 		dialogueList[0] = dialogueList[0].substr(splitName[0].length + 1).trim();
-		dialogueList[0].replace('death_count', '$deathCount');
+		dialogueList[0] = dialogueList[0].replace('death_count', '$deathCount');
 		return false;
 	}
 }

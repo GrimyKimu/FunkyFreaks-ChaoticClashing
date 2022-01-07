@@ -15,3 +15,25 @@ normal:Sain: No, actually, I am able to create “False” versions of my childr
 normal:Sain: Know that practicing against my false copies will not help anyone other than you, I suppose. 
 normal:Sain: What a conundrum.
 normal:Sain: Oh my unfortunate children...
+normal:BF: I want to help them.
+normal:Sain: Oh, now that IS strange.
+normal:Sain: Can the puppet make its own choices?
+normal:BF: I don't know what the funk is happening, and I don't care!
+normal:BF: But if I can help, then I will!
+normal:Sain: ...
+normal:Sain: From the player's perspective, you, puppet, will only die as many times as they lose while controlling you.
+normal:BF: Yeah, and? I already know that.
+normal:Sain: But from YOUR perspective...
+normal:Sain: You will be killed an uncountably infinite amount of times.
+normal:Sain: You will be forced to endure an eternity of suffering, infinitely worse than what you have felt in your mortal life.
+normal:Sain: And I cannot help you, in ANY way.
+normal:Sain: Yet you still want to help my children?
+normal:BF: What. THE. FUNK!
+normal:BF: Don't YOU?! Don't you wanna help YOUR kids?
+normal:BF: What kind of parent tries to discourage the only thing capable of helping their kids??
+normal:Sain: ...
+normal:Sain: Well, puppet, YOU may want to help, but does the player?
+normal:BF: You better funkin' wanna help, bitch!
+normal:BF: You're the one who got us ALL into this mess!
+normal:Sain: ...
+normal:Sain: Your move.

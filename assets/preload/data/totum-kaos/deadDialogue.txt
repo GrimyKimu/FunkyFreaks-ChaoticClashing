@@ -1,4 +1,5 @@
 data:2
+loud:Yes:(press [accept] to continue text)
 change:1
 loud:BF: ...!
 loud:Sheol: ...! 

@@ -1,13 +1,19 @@
-data:3
-:normal:Blitz: So that’s how it is, huh.
-:normal:Dari: I- I am so sor-
-:normal:Blitz: Do NOT, apologize for something you didn’t do, Dari.
-:normal:Sheol: Wait, I don’t understand, I don’t-
-:normal:Sheol: We’re really just…?
-:normal:Dari: Yes, yes.
+data:2
+loud:Yes:(press [accept] to continue text)
+normal:Blitz: And so we've reached the conclusion.
+normal:Blitz: We're nothing more than puppets as well.
+normal:Blitz: Perhaps we'd never had ANY freedom whatsoever.
+normal:Blitz: Perhaps the "puppet" we've been harrassing has had more freedom than us, the whole time.
+normal:Sheol: Wait, I don’t understand, I don’t-
+normal:Sheol: We’re really just...?
+normal:Sheol: But, but I made the choice to bring the rapper here, didn't I?
+normal:BF: ...
+normal:Dari: Yes, and yes.
+normal:Dari: However...
 change:1
-:normal:Dari: Enough is enough. 
-:normal:Dari: We need to be alone.
-change:1
-:normal:Dari: Be gone from here, and do not come back… 
-:normal:Dari: Please.
+normal:Dari: No.
+normal:Dari: Enough is enough. 
+normal:Dari: We need to be alone.
+normal:BF: ...
+normal:Dari: Be gone from here, and do not come back… 
+normal:Dari: Please.

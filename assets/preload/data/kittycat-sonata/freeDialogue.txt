@@ -1,4 +1,5 @@
-data:7
+data:6
+loud:Yes:(press [accept] to continue text)
 change:5
 normal:BF: Beep!
 normal:Blitz: Moonlight Sonata, Ludwig van Beethoven

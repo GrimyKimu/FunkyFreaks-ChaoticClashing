@@ -2,7 +2,7 @@ gf
 gf-blitz
 gf-wSheol
 gf-dari
-gf-none
+gf-marenol
 gf-ballistic
 gf-madness
 gf-death

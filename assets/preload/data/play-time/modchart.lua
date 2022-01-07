@@ -13,11 +13,6 @@ function update(elapsed)
 	if curBeat > 16 then
 		camShenigans()
 	end
-
-	
-	if curStep < 31 then
-		gf:playAnim('cheer', 'true')
-	end
 end
 
 
@@ -27,16 +22,12 @@ function playerTwoSing()
 	end
 end
 
-function playerOneSing()
-	camHudAngle = camHudAngle + 0.55
-end
-
 function beatHit(beat)
 	if beat > 16 then
 		if math.fmod(beat, 3) == 0 then
-			cameraZoom = 0.75
+			cameraZoom = 0.73
 		else
-			cameraZoom = 0.725
+			cameraZoom = 0.71
 		end
 	end
 

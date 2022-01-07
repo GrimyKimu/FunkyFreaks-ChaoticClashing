@@ -43,7 +43,7 @@ class StoryMenuState extends MusicBeatState
 		else
 		{
 			return [
-				['Play-Time','Chaos','Apology','KittyCat-Sonata']
+				['Play-Time','Totum-Kaos','Apology','KittyCat-Sonata']
 			];
 		}
 	}
@@ -273,7 +273,7 @@ class StoryMenuState extends MusicBeatState
 			var noPlay:Bool = false;
 			var superFail:String = '';
 
-			if((songOrigin == 'play-time' || songOrigin == 'chaos' || songOrigin == 'apology' || songOrigin == 'kittycat-sonata') && didLose)
+			if((songOrigin == 'play-time' || songOrigin == 'totum-kaos' || songOrigin == 'apology' || songOrigin == 'kittycat-sonata') && didLose)
 			{
 				noPlay = true;
 			}
@@ -462,7 +462,7 @@ class StoryMenuState extends MusicBeatState
 				case 'Philly-Nice': songFormat = 'Philly';
 			}
 
-			var poop:String = Highscore.formatSong(songFormat, curDifficulty);
+			var poop:String = Highscore.formatSong(songFormat, 1);
 			PlayState.sicks = 0;
 			PlayState.bads = 0;
 			PlayState.shits = 0;
@@ -476,10 +476,13 @@ class StoryMenuState extends MusicBeatState
 
 			if (!FlxG.save.data.weeksBeaten[0])
 			{
-				//play initial cutscene here
-				var video:MP4Handler = new MP4Handler();
-				video.stateCallback = new PlayState();
-				video.playMP4(Paths.video('speen'));
+				new FlxTimer().start(1, function(tmr:FlxTimer)
+				{
+					//play initial cutscene here
+					var video:MP4Handler = new MP4Handler();
+					video.stateCallback = new PlayState();
+					video.playMP4(Paths.video('introCutscene'));
+				});
 			}
 			else
 			{

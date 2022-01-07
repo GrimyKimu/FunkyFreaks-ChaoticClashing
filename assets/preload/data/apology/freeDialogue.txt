@@ -1,4 +1,6 @@
 data:1
+loud:Yes:(press [accept] to continue text)
+change:1
 normal:Darian: Hello again.
 normal:BF: Bep
 normal:Sheol: Are you guys gonna sing my favorite song again?

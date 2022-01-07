@@ -120,7 +120,6 @@ function beatHit(beat)
 		dad:playAnim('cheer', 'true')
 		gf:playAnim('cheer', 'true')
 	elseif beat == 219 or beat == 251 or beat == 427 or beat == 443 then
-		bf:playAnim('hey', 'true')
 		gf:playAnim('cheer', 'true')
 	end
 end

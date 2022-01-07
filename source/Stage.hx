@@ -68,17 +68,17 @@ class Stage
 				bgDari.scale.set(0.9, 0.9);
 				if (curSong != 'apology')
 				{
-					animatedBacks.push(bgDari);
+					toAdd.push(bgDari);
 					bgSibs['bgDari'] = bgDari;
 				}
 
-				var lostRain = new FlxSprite(0, 0);
+				var lostRain = new FlxSprite(-700, -450);
 				lostRain.frames = Paths.getSparrowAtlas('nowhere/lostRain');
 				lostRain.animation.addByPrefix('idle', 'lostRain', 24, true);
-				lostRain.setGraphicSize(Std.int(lostRain.width * 2));
+				lostRain.setGraphicSize(Std.int(lostRain.width * 4));
 				lostRain.updateHitbox();
 				lostRain.antialiasing = true;
-				lostRain.scrollFactor.set(1.5, 1.5);
+				lostRain.scrollFactor.set(2.5, 2.5);
 				lostRain.alpha = 0;
 				lostRain.visible = false;
 				lostRain.animation.play('idle');
@@ -162,9 +162,9 @@ class Stage
 				layInFront[2].push(moreBitz);
 				swagBacks['moreBitz'] = moreBitz;
 
-				var fgHorror = new FlxSprite(-570, -20);
+				var fgHorror = new FlxSprite(-580, 70);
 				fgHorror.frames = Paths.getSparrowAtlas('nowhere/fgHorror');
-				fgHorror.animation.addByPrefix('idle', 'fgHorror', 23, true);
+				fgHorror.animation.addByPrefix('idle', 'fgHorror', 24, true);
 				fgHorror.setGraphicSize(Std.int(fgHorror.width * 1.15));
 				fgHorror.updateHitbox();
 				fgHorror.antialiasing = true;
@@ -176,10 +176,12 @@ class Stage
 			}
 			case 'arg':
 			{
+				camZoom = 0.5;
+
 				//a completely empty stage, devoid of anything except for Sheol(?) and the player
-				var fgHorror = new FlxSprite(-500, -20);
+				var fgHorror = new FlxSprite();
 				fgHorror.frames = Paths.getSparrowAtlas('nowhere/fgHorror');
-				fgHorror.animation.addByPrefix('idle', 'fgHorror', 23, true);
+				fgHorror.animation.addByPrefix('idle', 'fgHorror', 24, true);
 				fgHorror.setGraphicSize(Std.int(fgHorror.width * 1.15));
 				fgHorror.updateHitbox();
 				fgHorror.antialiasing = true;
@@ -188,6 +190,17 @@ class Stage
 				fgHorror.animation.play('idle');
 				layInFront[0].push(fgHorror);
 				swagBacks['fgHorror'] = fgHorror;
+
+				var drown:FlxSprite = new FlxSprite(FlxG.width, FlxG.height);
+				drown.frames = Paths.getSparrowAtlas('nowhere/drown');
+				drown.animation.addByPrefix('idle', 'drown', 4, true);
+				drown.setGraphicSize(Std.int(drown.width * 3));
+				drown.updateHitbox();
+				drown.antialiasing = true;
+				drown.alpha = 0.0;
+				drown.animation.play('idle');
+				toAdd.push(drown);
+				swagBacks['drown'] = drown;
 			}
 		}
     }

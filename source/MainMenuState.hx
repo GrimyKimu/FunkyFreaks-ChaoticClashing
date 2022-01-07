@@ -161,6 +161,10 @@ class MainMenuState extends MusicBeatState
 
 		var tex = Paths.getSparrowAtlas('FNF_main_menu_assets');
 
+		
+		if (!weeksBeaten[0])
+			optionShit.remove('freeplay');
+
 		for (i in 0...optionShit.length)
 		{
 			var menuItem:FlxSprite = new FlxSprite(0, FlxG.height * 1.6);
@@ -314,8 +318,7 @@ class MainMenuState extends MusicBeatState
 				FlxG.switchState(new StoryMenuState());
 				//trace("Story Menu Selected");
 			case 'freeplay':
-				if (weeksBeaten[0])
-					FlxG.switchState(new FreeplayState());
+				FlxG.switchState(new FreeplayState());
 				//trace("Freeplay Menu Selected");
 			case 'options':
 				FlxG.switchState(new OptionsMenu());

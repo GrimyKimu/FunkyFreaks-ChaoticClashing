@@ -1,5 +1,5 @@
-sad 0 -15
-danceLeft-idle 0 0
-danceRight-idle 0 0
-danceLeft-alt 0 75
-danceRight-alt 0 75
+cheer 3 93
+danceLeft 0 0
+danceRight 0 0
+danceLeft-alt -13 -67
+danceRight-alt -13 -67

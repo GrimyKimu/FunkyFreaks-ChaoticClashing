@@ -1,4 +1,5 @@
 data:1
+loud:Yes:(press [accept] to continue text)
 normal:Sheol: lmao
 normal:Sheol: lololololololololololol
 normal:Sheol: You dieded death_count times already

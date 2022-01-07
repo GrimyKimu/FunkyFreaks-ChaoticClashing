@@ -15,7 +15,7 @@
     ],
     "endTime": 1714.28571428571,
     "mustHitSection": false,
-    "bpm": 200,
+    "bpm": 140,
     "startTime": 0
    },
    {
@@ -3402,7 +3402,7 @@
     ],
     "endTime": 53142.8571428571,
     "changeBPM": true,
-    "bpm": 200,
+    "bpm": 140,
     "mustHitSection": true,
     "startTime": 51428.5714285714
    },
@@ -3542,7 +3542,7 @@
      ]
     ],
     "endTime": 54857.1428571429,
-    "bpm": 200,
+    "bpm": 140,
     "changeBPM": false,
     "mustHitSection": true,
     "startTime": 53142.8571428571
@@ -3678,7 +3678,7 @@
      ]
     ],
     "endTime": 56571.4285714286,
-    "bpm": 200,
+    "bpm": 140,
     "changeBPM": false,
     "mustHitSection": true,
     "startTime": 54857.1428571429
@@ -32468,6 +32468,7 @@
   "chartVersion": "2",
   "song": "MARENOL",
   "needsVoices": true,
+  "gfVersion": "gf-marenol",
   "sections": 0,
   "validScore": true,
   "stage": "arg",

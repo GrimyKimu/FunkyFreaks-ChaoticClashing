@@ -43,11 +43,12 @@ class Character extends FlxSprite
 				frames = tex;
 				//cheer will be used as the animation of Blitz catching Sheol's music box in Play-Time
 				animation.addByPrefix('cheer', 'cheer', 24, false);
-				animation.addByIndices('idle', 'cheer', [0, 1, 2, 3, 4, 5], "", 12, false);
+				animation.addByIndices('idle', 'cheer', [0, 1, 2, 3], "", 24, false);
 				animation.addByIndices('danceLeft', 'NormalIdle', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
 				animation.addByIndices('danceRight', 'NormalIdle', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
 
 				loadOffsetFile(curCharacter);
+				dumbVar = true;
 
 				playAnim('idle');
 
@@ -62,7 +63,7 @@ class Character extends FlxSprite
 				visible = false;
 
 			case 'gf-blitz':
-				//the variation of "gf/blitz" during Chaos
+				//the variation of "gf/blitz" during Totum-Kaos
 				tex = Paths.getSparrowAtlas('GF_assets','shared',true);
 				frames = tex;
 				animation.addByIndices('danceLeft', 'ScaryIdle', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
@@ -74,23 +75,15 @@ class Character extends FlxSprite
 
 			case 'gf-wSheol':
 				frames = Paths.getSparrowAtlas('characters/gfwSheol');
-				animation.addByIndices('danceLeft-idle', 'GF IDLE', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
-				animation.addByIndices('danceRight-idle', 'GF IDLE', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
-				animation.addByIndices('danceLeft-alt', 'GF ALT', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
-				animation.addByIndices('danceRight-alt', 'GF ALT', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
-				
-				loadOffsetFile(curCharacter);
-
-				playAnim('danceRight-idle');
-			
-			case 'gf-wSheol2':
-				frames = Paths.getSparrowAtlas('characters/gfwSheol_cheer');
-				animation.addByPrefix('cheer', 'gf cheer', 24, false);
-				animation.addByIndices('yes', 'gf cheer', [1], "", 1, true);
+				animation.addByIndices('danceRight', 'Idle', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
+				animation.addByIndices('danceLeft', 'Idle', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
+				animation.addByIndices('danceLeft-alt', 'Idle ALT', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
+				animation.addByIndices('danceRight-alt', 'Idle ALT', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
+				animation.addByPrefix('cheer', 'cheer', 24, false);
 
 				loadOffsetFile(curCharacter);
 
-				playAnim('yes');
+				playAnim('danceRight');
 
 			case 'gf-marenol':
 				frames = Paths.getSparrowAtlas('characters/gf_marenol');
@@ -247,17 +240,11 @@ class Character extends FlxSprite
 			case 'sheol-horror':
 				frames = Paths.getSparrowAtlas('characters/sheol_horror');
 
-				animation.addByPrefix('idle', 'Horror Idle', 24, false);
-				animation.addByPrefix('singUP', 'Horror Up', 24, false);
-				animation.addByPrefix('singDOWN', 'Horror Down', 24, false);
-				animation.addByPrefix('singLEFT', 'Horror Left', 24, false);
-				animation.addByPrefix('singRIGHT', 'Horror Right', 24, false);
-
-				animation.addByPrefix('singUP-alt', 'Angry-Alt Up', 24, false);
-				animation.addByPrefix('singDOWN-alt', 'Angry-Alt Down', 24, false);
-				animation.addByPrefix('singLEFT-alt', 'Angry-Alt Left', 24, false);
-				animation.addByPrefix('singRIGHT-alt', 'Angry-Alt Right', 24, false);
-
+				animation.addByPrefix('idle', 'Idle', 24, false);
+				animation.addByPrefix('singUP', 'SingUP', 24, false);
+				animation.addByPrefix('singDOWN', 'SingDOWN', 24, false);
+				animation.addByPrefix('singLEFT', 'SingLEFT', 24, false);
+				animation.addByPrefix('singRIGHT', 'SingRIGHT', 24, false);
 				loadOffsetFile(curCharacter);
 
 				playAnim('idle');
@@ -286,8 +273,8 @@ class Character extends FlxSprite
 			case 'sheol-flandre':
 				frames = Paths.getSparrowAtlas('characters/sheol-flandre');
 
-				animation.addByIndices('idle-A', 'flandre idle', [0,1,2,3,4,5,6,7,8,9,10,11], "", 24, true);
-				animation.addByIndices('idle-B', 'flandre idle', [12,13,14,15,16,17,18,19,20,21,22,23], "", 24, true);
+				animation.addByIndices('idle-A', 'flandre Idle', [0,1,2,3,4,5,6,7,8,9,10,11], "", 24, true);
+				animation.addByIndices('idle-B', 'flandre Idle', [12,13,14,15,16,17,18,19,20,21,22,23], "", 24, true);
 				animation.addByIndices('idle-C', 'flandre Idle', [24,25,26,27,28,29,30,31,32,33,34,35], "", 24, true);
 
 				danceArray = ['idle-A','idle-B','idle-C'];
@@ -313,7 +300,10 @@ class Character extends FlxSprite
 				animation.addByPrefix('singLEFT', 'Left Note', 24, false);
 				animation.addByPrefix('singRIGHT', 'Right Note', 24, false);
 
-				animation.addByPrefix('cheer', 'Waving', 24, false);
+				animation.addByPrefix('idle-alt', 'Idle-alt', 24, true);
+				animation.addByPrefix('singDOWN-alt', 'Down alt', 24, false);
+
+				animation.addByPrefix('cheer', 'stop', 24, false);
 
 				loadOffsetFile(curCharacter);
 
@@ -374,124 +364,131 @@ class Character extends FlxSprite
 
 	override function update(elapsed:Float)
 	{
-		if (!curCharacter.startsWith('bf'))
+		if (!debugMode)
 		{
-			if (animation.curAnim.name.startsWith('sing'))
+			if (!curCharacter.startsWith('bf'))
 			{
-				holdTimer += elapsed;
+				if (animation.curAnim.name.startsWith('sing'))
+				{
+					holdTimer += elapsed;
+				}
+
+				var dadVar:Float = 4;
+
+				if (holdTimer >= Conductor.stepCrochet * dadVar * 0.001)
+				{
+					//trace('dance');
+					dance();
+					holdTimer = 0;
+				}
 			}
 
-			var dadVar:Float = 4;
-
-			if (holdTimer >= Conductor.stepCrochet * dadVar * 0.001)
+			
+			switch (curCharacter)
 			{
-				//trace('dance');
-				dance();
-				holdTimer = 0;
+				case 'gf-marenol':
+					if (animation.curAnim.name == 'scream')
+					{
+						scale.set(1.7,1.7);
+					}
+					else
+						scale.set(1,1);
 			}
 		}
-
-		switch (curCharacter)
-		{
-			case 'gf':
-				if (animation.curAnim.name == 'hairFall' && animation.curAnim.finished)
-					playAnim('danceRight');
-		}
-
 		super.update(elapsed);
 	}
 
 	private var danced:Bool = false;
 
-	/**
-	 * FOR GF DANCING SHIT
-	 */
 	public function dance(forced:Bool = false, altAnim:Bool = false):Void
 	{
-		if (curCharacter.startsWith('gf') && curCharacter != 'gf-marenol')
+		if (!debugMode)
 		{
-			if ((!animation.curAnim.name.startsWith('hair') && !animation.curAnim.name.startsWith('cheer')) || animation.finished)
+			if (curCharacter.startsWith('gf') && curCharacter != 'gf-marenol')
 			{
-				danced = !danced;
-				if (!dumbVar)
+				if (!animation.curAnim.name.startsWith('cheer') || animation.curAnim.finished)
 				{
-					if (danced)
-						playAnim('danceRight');
-					else
-						playAnim('danceLeft');
-				}
-				else
-				{
-					if (danced)
-						playAnim('danceRight-alt');
-					else
-						playAnim('danceLeft-alt');
+					danced = !danced;
+					if (!dumbVar)
+					{
+						if (danced)
+							playAnim('danceRight');
+						else
+							playAnim('danceLeft');
+					}
+					else //if dumbVar == true
+					{ 
+						if (curCharacter == 'gf')
+						{
+							playAnim('idle');
+						}
+						else
+						{
+							if (danced)
+								playAnim('danceRight-alt');
+							else
+								playAnim('danceLeft-alt');
+						}
+					}
 				}
 			}
 
-			if (curCharacter == 'gf-wSheol2' && dumbVar && !triggeredAlready && animation.curAnim.name != 'cheer')
+			if (curCharacter.startsWith('blitz'))
 			{
-				playAnim('cheer');
-				dumTimer = new FlxTimer().start(6, function(tmr:FlxTimer)
-					{triggeredAlready = true;});
+				if ((!animation.curAnim.name.startsWith('sing') && !animation.curAnim.name.startsWith('scar')) || animation.curAnim.finished)
+				{
+					playAnim('idle', false);
+				}
 			}
-		}
 
-		if (curCharacter.startsWith('blitz'))
-		{
-			if ((!animation.curAnim.name.startsWith('sing') && !animation.curAnim.name.startsWith('scar')) || animation.finished)
+			switch (curCharacter)
 			{
-				playAnim('idle', false);
-			}
-		}
+				case 'dari':
+					if (!animation.curAnim.name.startsWith('sing') || animation.curAnim.name != 'cheer' || animation.curAnim.finished)
+					{
+						if (dumbVar)
+							playAnim('idle-alt');
+						else
+							playAnim('idle');
+					}
 
-		switch (curCharacter)
-		{
-			case 'dari':
-				if (dumbVar && !triggeredAlready)
-				{
-					playAnim('cheer');
-					triggeredAlready = true;
-				}
-				else if (animation.curAnim.name != 'cheer' || !animation.curAnim.name.startsWith('sing'))
-				{
-					playAnim('idle', forced);
-				}
+				case 'sheol':
+					danced = !danced;
 
-			case 'sheol':
-				danced = !danced;
+					if (altAnim && !animation.curAnim.name.startsWith('sing'))
+						playAnim('idle-alt', false);
+					else if (!animation.curAnim.name.startsWith('sing') || animation.finished)
+					{
+						if (danced)
+							playAnim('danceRight', false);
+						else
+							playAnim('danceLeft', false);
+					}
 
-				if (altAnim && !animation.curAnim.name.startsWith('sing'))
-					playAnim('idle-alt', false);
-				else if (!animation.curAnim.name.startsWith('sing') || animation.finished)
-				{
-					if (danced)
-						playAnim('danceRight', false);
+				case 'sheol-flandre':				
+					if (animation.curAnim.finished)
+						playAnim(danceArray[FlxG.random.int(0, 2)], true, FlxG.random.bool());
+
+				case 'sheol-tiky':
+					if (!animation.curAnim.name.startsWith('sing') || !animation.curAnim.name.startsWith('cheer') || animation.finished)
+						playAnim('idle', forced);
+
+				case 'gf-marenol':
+					danceArray = ['idle-1','idle-2','idle-3'];
+
+					if (dumbVar)
+						playAnim(danceArray[FlxG.random.int(0, 2)], true, FlxG.random.bool());
+				
+				case 'sheol-horror':
+					if (animation.curAnim.finished)
+						playAnim('idle');
+
+				default:
+					if (altAnim && animation.getByName('idle-alt') != null)
+						playAnim('idle-alt', forced);
 					else
-						playAnim('danceLeft', false);
-				}
-
-			case 'sheol-flandre':				
-				if (animation.finished)
-					playAnim(danceArray[FlxG.random.int(0, 2)], true, FlxG.random.bool());
-
-			case 'sheol-tiky':
-				if (!animation.curAnim.name.startsWith('sing') || !animation.curAnim.name.startsWith('cheer') || animation.finished)
-					playAnim('idle', forced);
-
-			case 'gf-marenol':
-				//do nothing, will be totally handled in the modchart
-				//makes it so the more cinematic parts of the song do not play since it's in the modchart
-			
-			case 'sheol-horror':
-				//do nothing, each of the "Sing" animations all fade out naturally
-				//her "Idle" dance is nothing
-	
-			default:
-				if (altAnim && animation.getByName('idle-alt') != null)
-					playAnim('idle-alt', forced);
-				else
-					playAnim('idle', forced);
+						playAnim('idle', forced);
+			}
 		}
 	}
 

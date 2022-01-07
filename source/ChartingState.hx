@@ -180,7 +180,7 @@ class ChartingState extends MusicBeatState
 					case 'Philly-Nice': songFormat = 'Philly';
 				}
 	
-				var poop:String = Highscore.formatSong(songFormat, PlayState.storyDifficulty);
+				var poop:String = Highscore.formatSong(songFormat, 1);
 
 				_song = Song.conversionChecks(Song.loadFromJson(poop, PlayState.SONG.song));
 			}
@@ -1482,7 +1482,7 @@ class ChartingState extends MusicBeatState
 				case 'Philly-Nice': songFormat = 'Philly';
 			}
 
-			var poop:String = Highscore.formatSong(songFormat, PlayState.storyDifficulty);
+			var poop:String = Highscore.formatSong(songFormat, 1);
 
 			_song = Song.conversionChecks(Song.loadFromJson(poop, PlayState.SONG.song));
 		}
@@ -3305,7 +3305,7 @@ class ChartingState extends MusicBeatState
 			case 'Dad-Battle': format = 'Dadbattle';
 			case 'Philly-Nice': format = 'Philly';
 		}
-		PlayState.SONG = Song.loadFromJson(format + difficultyArray[PlayState.storyDifficulty], format);
+		PlayState.SONG = Song.loadFromJson(format/* + difficultyArray[PlayState.storyDifficulty]*/, format);
 		LoadingState.loadAndSwitchState(new ChartingState());
 	}
 
@@ -3338,7 +3338,7 @@ class ChartingState extends MusicBeatState
 			_file.addEventListener(Event.COMPLETE, onSaveComplete);
 			_file.addEventListener(Event.CANCEL, onSaveCancel);
 			_file.addEventListener(IOErrorEvent.IO_ERROR, onSaveError);
-			_file.save(data.trim(), _song.song.toLowerCase() + difficultyArray[PlayState.storyDifficulty] + ".json");
+			_file.save(data.trim(), _song.song.toLowerCase() + /*difficultyArray[PlayState.storyDifficulty] +*/ ".json");
 		}
 	}
 
