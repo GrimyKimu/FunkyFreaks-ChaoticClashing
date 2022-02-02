@@ -1,5 +1,5 @@
 data:6
-loud:Yes:(press [accept] to continue text)
+loud:Yes:(you shouldn't have done that)
 normal:BF: Beep!
 normal:No One: ...
 normal:Not A Single Soul: ... ...

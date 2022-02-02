@@ -128,7 +128,9 @@ function camShenigans()
 		camHudAngle = camHudAngle * 0.8
 	end
 
-	if cameraZoom ~= defaultCam then
-		cameraZoom = (cameraZoom + defaultCam) / 2
+	if cameraZoom > defaultCam then
+		cameraZoom = cameraZoom - 0.005
+	elseif cameraZoom < defaultCam then
+		cameraZoom = cameraZoom + 0.003
 	end
 end

@@ -66,13 +66,13 @@ class Stage
 				var bgDari = new BGSibs(1000, 340, 'dari', false);
 				bgDari.scrollFactor.set(0.95, 0.95);
 				bgDari.scale.set(0.9, 0.9);
-				if (curSong != 'apology')
+				if (curSong != 'apology' || curSong != 'kittycat-sonata')
 				{
 					toAdd.push(bgDari);
 					bgSibs['bgDari'] = bgDari;
 				}
 
-				var lostRain = new FlxSprite(-700, -450);
+				var lostRain = new FlxSprite(-1000, -450);
 				lostRain.frames = Paths.getSparrowAtlas('nowhere/lostRain');
 				lostRain.animation.addByPrefix('idle', 'lostRain', 24, true);
 				lostRain.setGraphicSize(Std.int(lostRain.width * 4));
@@ -162,7 +162,7 @@ class Stage
 				layInFront[2].push(moreBitz);
 				swagBacks['moreBitz'] = moreBitz;
 
-				var fgHorror = new FlxSprite(-580, 70);
+				var fgHorror = new FlxSprite(-580, 100);
 				fgHorror.frames = Paths.getSparrowAtlas('nowhere/fgHorror');
 				fgHorror.animation.addByPrefix('idle', 'fgHorror', 24, true);
 				fgHorror.setGraphicSize(Std.int(fgHorror.width * 1.15));

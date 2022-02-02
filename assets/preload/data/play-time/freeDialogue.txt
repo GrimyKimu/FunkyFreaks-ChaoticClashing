@@ -1,9 +1,0 @@
-data:1
-loud:Yes:(press [accept] to continue text)
-change:2
-normal:Sheol: HEHE FUFU
-normal:Sheol: IT'S TIME FOR PLAY-TIME!!
-loud:BF: a...?
-normal:Darian: My condolences.
-normal:Blitz: Lmao, this is gonna be boring as shit.
-normal:Sheol: hehehehehe

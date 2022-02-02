@@ -41,7 +41,7 @@ class Character extends FlxSprite
 				// GIRLFRIEND CODE
 				tex = Paths.getSparrowAtlas('GF_assets','shared',true);
 				frames = tex;
-				//cheer will be used as the animation of Blitz catching Sheol's music box in Play-Time
+				//cheer will be used as the animation of Blitz catching Sheol's music box in New-Puppet
 				animation.addByPrefix('cheer', 'cheer', 24, false);
 				animation.addByIndices('idle', 'cheer', [0, 1, 2, 3], "", 24, false);
 				animation.addByIndices('danceLeft', 'NormalIdle', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
@@ -63,11 +63,22 @@ class Character extends FlxSprite
 				visible = false;
 
 			case 'gf-blitz':
-				//the variation of "gf/blitz" during Totum-Kaos
+				//the variation of "gf/blitz" during Kaos
 				tex = Paths.getSparrowAtlas('GF_assets','shared',true);
 				frames = tex;
 				animation.addByIndices('danceLeft', 'ScaryIdle', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
 				animation.addByIndices('danceRight', 'ScaryIdle', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
+
+				loadOffsetFile(curCharacter);
+
+				playAnim('danceRight');
+
+			case 'gf-dari':
+				//the variation of "gf/dari" during KC-S, where Dari has been broken...
+				tex = Paths.getSparrowAtlas('gf_Dari','shared',true);
+				frames = tex;
+				animation.addByIndices('danceLeft', 'Idle', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
+				animation.addByIndices('danceRight', 'Idle', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
 
 				loadOffsetFile(curCharacter);
 
@@ -141,15 +152,39 @@ class Character extends FlxSprite
 				animation.addByPrefix('singDOWNmiss', 'BF NOTE DOWN MISS', 24, false);
 
 				animation.addByPrefix('singUP-alt', 'BF HEY', 24, false);
-				animation.addByPrefix('singLEFT-alt', 'MIC UP', 24, false);
-				animation.addByPrefix('singRIGHT-alt', 'BF HEY', 24, false);
-				animation.addByPrefix('singDOWN-alt', 'MIC DOWN', 24, false);
 
 				animation.addByPrefix('firstDeath', "BF dies", 24, false);
 				animation.addByPrefix('deathLoop', "BF Dead Loop", 24, false);
 				animation.addByPrefix('deathConfirm', "BF Dead confirm", 24, false);
 
 				animation.addByPrefix('scared', 'BF idle shaking', 24);
+
+				loadOffsetFile(curCharacter);
+
+				playAnim('idle');
+
+				flipX = true;
+
+			case 'bf-marenol':
+				var tex = Paths.getSparrowAtlas('bf_marenol_assets','shared',true);
+				frames = tex;
+
+				//trace(tex.frames.length);
+
+				animation.addByPrefix('idle', 'idle', 24, false);
+				animation.addByPrefix('singUP', 'singUP', 24, false);
+				animation.addByPrefix('singLEFT', 'singLEFT', 24, false);
+				animation.addByPrefix('singRIGHT', 'singRIGHT', 24, false);
+				animation.addByPrefix('singDOWN', 'singDOWN', 24, false);
+
+				animation.addByPrefix('singUPmiss', 'missUP', 24, false);
+				animation.addByPrefix('singLEFTmiss', 'missLEFT', 24, false);
+				animation.addByPrefix('singRIGHTmiss', 'missRIGHT', 24, false);
+				animation.addByPrefix('singDOWNmiss', 'missDOWN', 24, false);
+
+				animation.addByPrefix('firstDeath', "ded start", 24, false);
+				animation.addByPrefix('deathLoop', "ded idle", 24, false);
+				animation.addByPrefix('deathConfirm', "ded end", 24, false);
 
 				loadOffsetFile(curCharacter);
 
@@ -165,22 +200,8 @@ class Character extends FlxSprite
 
 				loadOffsetFile(curCharacter);
 				playAnim('firstDeath');
-				updateHitbox();
 				flipX = true;
 
-			case 'bf-sheolDead': //MARENOL 
-			{
-				//time for some more death lmao!
-				frames = Paths.getSparrowAtlas('characters/sheolDead');
-				animation.addByPrefix('firstDeath', "bf marenol start", 24, false);
-				animation.addByPrefix('deathLoop', "bf marenol loop", 24, true);
-				animation.addByPrefix('deathConfirm', "bf marenol end", 24, false);
-
-				loadOffsetFile(curCharacter);
-				playAnim('firstDeath');
-				updateHitbox();
-				flipX = true;
-			}
 			case 'bf-blitzDead': //Blitz's usual <3 
 				//time for some more death lmao!
 				frames = Paths.getSparrowAtlas('characters/blitzDead');
@@ -190,10 +211,9 @@ class Character extends FlxSprite
 
 				loadOffsetFile(curCharacter);
 				playAnim('firstDeath');
-				updateHitbox();
 				flipX = true;
+
 			case 'bf-bonked': //byonk 
-			{
 				//time for some more death lmao!
 				frames = Paths.getSparrowAtlas('characters/bfBonk');
 				animation.addByPrefix('firstDeath', "bf bonk start", 24, false);
@@ -202,9 +222,7 @@ class Character extends FlxSprite
 
 				loadOffsetFile(curCharacter);
 				playAnim('firstDeath');
-				updateHitbox();
 				flipX = true;
-			}
 
 			case 'sheol':
 				frames = Paths.getSparrowAtlas('characters/sheol_assets');
@@ -219,11 +237,27 @@ class Character extends FlxSprite
 				animation.addByPrefix('singUP-alt', 'MB Up', 24, false);
 				animation.addByPrefix('singRIGHT-alt', 'MB Right', 24, false);
 
+				scale.set(.85, .85);
 				loadOffsetFile(curCharacter);
-
 				playAnim('idle-alt');
 			case 'sheol-angry':
 				frames = Paths.getSparrowAtlas('characters/sheol_angry');
+				animation.addByPrefix('idle', 'Angry Idle', 24, false);
+				animation.addByPrefix('singUP', 'Angry Up', 24, false);
+				animation.addByPrefix('singDOWN', 'Angry Down', 24, false);
+				animation.addByPrefix('singLEFT', 'Angry Left', 24, false);
+				animation.addByPrefix('singRIGHT', 'Angry Right', 24, false);
+
+				animation.addByPrefix('singUP-alt', 'Angry-Alt Up', 24, false);
+				animation.addByPrefix('singDOWN-alt', 'Angry-Alt Down', 24, false);
+				animation.addByPrefix('singLEFT-alt', 'Angry-Alt Left', 24, false);
+				animation.addByPrefix('singRIGHT-alt', 'Angry-Alt Right', 24, false);
+
+				scale.set(.85, .85);
+				loadOffsetFile(curCharacter);
+				playAnim('idle');
+			case 'sheol-ex':
+				frames = Paths.getSparrowAtlas('characters/sheolEX');
 				animation.addByPrefix('idle', 'Angry Idle', 24, false);
 				animation.addByPrefix('singUP', 'Angry Up', 24, false);
 				animation.addByPrefix('singDOWN', 'Angry Down', 24, false);
@@ -245,8 +279,8 @@ class Character extends FlxSprite
 				animation.addByPrefix('singDOWN', 'SingDOWN', 24, false);
 				animation.addByPrefix('singLEFT', 'SingLEFT', 24, false);
 				animation.addByPrefix('singRIGHT', 'SingRIGHT', 24, false);
+				scale.set(2, 2);
 				loadOffsetFile(curCharacter);
-
 				playAnim('idle');
 			case 'sheol-tiky':
 				frames = Paths.getSparrowAtlas('characters/sheol-tiky');
@@ -258,6 +292,7 @@ class Character extends FlxSprite
 
 				animation.addByPrefix('cheer', 'tiky cheer', 24, false);
 
+				scale.set(.85, .85);
 				loadOffsetFile(curCharacter);
 				playAnim('idle');
 			case 'sheol-witty':
@@ -268,6 +303,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('singLEFT', 'witty Left', 24, false);
 				animation.addByPrefix('singRIGHT', 'witty Right', 24, false);
 
+				scale.set(.85, .85);
 				loadOffsetFile(curCharacter);
 				playAnim('idle');
 			case 'sheol-flandre':
@@ -289,6 +325,7 @@ class Character extends FlxSprite
 				animation.addByIndices('singLEFT-alt', 'flandre Left', [10,11,12,13,14,15,16,17,18,19], "", 24, false);
 				animation.addByIndices('singRIGHT-alt', 'flandre Right', [10,11,12,13,14,15,16,17,18,19], "", 24, false);
 
+				scale.set(.85, .85);
 				loadOffsetFile(curCharacter);
 				playAnim('idle-A', true);			
 
@@ -316,6 +353,12 @@ class Character extends FlxSprite
 				animation.addByPrefix('singDOWN', 'Down Note', 24, false);
 				animation.addByPrefix('singLEFT', 'Left Note', 24, false);
 				animation.addByPrefix('singRIGHT', 'Right Note', 24, false);
+
+				animation.addByPrefix('idle-alt', 'Idle ALT', 24, true);
+				animation.addByPrefix('singUP-alt', 'Up ALT', 24, false);
+				animation.addByPrefix('singDOWN-alt', 'Down ALT', 24, false);
+				animation.addByPrefix('singLEFT-alt', 'Left ALT', 24, false);
+				animation.addByPrefix('singRIGHT-alt', 'Right ALT', 24, false);
 				
 				animation.addByPrefix('scarUP', 'slashUp', 24, false);
 				animation.addByPrefix('scarDOWN', 'slashDown', 24, false);
@@ -326,7 +369,7 @@ class Character extends FlxSprite
 				playAnim('idle');
 		}
 
-		dance();
+		//dance();
 
 		if (isPlayer && frames != null)
 		{
@@ -437,7 +480,10 @@ class Character extends FlxSprite
 			{
 				if ((!animation.curAnim.name.startsWith('sing') && !animation.curAnim.name.startsWith('scar')) || animation.curAnim.finished)
 				{
-					playAnim('idle', false);
+					if (!altAnim)
+						playAnim('idle', false);
+					else 
+						playAnim('idle-alt', false);
 				}
 			}
 
@@ -465,7 +511,7 @@ class Character extends FlxSprite
 							playAnim('danceLeft', false);
 					}
 
-				case 'sheol-flandre':				
+				case 'sheol-flandre':
 					if (animation.curAnim.finished)
 						playAnim(danceArray[FlxG.random.int(0, 2)], true, FlxG.random.bool());
 

@@ -42544,7 +42544,7 @@
    }
   ],
   "player2": "blitz",
-  "gfVersion": "gf-blitz",
+  "gfVersion": "gf-dari",
   "eventObjects": [
    {
     "name": "Init BPM",

@@ -1,0 +1,11 @@
+data:1
+loud:Yes:(press [accept] to continue text)
+change:1
+normal:Sheol: Huh, what happened?
+normal:Sheol: Oh, right, singing battle!
+normal:Darian: ...
+normal:Darian: Something's wrong.
+normal:Blitz: Huh, kind feels like we've been through this death_count more times than normal.
+normal:Blitz: Wierd.
+loud:Sheol: Let’s play!
+loud:BF: Beep!!

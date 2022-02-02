@@ -19,7 +19,7 @@ function songStart()
         local widthMod = (hudWidth - (hudWidth / 6)) / 4
 
         receptor:tweenAlpha(0.45, 3.0)
-        receptor:tweenPos(widthMod + (widthMod * p), receptor.defaultY, 1.5)
+        receptor:tweenPos(widthMod + (widthMod * p), receptor.defaultY, 1.1)
     end
 end
 

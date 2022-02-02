@@ -18,15 +18,6 @@ class GameOverSubstate extends MusicBeatSubstate
 	{
 		var daStage = PlayState.Stage.curStage;
 		var daBf:String = '';
-		switch (PlayState.boyfriend.curCharacter)
-		{
-			case 'bf-marenol':
-				daBf = 'bf-sheolDead';
-			default:
-				stageSuffix = '-goner';
-				daBf = 'bf-goner';
-		}
-
 		switch (daStage)
 		{
 			case 'blitzy':
@@ -35,6 +26,12 @@ class GameOverSubstate extends MusicBeatSubstate
 			case 'bonkers':
 				stageSuffix = '';
 				daBf = 'bf-bonked';
+			case 'arg':
+				stageSuffix = '';
+				daBf = 'bf-marenol';
+			default:
+				stageSuffix = '-goner';
+				daBf = 'bf-goner';
 		}
 
 		super();

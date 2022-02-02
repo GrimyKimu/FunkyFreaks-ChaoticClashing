@@ -1,5 +1,5 @@
 data:2
-loud:Yes:(press [accept] to continue text)
+loud:Yes:(you have made a terrible choice)
 normal:Blitz: And so we've reached the conclusion.
 normal:Blitz: We're nothing more than puppets as well.
 normal:Blitz: Perhaps we'd never had ANY freedom whatsoever.

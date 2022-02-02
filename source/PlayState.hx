@@ -277,6 +277,7 @@ class PlayState extends MusicBeatState
 	private var specialModVar:Float = 0.0;
 
 	private var theRed:FlxSprite;
+	private var redMinumum:Float = 0;
 
 	private var postGame:Bool = false;
 
@@ -480,7 +481,7 @@ class PlayState extends MusicBeatState
 		switch(songLowercase)
 		{
 			//if the song has dialogue, so we don't accidentally try to load a nonexistant file and crash the game
-			case 'play-time' | 'totum-kaos' | 'apology':
+			case 'new-puppet' | 'kaos' | 'apology':
 				//First 3 songs in 1st week
 				dialogue = CoolUtil.coolTextFile(Paths.txt('data/$songLowercase/preDialogue'));
 				dialogueFree = CoolUtil.coolTextFile(Paths.txt('data/$songLowercase/freeDialogue'));
@@ -578,14 +579,6 @@ class PlayState extends MusicBeatState
 		if (dad.curCharacter.startsWith('sheol'))
 		{
 			dad.y += 310;
-
-			if (dad.curCharacter != 'sheol-horror')
-				dad.scale.set(.85, .85);
-			else
-			{
-				dad.scale.set(2, 2);
-				//evilTrail = new FlxTrail(dad, null, 8, 24, 0.24, 0.03);
-			}
 		}
 		else if (dad.curCharacter.startsWith('dari'))
 		{
@@ -598,7 +591,7 @@ class PlayState extends MusicBeatState
 		else if (dad.curCharacter.startsWith('blitz'))
 		{
 			dad.x -= 10;
-			dad.y += 145;
+			dad.y += 90;
 			gf.x += 20;
 			//evilTrail = new FlxTrail(dad, null, 12, 24, 0.72, 0.06);
 		}
@@ -1097,7 +1090,7 @@ class PlayState extends MusicBeatState
 			{
 				altSuffix = "-sheol";
 
-				if (curSong == 'MARENOL')
+				if (dad.curCharacter == 'sheol-horror')
 					altSuffix = "-sheolTrue";
 			}
 
@@ -1433,9 +1426,8 @@ class PlayState extends MusicBeatState
 		Conductor.changeBPM(songData.bpm);
 
 		curSong = songData.song;
-		var truSongs = curSong.toLowerCase();
 
-		if (truSongs == 'kittycat-sonata' || truSongs == 'marenol' || truSongs == 'murderous-blitz' || truSongs == 'm-e-m-e')
+		if (Stage.curStage == 'blitzy' || Stage.curStage == 'bonkers' || Stage.curStage == 'arg' || curSong == "KittyCat-Sonata")
 			noGhost = true;
 
 		#if sys
@@ -2173,7 +2165,7 @@ class PlayState extends MusicBeatState
 		{
 			//find me
 			//switch checking for the current song for mid-song shenanigans
-			case 'Play-Time':
+			case 'New-Puppet':
 				if (curBeat >= 8 && !triggeredAlready)
 				{
 					triggeredAlready = true;
@@ -2195,9 +2187,13 @@ class PlayState extends MusicBeatState
 					gf.dumbVar = true;
 				}
 
+				if (curBeat == 367)
+				{
+					FlxG.sound.play(Paths.soundRandom('thunder_', 1, 2, 'shared'));
+				}
+
 			case 'KittyCat-Sonata':
-				if (theRed.alpha > Math.min(hpScars.members.length / 100, 0.5))
-					theRed.alpha -= 0.01;
+				redMinumum = Math.min(hpScars.members.length / 100, 0.7);
 			
 				if(curBeat >= 382 && !triggeredAlready)
 				{
@@ -2205,19 +2201,14 @@ class PlayState extends MusicBeatState
 					triggeredAlready = true;
 					Stage.swagBacks['lostRain'].visible = true;
 					FlxTween.tween(Stage.swagBacks['lostRain'], {alpha: 0.5}, (Conductor.crochet * 24 / 1000), {ease: FlxEase.linear});
-					FlxG.sound.play(Paths.sound('thunder_1'), 2.0);
+					FlxG.sound.play(Paths.soundRandom('thunder_', 1, 2, 'shared'));
 					
 					gf.dumbVar = true;
 					gf.dance();
 				}
 
 			case 'MARENOL':
-				if (theRed.alpha > 0)
-				{
-					theRed.alpha = theRed.alpha * 0.9;
-					if (theRed.alpha < 0.15)
-						theRed.alpha = 0;
-				}
+				gf.visible = dad.animation.curAnim.name.startsWith('sing');
 
 				if (executeModchart)
 				{
@@ -2235,7 +2226,7 @@ class PlayState extends MusicBeatState
 					}
 					if (curBeat >= 200 && curBeat < 228 && curBeat % 4 == 0)
 					{
-						theRed.alpha = 1.0;
+						redFlash(0.5);
 						gf.dumbVar = false;
 				
 						//heartbeat section
@@ -2245,7 +2236,7 @@ class PlayState extends MusicBeatState
 						if (!triggeredAlready)
 						{	
 							triggeredAlready = true;
-							theRed.alpha = 1.0;
+							redFlash(0.5);
 						}
 						
 						gf.dumbVar = false;
@@ -2313,9 +2304,10 @@ class PlayState extends MusicBeatState
 					}
 
 					//a fukin huge ass list of RED screen flashes
-					if (curBeat == 59 || curBeat == 75 || (curBeat >= 100 && curBeat < 104) || curBeat == 123 || curStep == 446
-						|| (curBeat >= 156 && curBeat < 172 && curBeat % 2 == 0))
-						theRed.alpha = 1.0;
+					if (curBeat == 59 || curBeat == 75 || (curBeat >= 100 && curBeat < 104) || curBeat == 123 || curStep == 446)
+						redFlash(1.0);
+					if (curBeat >= 156 && curBeat < 172 && curBeat % 2 == 0)
+						redFlash(1.0, Conductor.crochet);
 
 					//beat > 112 and beat > 128
 					if ((curBeat > 106 && curBeat < 126) || (curBeat > 236 && curBeat < 300))
@@ -2330,8 +2322,7 @@ class PlayState extends MusicBeatState
 				}
 
 			case 'Murderous-Blitz':
-				if (theRed.alpha > Math.min(hpScars.members.length / 100, 0.7))
-					theRed.alpha -= 0.01;
+				redMinumum = Math.min(hpScars.members.length / 100, 0.7);
 			
 				if(curBeat >= 9999)
 				{
@@ -2357,7 +2348,6 @@ class PlayState extends MusicBeatState
 
 			case 'Death-Waltz':
 				//asdf
-
 		}
 
 		var lengthInPx = scoreTxt.textField.length * scoreTxt.frameHeight; // bad way but does more or less a better job
@@ -2654,10 +2644,10 @@ class PlayState extends MusicBeatState
 				//dumb, bad code, spaghetii, stupid, nightmare nightmare nightmare
 				switch(curSong)
 				{
-					case 'Totum-Kaos':
+					case 'Kaos' | 'Kaos-EX':
 						drainHP = true;
 
-						if(!currentSection.CPUAltAnim && curBeat < 444)
+						if(!currentSection.CPUAltAnim)
 							horrorHP = true;
 						else
 							horrorHP = false;
@@ -2683,9 +2673,9 @@ class PlayState extends MusicBeatState
 					hpHorror.alpha = Stage.swagBacks['fgHorror'].alpha;
 
 					//this health drain mechanic reduces HP by a significant amount per second but dramatically slows down as HP gets lower
-					//so while the drain itself can never actually kill you, it sets you to a VERY low amount of hp so one or two immediate mistakes would do you in
+					//so while the drain itself can never actually kill you, it sets you to a VERY low amount of hp so one or two mistakes would immediately do you in
 					if (health >= 0.15)
-						health -= (.003 * (Stage.swagBacks['fgHorror'].alpha / 1)) * (health / 2) * diff;
+						health -= (.003 * (hpHorror.alpha  / 1)) * (health / 3) * diff;
 				}
 			}
 
@@ -2725,14 +2715,14 @@ class PlayState extends MusicBeatState
 				switch (dad.curCharacter)
 				{
 					case 'sheol' | 'sheol-angry' | 'sheol-flandre' | 'sheol-witty' | 'sheol-tiky':
-						camFollow.y = dad.getMidpoint().y - 30;
+						camFollow.y = dad.getMidpoint().y - 35;
 						camFollow.x = dad.getMidpoint().x - 10;
 					case 'dari':
-						camFollow.y = dad.getMidpoint().y + 15;
-						camFollow.x = dad.getMidpoint().x - 15;
-					case 'blitz':
-						camFollow.y = dad.getMidpoint().y + 60;
+						camFollow.y = dad.getMidpoint().y + 40;
 						camFollow.x = dad.getMidpoint().x - 10;
+					case 'blitz':
+						camFollow.y = dad.getMidpoint().y + 90;
+						camFollow.x = dad.getMidpoint().x;
 				}
 
 				if (Stage.curStage == 'arg')
@@ -3006,7 +2996,8 @@ class PlayState extends MusicBeatState
 					
 					if (daNote.isAlt)
 					{
-						altAnim = '-alt';
+						if (!currentSection.CPUAltAnim)
+							altAnim = '-alt';
 						//trace("YOO WTF THIS IS AN ALT NOTE????");
 					}
 
@@ -4220,6 +4211,12 @@ class PlayState extends MusicBeatState
 
 	function noteMiss(direction:Int = 1, daNote:Note):Void
 	{
+		if (daNote.isAlt)
+		{
+			altNoteMechanics(dataSuffix[daNote.noteData], false);
+			return;
+		}
+
 		if (!boyfriend.stunned)
 		{
 			//health -= 0.2;
@@ -4321,43 +4318,10 @@ class PlayState extends MusicBeatState
 
 		note.rating = Ratings.judgeNote(note);
 
-		/* if (loadRep)
-			{
-				if (controlArray[note.noteData])
-					goodNoteHit(note, false);
-				else if (rep.replay.keyPresses.length > repPresses && !controlArray[note.noteData])
-				{
-					if (NearlyEquals(note.strumTime,rep.replay.keyPresses[repPresses].time, 4))
-					{
-						goodNoteHit(note, false);
-					}
-				}
-		}*/
 
 		if (controlArray[note.noteData])
 		{
 			goodNoteHit(note, (mashing > getKeyPresses(note)));
-
-			/*if (mashing > getKeyPresses(note) && mashViolations <= 2)
-				{
-					mashViolations++;
-
-					goodNoteHit(note, (mashing > getKeyPresses(note)));
-				}
-				else if (mashViolations > 2)
-				{
-					// this is bad but fuck you
-					playerStrums.members[0].animation.play('static');
-					playerStrums.members[1].animation.play('static');
-					playerStrums.members[2].animation.play('static');
-					playerStrums.members[3].animation.play('static');
-					health -= 0.4;
-					//trace('mash ' + mashing);
-					if (mashing != 0)
-						mashing = 0;
-				}
-				else
-					goodNoteHit(note, false); */
 		}
 	}
 
@@ -4401,10 +4365,18 @@ class PlayState extends MusicBeatState
 
 			var altAnim:String = "";
 			if (note.isAlt)
+			{
+				if (altNoteMechanics(dataSuffix[note.noteData], true))
 				{
-					altAnim = '-alt';
-					//trace("Alt note on BF");
+					note.kill();
+					notes.remove(note, true);
+					note.destroy();
+					return;
 				}
+				else
+					altAnim = '-alt';
+				//YOU FUNKIN HIT AN ALT NOTE YOU FOOL!!
+			}
 
 			boyfriend.playAnim('sing' + dataSuffix[note.noteData] + altAnim, true);
 
@@ -4730,18 +4702,17 @@ class PlayState extends MusicBeatState
 	private var hpScars:FlxTypedGroup<FlxSprite>;
 	private var romanClocks:FlxTypedGroup<FlxSprite>;
 
-	function bleedAndDie(data:String, ?scarHeal:Int)
+	function bleedAndDie(data:String, ?scarHeal:Int, ?bypass:Bool)
 	{
-		if (curSong.toLowerCase() != 'kittycat-sonata' && curSong.toLowerCase() != 'murderous-blitz')
-			return;
+		if (!bypass)
+			if (curSong.toLowerCase() != 'kittycat-sonata' && curSong.toLowerCase() != 'murderous-blitz')
+				return;
 
 		if (scarHeal != null)
 		{
-			while (scarHeal > 0)
-			{
-				scarHeal--;
+			new FlxTimer().start(0.1, function(timer) {
 				hpScars.remove(hpScars.members[0], true);
-			}
+			}, scarHeal);
 
 			return;
 		}
@@ -4758,7 +4729,7 @@ class PlayState extends MusicBeatState
 		yes.y = yes.y - yes.height;
 		yes.angle = FlxG.random.float(0, 360);
 
-		theRed.alpha = 0.75;
+		redFlash(0.7);
 
 		hpScars.add(yes);
 
@@ -4766,5 +4737,41 @@ class PlayState extends MusicBeatState
 		{
 			dad.playAnim('scar' + data, true);
 		}
+	}
+
+	function redFlash(flashMax:Float, ?flashTimer:Float)
+	{
+		theRed.alpha = flashMax;
+
+		if (flashTimer == null)
+		{
+			flashTimer == Conductor.stepCrochet;
+		}
+
+		FlxTween.tween(theRed, {alpha: redMinumum}, (flashTimer), {ease: FlxEase.quadOut});
+	}
+
+	function altNoteMechanics(?data:String, didHit:Bool):Bool
+	{
+		var dadChar:String = dad.curCharacter;
+
+		if (dadChar.startsWith('sheol'))
+		{
+			
+		}
+
+		if (dadChar.startsWith('dari'))
+		{
+			
+		}
+
+		if (dadChar.startsWith('blitz') && didHit)
+		{
+			if (data == null)
+				data = "UP";
+			bleedAndDie(data, null, true);
+			return true;
+		}
+		return false;
 	}
 }

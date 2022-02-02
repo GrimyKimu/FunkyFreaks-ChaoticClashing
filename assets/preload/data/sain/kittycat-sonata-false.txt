@@ -16,6 +16,7 @@ normal:Sain: Know that practicing against my false copies will not help anyone o
 normal:Sain: What a conundrum.
 normal:Sain: Oh my unfortunate children...
 normal:BF: I want to help them.
+normal:Sain: Oh?
 normal:Sain: Oh, now that IS strange.
 normal:Sain: Can the puppet make its own choices?
 normal:BF: I don't know what the funk is happening, and I don't care!

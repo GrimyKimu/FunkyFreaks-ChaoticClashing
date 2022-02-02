@@ -1,6 +1,7 @@
-Play-Time:sheol:0:0
-Totum-Kaos:sheol-angry:0:0
+New-Puppet:sheol:0:0
+Kaos:sheol-angry:0:0
 Apology:dari:0:0
 KittyCat-Sonata:blitz:0:0
 MARENOL:sheol-horror:1:1
+Kaos-EX:sheol-angry:1:1
 Test:sheol-horror:1:0

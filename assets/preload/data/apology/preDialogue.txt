@@ -1,5 +1,5 @@
 data:2
-loud:Yes:(press [accept] to continue text)
+loud:Yes:(press [accept] to accept your fate)
 normal:Darian: Do forgive my sister. She is a sore sport.
 loud:Sheol: I am not!
 normal:Blitz: Shut up, you. 

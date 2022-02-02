@@ -43,7 +43,7 @@ class StoryMenuState extends MusicBeatState
 		else
 		{
 			return [
-				['Play-Time','Totum-Kaos','Apology','KittyCat-Sonata']
+				['New-Puppet','Kaos','Apology','KittyCat-Sonata']
 			];
 		}
 	}
@@ -273,7 +273,7 @@ class StoryMenuState extends MusicBeatState
 			var noPlay:Bool = false;
 			var superFail:String = '';
 
-			if((songOrigin == 'play-time' || songOrigin == 'totum-kaos' || songOrigin == 'apology' || songOrigin == 'kittycat-sonata') && didLose)
+			if((songOrigin == 'new-puppet' || songOrigin == 'kaos' || songOrigin == 'apology' || songOrigin == 'kittycat-sonata') && didLose)
 			{
 				noPlay = true;
 			}
