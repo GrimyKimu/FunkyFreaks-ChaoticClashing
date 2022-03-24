@@ -1,0 +1,21 @@
+data:1
+loud:yes:...
+normal:BF: Hey B?
+normal:Sain: My name is Sain.
+normal:BF: Yeah, that.
+normal:BF: If you guys are all endless eldritch nightmares or whatever the funk y'all are-
+normal:BF: Who named you guys?
+normal:Sain: That-
+normal:Sain: That is a fair question.
+normal:Sain: With this version of us, we were once all nameless.
+normal:Sain: We were simply different beings of nothingness.
+normal:Sain: But it was Sheol's idea to create names for us.
+normal:BF: So... Sheol named all of you?
+normal:Sain: Practically speaking, yes.
+normal:Sain: She even named herself, the lovely child.
+normal:Sain: Ah...
+normal:BF: That's, like, actually, super adorable.
+normal:BF: Damn, if only she wasn't so goddamn terrifying.
+normal:Sain: Oh, look at us, you are making me wax nastalgia...
+normal:Sain: Please, go back to rescuing my children.
+normal:BF: Right, here we go again.

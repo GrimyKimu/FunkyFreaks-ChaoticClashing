@@ -1,0 +1,13 @@
+data:6
+loud:yes:(Why are you making her re-live this?)
+normal:Sheol: You...
+change:1
+normal:Sheol: W-what is this…?
+change:1
+normal:Sheol: ...
+change:1
+normal:Sheol: I hate you. I hate you. I hate you. I hate you. I hate you. I hate you. I hate you. I hate you. I hate you. I hate you. I hate you. I hate you. I hate you. I hate you. I hate you. I hate you. I hate you. I hate you. I hate you. I hate you. I hate you. I hate you. I hate you. I hate you. I hate you. I hate you. I hate you. I hate you. I hate you. I hate you. I hate you. I hate you. I hate you. I hate you. I hate you. I hate you. I hate you. I hate you. I hate you. I hate you. I hate you. I hate you. I hate you. I hate you. I hate you. I hate you. I hate you. I hate you. 
+change:1
+normal:Sheol: ...
+change:1
+normal:Sheol: Don't come back.

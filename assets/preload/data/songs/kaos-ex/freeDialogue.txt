@@ -1,0 +1,14 @@
+data:2
+change:1
+loud:Yes:In an alternate reality, where BF and Sheol had more sensible proportions...
+normal:Sheol: All out?
+loud:BF: All out, baby!
+normal:Sheol: Hell yeah!
+loud:Sheol: Don't you dare die on me now!
+normal:Blitz: ...
+normal:Darian: ...
+normal:Blitz: Wanna place your bet on how many times the puppet will die?
+normal:Darian: Ha, alright.
+normal:Darian: I place my bet on infinity, they will never complete this song.
+normal:Blitz: Well then, I bet they WILL beat this song, someday.
+normal:Darian: Perhaps after their worlds ends.

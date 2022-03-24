@@ -1,0 +1,19 @@
+data:1
+loud:yes:...
+normal:Sain: How was it? Ah, my aloof little kitten… 
+normal:BF: They mourn for what they've lost.
+normal:Sain: Comparatively, Blitz is the 2nd oldest, older than Sheol by a significant margin, but younger than Darian to a much lesser degree.
+normal:BF: They mourn for what they've lost.
+normal:Sain: Ah, I digress…
+normal:Sain: This copy child lacks the violent dismembering they will perform on the puppet.
+normal:Sain: For every mistake you make, Blitz removes a peice of flesh from the puppet...
+normal:Sain: Mistakes include the false notes or mines, ghost tapping, and actual misses.
+normal:Sain: Each of these count as a mistake, and you are only allowed to make 50 of them.
+normal:Sain: They will kill you in 51 mistakes, hard stop.
+normal:BF: They mourn for what they've lost.
+normal:Sain: ...
+normal:Sain: Ah, did Blitz break the puppet?
+normal:BF: They mourn for what they've lost.
+normal:Sain: Hmm, hopefully he regains his sanity sooner rather than later. 
+normal:Sain: Ah, we have infinite time, he'll be back eventually.
+normal:BF: They mourn for what they've lost.

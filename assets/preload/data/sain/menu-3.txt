@@ -1,0 +1,26 @@
+data:1
+loud:yes:...
+normal:BF: Hey, I know you say you're the parent of the three weirdos, but, like, how?
+normal:Sain: Elaborate on your question.
+normal:BF: Well, I get the birds and bees for human babies and stuff, but, how did your kids get made?
+normal:BF: Was there a-
+normal:Sain: I will stop you there.
+normal:Sain: I am a single parent.
+normal:Sain: Darian was spawned into being at my word. They were gifted with omnipotence on the same level as me, but of course, under my rule.
+normal:Sain: Blitz was created by Darian, but had to be perfected by me, to be their sibling. 
+normal:Sain: Sheol was, well... 
+normal:Sain: Now that I think about this, the creation of all of us holds no bearing in importance.
+normal:BF: Hey! Don't cop out on me now!
+normal:BF: It's still cool, don't ya think?
+normal:Sain: Well, yes, it brings me a sort of nostalgia to remember their creation...
+normal:Sain: But in the context of us, and infinite possibilities..
+normal:Sain: Our beginnings hold next to no importance to what we are now.
+normal:BF: Wha- Come on.
+normal:Sain: Well, it holds true to you humans as well.
+normal:Sain: A human could have been born into a family without love, a country in war, and a world torn apart-
+normal:Sain: And STILL become a loving being who seeks to bring kindness to everyone, right?
+normal:BF: Oh man...
+normal:BF: Yeah, I guess.
+normal:BF: You're still digressing from my question tho.
+normal:Sain: Ah, well you are the one digressing from the rescue of my children.
+normal:BF:   >:/

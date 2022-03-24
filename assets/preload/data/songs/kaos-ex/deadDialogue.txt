@@ -1,0 +1,11 @@
+data:2
+change:1
+loud:Yes:Keep going, you got this.
+normal:BF: ...!
+loud:BF: I ain't done yet!
+loud:BF: I only died death_count times now, that ain't stopping me!
+loud:Sheol: Yeah! YEAH!!
+loud:Sheol: Keep up that fire!
+normal:Darian: ...
+normal:Darian: They still will not beat it.
+normal:Blitz: Just you wait~

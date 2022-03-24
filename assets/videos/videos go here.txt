@@ -1,4 +1,0 @@
-Remeber:
-
-var video:VideoHandlerMP4 = new VideoHandlerMP4();
-video.playMP4(Paths.video('replace Me With Name Of the MP4 File'), new PlayState(), false, false, false);

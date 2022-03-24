@@ -3,8 +3,9 @@ nowhereScary
 arg
 blitzy
 bonkers
+end
 deathwaltz
-bedroom
-church
-endless
-maze
+sheolRoom
+churchDay
+churchNoon
+churchNight

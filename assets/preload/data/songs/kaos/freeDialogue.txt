@@ -1,0 +1,11 @@
+data:2
+change:1
+loud:Yes:(press [accept] to continue text)
+normal:Sheol: Hello again dummy.
+loud:BF: ..!?
+normal:Sheol: Boo.
+loud:Sheol: Sing your way out of this!!
+normal:Blitz: ...
+normal:Blitz: Should we-
+normal:Darian: No, stay out of her shenanigans.
+normal:Blitz: A'ight, fair enough.

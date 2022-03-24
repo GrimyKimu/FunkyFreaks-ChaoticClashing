@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <TextureAtlas imagePath="dari.png">
-	<!-- Created with Adobe Animate version 20.5.1.31044 -->
+	<!-- Created with Adobe Animate version 22.0.4.185 -->
 	<!-- http://www.adobe.com/products/animate.html -->
 	<SubTexture name="dari_beaten0000" x="0" y="0" width="1281" height="733"/>
 	<SubTexture name="dari_beaten0001" x="0" y="0" width="1281" height="733"/>
@@ -8,34 +8,34 @@
 	<SubTexture name="dari_beaten0003" x="0" y="0" width="1281" height="733"/>
 	<SubTexture name="dari_beaten0004" x="0" y="0" width="1281" height="733"/>
 	<SubTexture name="dari_beaten0005" x="0" y="0" width="1281" height="733"/>
-	<SubTexture name="dari_beaten0006" x="0" y="733" width="1281" height="733"/>
-	<SubTexture name="dari_beaten0007" x="0" y="733" width="1281" height="733"/>
-	<SubTexture name="dari_beaten0008" x="0" y="733" width="1281" height="733"/>
-	<SubTexture name="dari_beaten0009" x="0" y="733" width="1281" height="733"/>
-	<SubTexture name="dari_beaten0010" x="0" y="733" width="1281" height="733"/>
-	<SubTexture name="dari_beaten0011" x="0" y="733" width="1281" height="733"/>
-	<SubTexture name="dari_beaten0012" x="0" y="1466" width="1281" height="733"/>
-	<SubTexture name="dari_beaten0013" x="0" y="1466" width="1281" height="733"/>
-	<SubTexture name="dari_beaten0014" x="0" y="1466" width="1281" height="733"/>
-	<SubTexture name="dari_beaten0015" x="0" y="1466" width="1281" height="733"/>
-	<SubTexture name="dari_beaten0016" x="0" y="1466" width="1281" height="733"/>
-	<SubTexture name="dari_beaten0017" x="0" y="1466" width="1281" height="733"/>
-	<SubTexture name="dari_menace0000" x="0" y="2199" width="1281" height="733"/>
-	<SubTexture name="dari_menace0001" x="0" y="2199" width="1281" height="733"/>
-	<SubTexture name="dari_menace0002" x="0" y="2199" width="1281" height="733"/>
-	<SubTexture name="dari_menace0003" x="0" y="2199" width="1281" height="733"/>
-	<SubTexture name="dari_menace0004" x="0" y="2199" width="1281" height="733"/>
-	<SubTexture name="dari_menace0005" x="0" y="2199" width="1281" height="733"/>
-	<SubTexture name="dari_menace0006" x="0" y="2199" width="1281" height="733"/>
-	<SubTexture name="dari_menace0007" x="0" y="2199" width="1281" height="733"/>
-	<SubTexture name="dari_menace0008" x="0" y="2199" width="1281" height="733"/>
-	<SubTexture name="dari_menace0009" x="0" y="2932" width="1281" height="733"/>
-	<SubTexture name="dari_menace0010" x="0" y="2932" width="1281" height="733"/>
-	<SubTexture name="dari_menace0011" x="0" y="2932" width="1281" height="733"/>
-	<SubTexture name="dari_menace0012" x="0" y="2932" width="1281" height="733"/>
-	<SubTexture name="dari_menace0013" x="0" y="2932" width="1281" height="733"/>
-	<SubTexture name="dari_menace0014" x="0" y="2932" width="1281" height="733"/>
-	<SubTexture name="dari_menace0015" x="0" y="2932" width="1281" height="733"/>
-	<SubTexture name="dari_menace0016" x="0" y="2932" width="1281" height="733"/>
-	<SubTexture name="dari_menace0017" x="0" y="2932" width="1281" height="733"/>
+	<SubTexture name="dari_beaten0006" x="0" y="739" width="1281" height="733"/>
+	<SubTexture name="dari_beaten0007" x="0" y="739" width="1281" height="733"/>
+	<SubTexture name="dari_beaten0008" x="0" y="739" width="1281" height="733"/>
+	<SubTexture name="dari_beaten0009" x="0" y="739" width="1281" height="733"/>
+	<SubTexture name="dari_beaten0010" x="0" y="739" width="1281" height="733"/>
+	<SubTexture name="dari_beaten0011" x="0" y="739" width="1281" height="733"/>
+	<SubTexture name="dari_beaten0012" x="0" y="1478" width="1281" height="733"/>
+	<SubTexture name="dari_beaten0013" x="0" y="1478" width="1281" height="733"/>
+	<SubTexture name="dari_beaten0014" x="0" y="1478" width="1281" height="733"/>
+	<SubTexture name="dari_beaten0015" x="0" y="1478" width="1281" height="733"/>
+	<SubTexture name="dari_beaten0016" x="0" y="1478" width="1281" height="733"/>
+	<SubTexture name="dari_beaten0017" x="0" y="1478" width="1281" height="733"/>
+	<SubTexture name="dari_menace0000" x="0" y="2217" width="1281" height="733"/>
+	<SubTexture name="dari_menace0001" x="0" y="2217" width="1281" height="733"/>
+	<SubTexture name="dari_menace0002" x="0" y="2217" width="1281" height="733"/>
+	<SubTexture name="dari_menace0003" x="0" y="2217" width="1281" height="733"/>
+	<SubTexture name="dari_menace0004" x="0" y="2217" width="1281" height="733"/>
+	<SubTexture name="dari_menace0005" x="0" y="2217" width="1281" height="733"/>
+	<SubTexture name="dari_menace0006" x="0" y="2217" width="1281" height="733"/>
+	<SubTexture name="dari_menace0007" x="0" y="2217" width="1281" height="733"/>
+	<SubTexture name="dari_menace0008" x="0" y="2217" width="1281" height="733"/>
+	<SubTexture name="dari_menace0009" x="0" y="2956" width="1281" height="733"/>
+	<SubTexture name="dari_menace0010" x="0" y="2956" width="1281" height="733"/>
+	<SubTexture name="dari_menace0011" x="0" y="2956" width="1281" height="733"/>
+	<SubTexture name="dari_menace0012" x="0" y="2956" width="1281" height="733"/>
+	<SubTexture name="dari_menace0013" x="0" y="2956" width="1281" height="733"/>
+	<SubTexture name="dari_menace0014" x="0" y="2956" width="1281" height="733"/>
+	<SubTexture name="dari_menace0015" x="0" y="2956" width="1281" height="733"/>
+	<SubTexture name="dari_menace0016" x="0" y="2956" width="1281" height="733"/>
+	<SubTexture name="dari_menace0017" x="0" y="2956" width="1281" height="733"/>
 </TextureAtlas>

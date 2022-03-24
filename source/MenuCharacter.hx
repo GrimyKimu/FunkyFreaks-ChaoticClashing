@@ -4,6 +4,8 @@ import flixel.FlxSprite;
 import flixel.FlxG;
 import flixel.graphics.frames.FlxAtlasFrames;
 
+using StringTools;
+
 class CharacterSetting
 {
 	public var x(default, null):Int;
@@ -26,10 +28,13 @@ class MenuCharacter extends FlxSprite
 		'bf' => new CharacterSetting(0, -15, 1.0, true),
 		'bf-goner' => new CharacterSetting(-32, -32, 0.9, true),
 
-		'sheol' => new CharacterSetting(0, 60, 1.0),
+		'sheol' => new CharacterSetting(-70, 60, 1.0),
 		'sheol-horror' => new CharacterSetting(0, 40, 1.0),
 		'dari' => new CharacterSetting(-25, 130, 0.65),
-		'blitz' => new CharacterSetting(0, 140, 0.65)
+		'blitz' => new CharacterSetting(0, 140, 0.65),
+
+		'bg-dari' => new CharacterSetting(100, 50, 2.2, true),
+		'bg-blitz' => new CharacterSetting(100, -20, 1.1, true)
 	];
 
 	private var flipped:Bool = false;
@@ -53,8 +58,14 @@ class MenuCharacter extends FlxSprite
 
 		animation.addByPrefix('sheol', "Sheol idle Black Lines", 24, false);
 		animation.addByPrefix('sheol-horror', "sheol horror", 24, true);
-		animation.addByPrefix('dari', "dari serious lines", 24, false);
+		animation.addByPrefix('dari', "dari serious lines", 24, true);
 		animation.addByPrefix('blitz', "blitz lines", 24, true);
+
+		animation.addByIndices('bg-dari-left', "bg dari lines", [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
+		animation.addByIndices('bg-dari-right', "bg dari lines", [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
+
+		animation.addByIndices('bg-blitz-right', "bg blitz lines", [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
+		animation.addByIndices('bg-blitz-left', "bg blitz lines", [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
 
 		setGraphicSize(Std.int(width * scale));
 		updateHitbox();
@@ -86,7 +97,8 @@ class MenuCharacter extends FlxSprite
 
 	public function bopHead(LastFrame:Bool = false):Void
 	{
-		if (character == 'gf' || character == 'spooky') {
+		if (character.startsWith('bg')) 
+		{
 			danceLeft = !danceLeft;
 
 			if (danceLeft)

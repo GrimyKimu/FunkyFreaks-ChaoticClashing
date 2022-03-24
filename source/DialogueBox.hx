@@ -34,6 +34,8 @@ class DialogueBox extends FlxSpriteGroup
 
 	public var finishThing:Void->Void;
 
+	private var bg:FlxSprite;
+
 	var curSong:String = '';
 	var postGame:Bool = false;
 	var deathCount:Int = 0;
@@ -47,9 +49,11 @@ class DialogueBox extends FlxSpriteGroup
 	{
 		super();
 
+		finishedTyping = false;
+
 		deathCount = PlayState.dedCounter;
 
-		var bg:FlxSprite = new FlxSprite(0).makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
+		bg = new FlxSprite().makeGraphic(FlxG.width * 4, FlxG.height * 4, FlxColor.BLACK);
 		bg.scrollFactor.set();
 		bg.updateHitbox();
 		bg.screenCenter();
@@ -68,20 +72,20 @@ class DialogueBox extends FlxSpriteGroup
 				break;
 		}
 
-		timePassed = 0.0;
-
 		switch (curSong)
 		{
 			case 'm-e-m-e':
 				curSong = 'meme';
 			case 'murderous-blitz':
 				curSong = 'MB';
+			case 'kittycat-sonata':
+				curSong = 'KCS';
 		}
 		var afterString = '';
 
 		if (postGame)
 			afterString = '-after';
-
+		
 		for (i in 0...slidesToBeLoad)
 		{
 			//loads the graphic "songName-afterString-index", then forcefully inserts the loaded png
@@ -97,16 +101,9 @@ class DialogueBox extends FlxSpriteGroup
 			yes.antialiasing = FlxG.save.data.antialiasing;
 			insert(i, yes);
 		}
-		trace("success in loading all the story CGs for this song");
-
-		new FlxTimer().start(0.33, function(tmr:FlxTimer)
-		{
-			members[curSlide].alpha += 0.1;
-			bg.alpha -= 0.1;
-		}, 10);
-
-		/*
-		if (curSong == 'sain')
+		trace("success in loading all the story CGs for this song");	
+		
+		/*if (curSong == 'sain')
 		{
 			for (i in 0...3)
 			{
@@ -114,9 +111,9 @@ class DialogueBox extends FlxSpriteGroup
 				yes.frames = Paths.getSparrowAtlas('menuVariety/sain-$i');
 				//0 = sheol // 1 = blitz // 2 = dari // 3 = sain
 				yes.screenCenter();
-				yes.animation.addByPrefix('appear', 'appear', 24, true);
+				yes.animation.addByPrefix('appear', 'appear', 24, false);
 				yes.animation.addByPrefix('idle', 'idle', 24, true);
-				yes.animation.addByPrefix('change', 'change', 24, true);
+				yes.animation.addByPrefix('change', 'change', 24, false);
 				yes.visible = StoryMenuState.savedChildren[i];
 
 				yes.animation.play('appear', false);
@@ -127,8 +124,8 @@ class DialogueBox extends FlxSpriteGroup
 		swagDialogue = new FlxTypeText(FlxG.width * 0.05, FlxG.height * 0.05, Std.int(FlxG.width * 0.9), "", 36);
 		swagDialogue.font = 'VCR OSD MONO Bold';
 		swagDialogue.color = FlxColor.WHITE;
-		swagDialogue.setTypingVariation(0.6, true);
-		swagDialogue.setBorderStyle(FlxTextBorderStyle.OUTLINE_FAST, FlxColor.BLACK);
+		swagDialogue.setTypingVariation(0.95, true);
+		swagDialogue.setBorderStyle(FlxTextBorderStyle.OUTLINE, FlxColor.BLACK, 2, 1);
 		swagDialogue.finishSounds = true;
 		swagDialogue.autoSize = false;
 		swagDialogue.alignment = FlxTextAlign.CENTER;
@@ -139,73 +136,106 @@ class DialogueBox extends FlxSpriteGroup
 		startDialogue();
 	}
 
+	public function doneTyping():Void
+	{
+		finishedTyping = true;
+	}
+
 	var dialogueOpened:Bool = false;
 	var dialogueStarted:Bool = false;
-
-	private var bgChildren:Map<String, FlxSprite> = [];
-	private var timePassed:Float = 0.0;
+	var bgChildren:Map<String, FlxSprite> = [];
+	var isEnding:Bool = false;
+	var finishedTyping:Bool = false;
 
 	override function update(elapsed:Float)
 	{
+		/*
 		if (curSong == 'sain')
 		{
 			for (i in 0...3)
 			{
-				/*
-				if (bgChildren['sain-$i'].animation.curAnim.name != 'appear' || bgChildren['sain-$i'].animation.curAnim.name != 'change')
+				if ((bgChildren['sain-$i'].animation.curAnim.name != 'appear' || bgChildren['sain-$i'].animation.curAnim.finished) && bgChildren['sain-$i'].animation.curAnim.name != 'change')
 					bgChildren['sain-$i'].animation.play('idle', false);
-				*/
 			}
 		}
+		*/
 
 		if (dialogueOpened && !dialogueStarted)
 		{
 			dialogueStarted = true;
 		}
-		//swagDialogue.y = 500 + (12 * Math.sin(timePassed / 100));
 
-		if (PlayerSettings.player1.controls.ACCEPT && dialogueStarted == true)
+		if (PlayerSettings.player1.controls.ACCEPT && dialogueStarted == true && !isEnding)
 		{
-			remove(dialogue);
-			FlxG.sound.play(Paths.sound('clickText'), 0.4);
-
-			if (dialogueList[1] == null && dialogueList[0] != null)
+			if (finishedTyping)
 			{
-				if (!isEnding)
+				remove(dialogue);
+	
+				if (dialogueList[1] == null && dialogueList[0] != null)
 				{
-					isEnding = true;
-
-					new FlxTimer().start(0.2, function(tmr:FlxTimer)
-					{
-						members[curSlide].alpha -= 1 / 5;
-						swagDialogue.alpha -= 1 / 5;
-					}, 5);
-
-					new FlxTimer().start(1.2, function(tmr:FlxTimer)
-					{
-						finishThing();
-						kill();
-					});
+					endDialogue();
+					finishedTyping = false;
+				}
+				else
+				{
+					FlxG.sound.play(Paths.sound('clickText','shared'), 0.4);
+					dialogueList.remove(dialogueList[0]);
+					startDialogue();
 				}
 			}
 			else
 			{
-				dialogueList.remove(dialogueList[0]);
-				startDialogue();
+				swagDialogue.skip();
+				doneTyping();
 			}
 		}
+
+		if ((PlayerSettings.player1.controls.BACK || FlxG.keys.justPressed.ESCAPE) && dialogueStarted == true)
+			endDialogue();
+
 		super.update(elapsed);
 	}
 
-	var isEnding:Bool = false;
+	public function trueStart():Void
+	{
+		new FlxTimer().start(0.2, function(tmr:FlxTimer)
+		{
+			FlxTween.tween(members[curSlide], {alpha: 1}, 1.1, {ease: FlxEase.linear, type: ONESHOT});
+			FlxTween.tween(bg, {alpha: 0}, 1.1, {ease: FlxEase.linear, type: ONESHOT});
+		});
+	}
+
+	function endDialogue():Void
+	{
+		if (!isEnding)
+		{
+			FlxG.sound.play(Paths.sound('endText','shared'), 0.4);
+			isEnding = true;
+
+			new FlxTimer().start(0.2, function(tmr:FlxTimer)
+			{
+				members[curSlide].alpha -= 1 / 5;
+				swagDialogue.alpha -= 1 / 5;
+			}, 5);
+
+			new FlxTimer().start(1.2, function(tmr:FlxTimer)
+			{
+				finishThing();
+				kill();
+				destroy();
+			});
+		}
+	}
 
 	function startDialogue():Void
 	{
 		var delayNum = 0.1;
+		finishedTyping = false;
 
 		var oldSlide = curSlide;
 		for(i in 0...999999999)
 		{
+			//yeah yeah, this is a stupid funkin way to do this, but whatever
 			if (!cleanDialog())
 				break;
 		}
@@ -213,57 +243,57 @@ class DialogueBox extends FlxSpriteGroup
 		if (curCharacter.toLowerCase().startsWith('dari') || curCharacter.toLowerCase().startsWith('scarfed'))
 		{
 			swagDialogue.sounds = [FlxG.sound.load(Paths.sound('dari_1'), 0.4),
-				FlxG.sound.load(Paths.sound('dari_2'), 0.4),
-				FlxG.sound.load(Paths.sound('dari_3'), 0.4)];
+				FlxG.sound.load(Paths.sound('dari_2','shared'), 0.4),
+				FlxG.sound.load(Paths.sound('dari_3','shared'), 0.4)];
 
-			delayNum = 0.035;
+			delayNum = 0.029;
 		}
 		else if (curCharacter.toLowerCase().startsWith('sheol') || curCharacter.toLowerCase().startsWith('strange'))
 		{
-			swagDialogue.sounds = [FlxG.sound.load(Paths.sound('sheol_0'), 0.3),
-				FlxG.sound.load(Paths.sound('sheol_1'), 0.3)];
+			swagDialogue.sounds = [FlxG.sound.load(Paths.sound('sheol_0','shared'), 0.3),
+				FlxG.sound.load(Paths.sound('sheol_1','shared'), 0.3)];
 
-			delayNum = 0.031;
+			delayNum = 0.024;
 		}
 		else if (curCharacter.toLowerCase().startsWith('blitz') || curCharacter.toLowerCase().startsWith('cat'))
 		{
 			swagDialogue.sounds = [FlxG.sound.load(Paths.sound('blitz_0'), 0.4), 
-				FlxG.sound.load(Paths.sound('blitz_1'), 0.4), FlxG.sound.load(Paths.sound('blitz_2'), 0.4), 
-				FlxG.sound.load(Paths.sound('blitz_3'), 0.4)];
+				FlxG.sound.load(Paths.sound('blitz_1','shared'), 0.4), FlxG.sound.load(Paths.sound('blitz_2','shared'), 0.4), 
+				FlxG.sound.load(Paths.sound('blitz_3','shared'), 0.4)];
 
-			delayNum = 0.032;
+			delayNum = 0.026;
 		}
 		else if (curCharacter.toLowerCase().startsWith('bf'))
 		{
-			swagDialogue.sounds = [FlxG.sound.load(Paths.sound('bf_ai'), 0.5), 
-				FlxG.sound.load(Paths.sound('bf_ii'), 0.5), FlxG.sound.load(Paths.sound('bf_ah'), 0.5)];
+			swagDialogue.sounds = [FlxG.sound.load(Paths.sound('bf_ai','shared'), 0.5), 
+				FlxG.sound.load(Paths.sound('bf_ii','shared'), 0.5), FlxG.sound.load(Paths.sound('bf_ah','shared'), 0.5)];
+
+			delayNum = 0.028;
+		}
+		else if (curCharacter.toLowerCase().startsWith('sain') || curCharacter.toLowerCase().startsWith('???'))
+		{
+			swagDialogue.sounds = [FlxG.sound.load(Paths.sound('sain_0','shared'), 0.4), 
+				FlxG.sound.load(Paths.sound('sain_1','shared'), 0.4), FlxG.sound.load(Paths.sound('sain_2','shared'), 0.4),
+				FlxG.sound.load(Paths.sound('sain_3','shared'), 0.4)];
 
 			delayNum = 0.03;
 		}
-		else if (curCharacter.toLowerCase().startsWith('sain'))
-		{
-			swagDialogue.sounds = [FlxG.sound.load(Paths.sound('sain_0'), 0.4), 
-				FlxG.sound.load(Paths.sound('sain_1'), 0.4), FlxG.sound.load(Paths.sound('sain_2'), 0.4),
-				FlxG.sound.load(Paths.sound('sain_3'), 0.4)];
-
-			delayNum = 0.036;
-		}
 		else
 		{
-			swagDialogue.sounds = [FlxG.sound.load(Paths.sound('pixelText'), 0.6)];
+			swagDialogue.sounds = [FlxG.sound.load(Paths.sound('pixelText','shared'), 0.6)];
 
-			delayNum = 0.01;
+			delayNum = 0.015;
 		}
 
 		if (oldSlide != curSlide)
 		{
-			FlxTween.tween(members[oldSlide], {alpha: 0}, 1.2, {ease: FlxEase.linear, type: ONESHOT});
-			FlxTween.tween(members[curSlide], {alpha: 1}, 0.4, {ease: FlxEase.linear, type: ONESHOT});
+			FlxTween.tween(members[oldSlide], {alpha: 0}, 0.7, {ease: FlxEase.linear, type: ONESHOT});
+			FlxTween.tween(members[curSlide], {alpha: 1}, 0.6, {ease: FlxEase.linear, type: ONESHOT});
 		}
 
 		swagDialogue.resetText(dialogueList[0]);
-		swagDialogue.start(delayNum * speedoTalk, true);
-		trace('$delayNum + $speedoTalk');
+		swagDialogue.start(delayNum * speedoTalk, true, false, null, doneTyping);
+		//trace('$delayNum + $speedoTalk');
 	}
 
 	function cleanDialog():Bool
@@ -291,15 +321,34 @@ class DialogueBox extends FlxSpriteGroup
 			var rescueVar = Std.parseInt(splitName[1]);
 			dialogueList.remove(dialogueList[0]);
 			StoryMenuState.savedChildren[rescueVar] = true;
-			bgChildren['sain-$rescueVar'].animation.play('appear', true);
-			bgChildren['sain-$rescueVar'].visible = true;
+			if (rescueVar != 3)
+			{
+				bgChildren['sain-$rescueVar'].animation.play('appear', true);
+				bgChildren['sain-$rescueVar'].visible = true;
+			}
+			else
+			{
+				for (i in 0...3)
+				{
+					bgChildren['sain-$i'].animation.play('change', false);
+				}
+			}
+
+			return true;
+		}
+
+		if (splitName[0] == 'end')
+		{
+			FlxG.save.data.weeksBeaten[4] = true;
+			FlxG.save.flush();
+			FlxG.resetGame();
 
 			return true;
 		}
 
 		if (splitName[0] == 'loud')
 		{
-			speedoTalk = 0.6;
+			speedoTalk = 0.75;
 		}
 		else
 		{

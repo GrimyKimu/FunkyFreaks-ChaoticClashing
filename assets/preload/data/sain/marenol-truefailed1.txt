@@ -1,0 +1,16 @@
+data:1
+normal:Yes: ...
+normal:Sain: How was it? My poor youngest...
+normal:Sain: Sheol is a child, even if she IS infinitely older than even you, player.
+normal:Sain: Even the youngest of stars is still magnitudes older than a mere mortal, but in the eyes of the infinite, it remains but a young star.
+normal:BF: Oh so you're saying that she's technically legal?
+normal:Sain: Heavens no, what I am saying is that no matter how unfathomably old she may be compared to you or the player, she is a child through and through.
+normal:Sain: Raw age means nothing if a mind is like that of a child.
+normal:Sain: No better than yours, puppet.
+normal:BF: Hey!
+normal:Sain: Ah, I am digressing-
+normal:Sain: She is throwing everything she can at you, the only gimmick is the immense pressure of permanently low health and distracting movements.
+normal:Sain: I can provide no advice other than for you to practice against her false self, in order to get comfortable with the chart itself, so that you might have a chance against her true self...
+normal:Sain: Ah, my sweet child, your freedom will come soon.
+normal:Sain: Please keep having at it, puppet, for the sake of my child.
+normal:BF: I'm tryin' my best.

@@ -1,6 +1,6 @@
 package;
 
-#if sys
+#if FEATURE_STEPMANIA
 import smTools.SMFile;
 #end
 import flixel.FlxG;
@@ -23,17 +23,9 @@ import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
-import io.newgrounds.NG;
 import lime.app.Application;
 import openfl.Assets;
-
-#if windows
-import Discord.DiscordClient;
-#end
-
-#if cpp
-import sys.thread.Thread;
-#end
+import flixel.input.keyboard.FlxKey;
 
 using StringTools;
 
@@ -53,49 +45,58 @@ class TitleState extends MusicBeatState
 
 	override public function create():Void
 	{
-		#if polymod
-		polymod.Polymod.init({modRoot: "mods", dirs: ['introMod']});
-		#end
-		
-		#if sys
+		// TODO: Refactor this to use OpenFlAssets.
+		#if FEATURE_FILESYSTEM
 		if (!sys.FileSystem.exists(Sys.getCwd() + "/assets/replays"))
 			sys.FileSystem.createDirectory(Sys.getCwd() + "/assets/replays");
 		#end
 
 		@:privateAccess
 		{
-			//trace("Loaded " + openfl.Assets.getLibrary("default").assetsLoaded + " assets (DEFAULT)");
+			Debug.logTrace("We loaded " + openfl.Assets.getLibrary("default").assetsLoaded + " assets into the default library");
 		}
-		
-		#if !cpp
+
+		FlxG.autoPause = false;
 
 		FlxG.save.bind('funkin', 'ninjamuffin99');
 
 		PlayerSettings.init();
 
 		KadeEngineData.initSave();
-		
-		#end
 
+		KeyBinds.keyCheck();
+		// It doesn't reupdate the list before u restart rn lmao
 
-				
+		NoteskinHelpers.updateNoteskins();
+
+		if (FlxG.save.data.volDownBind == null)
+			FlxG.save.data.volDownBind = "MINUS";
+		if (FlxG.save.data.volUpBind == null)
+			FlxG.save.data.volUpBind = "PLUS";
+
+		FlxG.sound.muteKeys = [FlxKey.fromString(FlxG.save.data.muteBind)];
+		FlxG.sound.volumeDownKeys = [FlxKey.fromString(FlxG.save.data.volDownBind)];
+		FlxG.sound.volumeUpKeys = [FlxKey.fromString(FlxG.save.data.volUpBind)];
+
+		FlxG.mouse.visible = false;
+
+		FlxG.worldBounds.set(0, 0);
+
+		FlxGraphic.defaultPersist = FlxG.save.data.cacheImages;
+
+		MusicBeatState.initSave = true;
+
+		fullscreenBind = FlxKey.fromString(FlxG.save.data.fullscreenBind);
+
 		Highscore.load();
-
 
 		curWacky = FlxG.random.getObject(getIntroTextShit());
 
-		//trace('hello');
+		trace('hello');
 
 		// DEBUG BULLSHIT
 
 		super.create();
-
-		// NGio.noLogin(APIStuff.API);
-
-		#if ng
-		var ng:NGio = new NGio(APIStuff.API, APIStuff.EncKey);
-		//trace('NEWGROUNDS LOL');
-		#end
 
 		#if FREEPLAY
 		FlxG.switchState(new FreeplayState());
@@ -120,9 +121,13 @@ class TitleState extends MusicBeatState
 	var danceLeft:Bool = false;
 	var titleText:FlxSprite;
 
+	var weeksBeaten:Array<Bool> = FlxG.save.data.weeksBeaten;
+	var bgVariety:FlxTypedGroup<FlxSprite>;
+
 	function startIntro()
 	{
 		persistentUpdate = true;
+		weeksBeaten = FlxG.save.data.weeksBeaten;
 
 		var bg:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		// bg.antialiasing = FlxG.save.data.antialiasing;
@@ -130,11 +135,14 @@ class TitleState extends MusicBeatState
 		// bg.updateHitbox();
 		add(bg);
 
-		if (Main.watermarks) {
+		if (Main.watermarks)
+		{
 			logoBl = new FlxSprite(-150, 1500);
 			logoBl.frames = Paths.getSparrowAtlas('KadeEngineLogoBumpin');
-		} else {
-			logoBl = new FlxSprite(-150, -100);
+		}
+		else
+		{
+			logoBl = new FlxSprite(50, -100);
 			logoBl.frames = Paths.getSparrowAtlas('logoBumpin');
 		}
 		logoBl.antialiasing = FlxG.save.data.antialiasing;
@@ -143,14 +151,63 @@ class TitleState extends MusicBeatState
 		// logoBl.screenCenter();
 		// logoBl.color = FlxColor.BLACK;
 
-		gfDance = new FlxSprite(FlxG.width * 0.35, FlxG.height * 0.08);
-		gfDance.scale.set(.85, .85);
+		/*gfDance = new FlxSprite(FlxG.width * 0.4, FlxG.height * 0.07);
 		gfDance.frames = Paths.getSparrowAtlas('gfDanceTitle');
 		gfDance.animation.addByIndices('danceLeft', 'gfDance', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
 		gfDance.animation.addByIndices('danceRight', 'gfDance', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
 		gfDance.antialiasing = FlxG.save.data.antialiasing;
-		add(gfDance);
+		add(gfDance);*/
 		add(logoBl);
+
+		bgVariety = new FlxTypedGroup<FlxSprite>();
+		add(bgVariety);
+
+		var childArray:Array<String> = ["","dari","blitz","sheol"];
+		var childMap:Map<String, FlxSprite> = [
+			"sheol" => new FlxSprite(FlxG.width * 0.65, FlxG.height * 0.18), 
+			"blitz" => new FlxSprite(FlxG.width * 0.6, FlxG.height * 0.2),
+			"dari" => new FlxSprite(FlxG.width * 0.43, FlxG.height * 0.2)
+		];
+
+		var behindThem = new FlxSprite(FlxG.width * 0.395, FlxG.height * 0.11);
+		behindThem.frames = Paths.getSparrowAtlas('menuVariety/behindTitle');
+		behindThem.animation.addByIndices('danceLeft', "behindTitle", [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
+		behindThem.animation.addByIndices('danceRight', "behindTitle", [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
+		behindThem.scrollFactor.set();
+		behindThem.scale.set(.85, .85);
+		behindThem.updateHitbox();
+		behindThem.antialiasing = FlxG.save.data.antialiasing;
+		bgVariety.add(behindThem);
+
+		for (w in 1...4)
+		{
+			var menacingString = "menace";
+			switch(w)
+			{
+				// i makey a big mistakey in layers lol
+				case 1:
+					if (weeksBeaten[3] || !weeksBeaten[0])
+						menacingString = "defeat";
+				case 2:
+					if (weeksBeaten[w] || !weeksBeaten[0])
+						menacingString = "defeat";
+				case 3:
+					if (weeksBeaten[1] || !weeksBeaten[0])
+						menacingString = "defeat";
+			}
+
+			var yes = childMap[childArray[w]];
+			yes.scale.set(.85, .85);
+			yes.frames = Paths.getSparrowAtlas('menuVariety/' + childArray[w] + 'Title');
+			yes.animation.addByIndices('danceLeft', menacingString, [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
+			yes.animation.addByIndices('danceRight', menacingString, [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
+			yes.scrollFactor.set();
+			yes.updateHitbox();
+			yes.antialiasing = FlxG.save.data.antialiasing;
+			bgVariety.add(yes);
+
+			//damn, I really just shortened a whole ass if-else tree into a single for loop, huh
+		}
 
 		titleText = new FlxSprite(100, FlxG.height * 0.8);
 		titleText.frames = Paths.getSparrowAtlas('titleEnter');
@@ -162,7 +219,7 @@ class TitleState extends MusicBeatState
 		// titleText.screenCenter(X);
 		add(titleText);
 
-		var logo:FlxSprite = new FlxSprite().loadGraphic(Paths.image('logo'));
+		var logo:FlxSprite = new FlxSprite().loadGraphic(Paths.loadImage('logo'));
 		logo.screenCenter();
 		logo.antialiasing = FlxG.save.data.antialiasing;
 		// add(logo);
@@ -184,7 +241,7 @@ class TitleState extends MusicBeatState
 
 		credTextShit.visible = false;
 
-		ngSpr = new FlxSprite(0, FlxG.height * 0.52).loadGraphic(Paths.image('newgrounds_logo'));
+		ngSpr = new FlxSprite(0, FlxG.height * 0.52).loadGraphic(Paths.loadImage('newgrounds_logo'));
 		add(ngSpr);
 		ngSpr.visible = false;
 		ngSpr.setGraphicSize(Std.int(ngSpr.width * 0.8));
@@ -198,7 +255,8 @@ class TitleState extends MusicBeatState
 
 		if (initialized)
 			skipIntro();
-		else {
+		else
+		{
 			var diamond:FlxGraphic = FlxGraphic.fromClass(GraphicTransTileDiamond);
 			diamond.persist = true;
 			diamond.destroyOnNoUse = false;
@@ -219,8 +277,7 @@ class TitleState extends MusicBeatState
 			// music.loadStream(Paths.music('freakyMenu'));
 			// FlxG.sound.list.add(music);
 			// music.play();
-
-			if (!FlxG.save.data.weeksBeaten[0])
+			if (!weeksBeaten[0] || weeksBeaten[5])
 				FlxG.sound.playMusic(Paths.music('freakyMenu'));
 			else
 				FlxG.sound.playMusic(Paths.music('freakyMenu-goner'));
@@ -249,14 +306,14 @@ class TitleState extends MusicBeatState
 	}
 
 	var transitioning:Bool = false;
+	var fullscreenBind:FlxKey;
 
 	override function update(elapsed:Float)
 	{
 		if (FlxG.sound.music != null)
 			Conductor.songPosition = FlxG.sound.music.time;
-		// FlxG.watch.addQuick('amp', FlxG.sound.music.amplitude);
 
-		if (FlxG.keys.justPressed.F)
+		if (FlxG.keys.anyJustPressed([fullscreenBind]))
 		{
 			FlxG.fullscreen = !FlxG.fullscreen;
 		}
@@ -275,14 +332,6 @@ class TitleState extends MusicBeatState
 
 		if (pressedEnter && !transitioning && skippedIntro)
 		{
-			#if !switch
-			NGio.unlockMedal(60960);
-
-			// If it's Friday according to da clock
-			if (Date.now().getDay() == 5)
-				NGio.unlockMedal(61034);
-			#end
-
 			if (FlxG.save.data.flashing)
 				titleText.animation.play('press');
 
@@ -297,37 +346,17 @@ class TitleState extends MusicBeatState
 
 			new FlxTimer().start(2, function(tmr:FlxTimer)
 			{
-				// Get current version of Kade Engine
-				
-				var http = new haxe.Http("https://raw.githubusercontent.com/KadeDev/Kade-Engine/master/version.downloadMe");
-				var returnedData:Array<String> = [];
-				
-				http.onData = function (data:String)
+				var isDemo = true;
+				if (isDemo)
 				{
-					returnedData[0] = data.substring(0, data.indexOf(';'));
-					returnedData[1] = data.substring(data.indexOf('-'), data.length);
-				  	/*if (!MainMenuState.kadeEngineVer.contains(returnedData[0].trim()) && !OutdatedSubState.leftState)
-					{
-						//trace('outdated lmao! ' + returnedData[0] + ' != ' + MainMenuState.kadeEngineVer);
-						OutdatedSubState.needVer = returnedData[0];
-						OutdatedSubState.currChanges = returnedData[1];
-						FlxG.switchState(new OutdatedSubState());
-						clean();
-					}
-					else
-					{*/
-						FlxG.switchState(new MainMenuState());
-						clean();
-					//}
+					FlxG.switchState(new OutdatedSubState());
+					clean();
 				}
-				
-				http.onError = function (error) {
-				 // trace('error: $error');
-				  FlxG.switchState(new MainMenuState()); // fail but we go anyway
-				  clean();
+				else
+				{
+					FlxG.switchState(new MainMenuState());
+					clean();
 				}
-				
-				http.request();
 			});
 			// FlxG.sound.play(Paths.music('titleShoot'), 0.7);
 		}
@@ -378,72 +407,125 @@ class TitleState extends MusicBeatState
 		danceLeft = !danceLeft;
 
 		if (danceLeft)
-			gfDance.animation.play('danceRight');
-		else
-			gfDance.animation.play('danceLeft');
-
-		//FlxG.log.add(curBeat);
-
-		switch (curBeat)
 		{
-			case 0:
-				deleteCoolText();
-			case 1:
-				createCoolText(['ninjamuffin99', 'phantomArcade', 'kawaisprite', 'evilsk8er']);
-			// credTextShit.visible = true;
-			case 3:
-				addMoreText('present');
-			// credTextShit.text += '\npresent...';
-			// credTextShit.addText();
-			case 4:
-				deleteCoolText();
-			// credTextShit.visible = false;
-			// credTextShit.text = 'In association \nwith';
-			// credTextShit.screenCenter();
-			case 5:
-				if (Main.watermarks)
-					createCoolText(['Kade Engine', 'by']);
-				else
-					createCoolText(['In Partnership', 'with']);
-			case 7:
-				if (Main.watermarks)
-					addMoreText('KadeDeveloper');
-				else
-				{
-					addMoreText('Newgrounds');
-					ngSpr.visible = true;
-				}
-			// credTextShit.text += '\nNewgrounds';
-			case 8:
-				deleteCoolText();
-				ngSpr.visible = false;
-			// credTextShit.visible = false;
-
-			// credTextShit.text = 'Shoutouts Tom Fulp';
-			// credTextShit.screenCenter();
-			case 9:
-				createCoolText([curWacky[0]]);
-			// credTextShit.visible = true;
-			case 11:
-				addMoreText(curWacky[1]);
-			// credTextShit.text += '\nlmao';
-			case 12:
-				deleteCoolText();
-			// credTextShit.visible = false;
-			// credTextShit.text = "Friday";
-			// credTextShit.screenCenter();
-			case 13:
-				addMoreText('Friday');
-			// credTextShit.visible = true;
-			case 14:
-				addMoreText('Night');
-			// credTextShit.text += '\nNight';
-			case 15:
-				addMoreText('Funkin'); // credTextShit.text += '\nFunkin';
-
-			case 16:
-				skipIntro();
+			bgVariety.forEach(function(spr:FlxSprite)
+			{
+				spr.animation.play('danceRight');
+			});
+			// gfDance.animation.play('danceRight');
 		}
+		else
+		{
+			bgVariety.forEach(function(spr:FlxSprite)
+			{
+				spr.animation.play('danceLeft');
+			});
+			// gfDance.animation.play('danceLeft');
+		}
+		// FlxG.log.add(curBeat);
+
+		if (!FlxG.save.data.weeksBeaten[0] || FlxG.save.data.weeksBeaten[5])
+			switch (curBeat)
+			{
+				case 0:
+					deleteCoolText();
+				case 1:
+					createCoolText(['ninjamuffin99', 'phantomArcade', 'kawaisprite', 'evilsk8er']);
+				case 2:
+					addMoreText('thanks for the cool game');
+				case 3:
+					deleteCoolText();
+				case 4:
+					createCoolText(['Kade Engine by']);
+				case 5:
+					addMoreText('KadeDeveloper');
+				case 6:
+					if (FlxG.random.bool())
+						addMoreText('Thanks for the engine');
+					else
+						addMoreText("It's functional");
+				case 7:
+					deleteCoolText();
+				case 8:
+					createCoolText([curWacky[0]]);
+				case 10:
+					addMoreText(curWacky[1]);
+				case 12:
+					deleteCoolText();
+				case 13:
+					addMoreText('Friday');
+				case 14:
+					addMoreText('Night');
+				case 15:
+					addMoreText('Funkin');
+				case 16:
+					skipIntro();
+			}
+		else
+			switch (curBeat)
+			{
+				case 0:
+					deleteCoolText();
+				case 1:
+					createCoolText(['ninjamuffin99', 'phantomArcade', 'kawaisprite', 'evilsk8er']);
+				case 2:
+					addMoreText('their game hath been butchered');
+				case 3:
+					deleteCoolText();
+				case 4:
+					createCoolText(['Kade Engine']);
+				case 5:
+					if (FlxG.random.bool())
+						addMoreText('Look man...');
+					else
+						addMoreText('Dude, bro...');
+				case 6:
+					switch (FlxG.random.int(0, 4))
+					{
+						case 0:
+							addMoreText("It's doing it's best");
+						case 1:
+							addMoreText("God it's trying");
+						case 2:
+							addMoreText("It's still being potty-trained");
+						case 3:
+							addMoreText("It turned on at least");
+						case 4:
+							addMoreText("Barely functioning");
+					}
+				case 7:
+					deleteCoolText();
+				case 8:
+					createCoolText([curWacky[0]]);
+				case 10:
+					addMoreText(curWacky[1]);
+				case 12:
+					deleteCoolText();
+				case 13:
+					addMoreText("You have made");
+				case 14:
+					addMoreText("a horrible");
+				case 15:
+					addMoreText("M I S T A K E");
+				case 16:
+					deleteCoolText();
+				case 17:
+					addMoreText("Friday Night Funkin'");
+				case 18:
+					addMoreText("Friday Blight Funkin'");
+				case 19:
+					addMoreText("Friday Night Chuckin'");
+				case 20:
+					addMoreText("Friday Light Funkin'");
+					addMoreText("Freaky Night Funkin'");
+				case 21:
+					addMoreText("Friday Night Forking");
+					addMoreText("Funday Night Funkin'");
+					addMoreText("Friday Blight Funkin'");
+				case 22:
+					skipIntro();
+			}
+		
 	}
 
 	var skippedIntro:Bool = false;
@@ -452,22 +534,31 @@ class TitleState extends MusicBeatState
 	{
 		if (!skippedIntro)
 		{
+			Debug.logInfo("Skipping intro...");
+
 			remove(ngSpr);
 
 			FlxG.camera.flash(FlxColor.WHITE, 4);
 			remove(credGroup);
 
-			FlxTween.tween(logoBl,{y: -100}, 1.4, {ease: FlxEase.expoInOut});
+			FlxTween.tween(logoBl, {y: 50}, 1.4, {ease: FlxEase.expoInOut});
 
 			logoBl.angle = -4;
 
 			new FlxTimer().start(0.01, function(tmr:FlxTimer)
-				{
-					if(logoBl.angle == -4) 
-						FlxTween.angle(logoBl, logoBl.angle, 4, 4, {ease: FlxEase.quartInOut});
-					if (logoBl.angle == 4) 
-						FlxTween.angle(logoBl, logoBl.angle, -4, 4, {ease: FlxEase.quartInOut});
-				}, 0);
+			{
+				if (logoBl.angle == -4)
+					FlxTween.angle(logoBl, logoBl.angle, 4, 4, {ease: FlxEase.quartInOut});
+				if (logoBl.angle == 4)
+					FlxTween.angle(logoBl, logoBl.angle, -4, 4, {ease: FlxEase.quartInOut});
+			}, 0);
+
+			// It always bugged me that it didn't do this before.
+			// Skip ahead in the song to the drop.
+			if (!FlxG.save.data.weeksBeaten[0] || FlxG.save.data.weeksBeaten[5])
+				FlxG.sound.music.time = 9400; // 9.4 seconds
+			else
+				FlxG.sound.music.time = 12900; // 12.9 seconds for "-goner" variation of title music
 
 			skippedIntro = true;
 		}

@@ -1,5 +1,6 @@
 package;
 
+import cpp.Random;
 import flixel.input.gamepad.FlxGamepad;
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -43,7 +44,7 @@ class StoryMenuState extends MusicBeatState
 		else
 		{
 			return [
-				['New-Puppet','Kaos','Apology','KittyCat-Sonata']
+				['New-Puppet','Kaos','Not-Sorry','KittyCat-Sonata']
 			];
 		}
 	}
@@ -61,18 +62,18 @@ class StoryMenuState extends MusicBeatState
 				['dari', 'bf-goner', '']
 			];
 		}
-		else //if (FlxG.save.data.weeksBeaten[0] && FlxG.save.data.weeksBeaten[4])
+		else if (FlxG.save.data.weeksBeaten[0] && FlxG.save.data.weeksBeaten[4])
 		{
 			return [
 				['', 'bf', '']
 			];
 		}
-		/*else
+		else
 		{
 			return [
-				['sheol', 'bf-blitz', 'bf-dari']
+				['sheol', 'bg-blitz', 'bg-dari']
 			];
-		}*/
+		}
 	}
 
 	var weekCharacters = whatCharacters();
@@ -113,15 +114,13 @@ class StoryMenuState extends MusicBeatState
 	function unlockWeeks():Array<Bool>
 	{
 		var weeks:Array<Bool> = [];
-		#if debug
-		for(i in 0...weekNames.length)
-			weeks.push(true);
-		#else
-		if(FlxG.save.data.weeksBeaten[0])
-			weeks = [true, true, true];
+		if(FlxG.save.data.weeksBeaten[0] && !FlxG.save.data.weeksBeaten[4])
+			for (i in 0...3)
+			{
+				weeks[i] = !FlxG.save.data.weeksBeaten[i + 1];
+			}
 		else
-			weeks = [true, true, true];
-		#end
+			weeks = [true];
 
 		return weeks;
 	}
@@ -182,7 +181,9 @@ class StoryMenuState extends MusicBeatState
 		for (i in 0...weekData().length)
 		{
 			var notI = i;
-			if (FlxG.save.data.weeksBeaten[0])
+			if (FlxG.save.data.weeksBeaten[4])
+				notI = 4;
+			else if (FlxG.save.data.weeksBeaten[0])
 				notI = i + 1;
 			var weekThing:MenuItem = new MenuItem(0, yellowBG.y + yellowBG.height + 10, notI);
 			weekThing.y += ((weekThing.height + 20) * i);
@@ -273,14 +274,34 @@ class StoryMenuState extends MusicBeatState
 			var noPlay:Bool = false;
 			var superFail:String = '';
 
-			if((songOrigin == 'new-puppet' || songOrigin == 'kaos' || songOrigin == 'apology' || songOrigin == 'kittycat-sonata') && didLose)
+			switch(songOrigin)
 			{
-				noPlay = true;
+				case 'new-puppet' | 'kaos' | 'not-sorry':
+					noPlay = true;
+				case 'kittycat-sonata':
+					if (didLose)
+						noPlay = true;
+					else
+						songOrigin = 'KCS';
+				case 'murderous-blitz':
+					songOrigin = 'MB';
+				case 'm-e-m-e':
+					songOrigin = 'meme';
+				case 'menu':
+					if (FlxG.save.data.weeksBeaten[0])
+					{
+						noPlay = FlxG.random.bool(60); //a 40% chance for moving from mainMenu -> StoryMenu to trigger a Sain dialogue
+						var randoInt = FlxG.random.int(1, 5);
+						superFail = '$randoInt';
+					}
+					else
+						noPlay = true;
 			}
 
-			if (didLose && diffOrigin != 'false' && !noPlay)
+			if (didLose && diffOrigin != 'false')
 			{
-				superFail = 'failed';
+				var randoInt = FlxG.random.int(1, 3);
+				superFail = 'failed' + '$randoInt';
 			}
 
 			if (!noPlay)
@@ -289,6 +310,7 @@ class StoryMenuState extends MusicBeatState
 
 				doof = new DialogueBox(dialogue, 'sain', false);
 				doof.scrollFactor.set();
+				doof.finishThing = returnToMenu;
 
 				sainShallSpeak(doof);
 			}
@@ -296,26 +318,27 @@ class StoryMenuState extends MusicBeatState
 		super.create();
 	}
 
+	function returnToMenu():Void
+	{
+		songOrigin = null;
+		diffOrigin = null;
+		inCutscene = false;
+		didLose = false;
+		if (!FlxG.save.data.weeksBeaten[0] || FlxG.save.data.weeksBeaten[5])
+			FlxG.sound.playMusic(Paths.music('freakyMenu'));
+		else
+			FlxG.sound.playMusic(Paths.music('freakyMenu-goner'));
+	}
+
 	function sainShallSpeak(?dialogueBox:DialogueBox):Void
 	{
 		FlxG.sound.music.stop();
 
-		new FlxTimer().start(1.0, function(tmr:FlxTimer)
+		if (dialogueBox != null)
 		{
-			if (dialogueBox != null)
-			{
-				inCutscene = true;
-				add(dialogueBox);
-			}
-			else
-			{
-				songOrigin = null;
-				diffOrigin = null;
-				inCutscene = false;
-				didLose = false;
-				FlxG.sound.playMusic(Paths.music('freakyMenu-goner'));
-			}
-		});
+			inCutscene = true;
+			add(dialogueBox);
+		}
 	}
 
 	//find me
@@ -433,10 +456,11 @@ class StoryMenuState extends MusicBeatState
 	var movedBack:Bool = false;
 	var selectedWeek:Bool = false;
 	var stopspamming:Bool = false;
+	var isDemo = true;
 
 	function selectWeek()
 	{
-		if (weekUnlocked[curWeek])
+		if (weekUnlocked[curWeek] || (isDemo ? curWeek != 1 | 2 : false))
 		{
 			if (stopspamming == false)
 			{
@@ -452,7 +476,6 @@ class StoryMenuState extends MusicBeatState
 			PlayState.isStoryMode = true;
 			selectedWeek = true;
 			PlayState.songMultiplier = 1;
-
 			PlayState.storyDifficulty = curDifficulty;
 
 			// adjusting the song name to be compatible
@@ -462,35 +485,21 @@ class StoryMenuState extends MusicBeatState
 				case 'Philly-Nice': songFormat = 'Philly';
 			}
 
-			var poop:String = Highscore.formatSong(songFormat, 1);
+			//var poop:String = Highscore.formatSong(songFormat, 1);
 			PlayState.sicks = 0;
 			PlayState.bads = 0;
 			PlayState.shits = 0;
 			PlayState.goods = 0;
 			PlayState.campaignMisses = 0;
-			PlayState.SONG = Song.conversionChecks(Song.loadFromJson(poop, PlayState.storyPlaylist[0]));
+			PlayState.SONG = Song.conversionChecks(Song.loadFromJson(PlayState.storyPlaylist[0].toLowerCase(), ''));
 			PlayState.storyWeek = curWeek;
 			PlayState.campaignScore = 0;
 			PlayState.alreadyDied = false;
 			PlayState.dedCounter = 0;
-
-			if (!FlxG.save.data.weeksBeaten[0])
+			new FlxTimer().start(1, function(tmr:FlxTimer)
 			{
-				new FlxTimer().start(1, function(tmr:FlxTimer)
-				{
-					//play initial cutscene here
-					var video:MP4Handler = new MP4Handler();
-					video.stateCallback = new PlayState();
-					video.playMP4(Paths.video('introCutscene'));
-				});
-			}
-			else
-			{
-				new FlxTimer().start(1, function(tmr:FlxTimer)
-				{
-					LoadingState.loadAndSwitchState(new PlayState(), true);
-				});
-			}
+				LoadingState.loadAndSwitchState(new PlayState(), true);
+			});
 		}
 		else
 		{

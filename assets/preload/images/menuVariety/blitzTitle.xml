@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="blitzTitle.png">
+	<!-- Created with Adobe Animate version 22.0.3.179 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="defeat0000" x="1869" y="3200" width="617" height="634"/>
+	<SubTexture name="defeat0001" x="1869" y="3200" width="617" height="634"/>
+	<SubTexture name="defeat0002" x="1869" y="3200" width="617" height="634"/>
+	<SubTexture name="defeat0003" x="1869" y="3200" width="617" height="634"/>
+	<SubTexture name="defeat0004" x="2492" y="1920" width="617" height="634"/>
+	<SubTexture name="defeat0005" x="2492" y="1920" width="617" height="634"/>
+	<SubTexture name="defeat0006" x="2492" y="1920" width="617" height="634"/>
+	<SubTexture name="defeat0007" x="2492" y="1920" width="617" height="634"/>
+	<SubTexture name="defeat0008" x="2492" y="1920" width="617" height="634"/>
+	<SubTexture name="defeat0009" x="2492" y="1920" width="617" height="634"/>
+	<SubTexture name="defeat0010" x="3115" y="1920" width="617" height="634"/>
+	<SubTexture name="defeat0011" x="3115" y="1920" width="617" height="634"/>
+	<SubTexture name="defeat0012" x="3115" y="1920" width="617" height="634"/>
+	<SubTexture name="defeat0013" x="3115" y="1920" width="617" height="634"/>
+	<SubTexture name="defeat0014" x="3115" y="1920" width="617" height="634"/>
+	<SubTexture name="defeat0015" x="2492" y="2560" width="617" height="634"/>
+	<SubTexture name="defeat0016" x="2492" y="2560" width="617" height="634"/>
+	<SubTexture name="defeat0017" x="2492" y="2560" width="617" height="634"/>
+	<SubTexture name="defeat0018" x="2492" y="2560" width="617" height="634"/>
+	<SubTexture name="defeat0019" x="2492" y="3200" width="617" height="634"/>
+	<SubTexture name="defeat0020" x="2492" y="3200" width="617" height="634"/>
+	<SubTexture name="defeat0021" x="2492" y="3200" width="617" height="634"/>
+	<SubTexture name="defeat0022" x="2492" y="3200" width="617" height="634"/>
+	<SubTexture name="defeat0023" x="2492" y="3200" width="617" height="634"/>
+	<SubTexture name="defeat0024" x="3115" y="2560" width="617" height="634"/>
+	<SubTexture name="defeat0025" x="3115" y="2560" width="617" height="634"/>
+	<SubTexture name="defeat0026" x="3115" y="2560" width="617" height="634"/>
+	<SubTexture name="defeat0027" x="3115" y="2560" width="617" height="634"/>
+	<SubTexture name="defeat0028" x="3115" y="2560" width="617" height="634"/>
+	<SubTexture name="defeat0029" x="3115" y="2560" width="617" height="634"/>
+	<SubTexture name="menace0000" x="0" y="0" width="617" height="634"/>
+	<SubTexture name="menace0001" x="0" y="640" width="617" height="634"/>
+	<SubTexture name="menace0002" x="0" y="1280" width="617" height="634"/>
+	<SubTexture name="menace0003" x="0" y="1920" width="617" height="634"/>
+	<SubTexture name="menace0004" x="0" y="2560" width="617" height="634"/>
+	<SubTexture name="menace0005" x="0" y="3200" width="617" height="634"/>
+	<SubTexture name="menace0006" x="623" y="0" width="617" height="634"/>
+	<SubTexture name="menace0007" x="1246" y="0" width="617" height="634"/>
+	<SubTexture name="menace0008" x="1869" y="0" width="617" height="634"/>
+	<SubTexture name="menace0009" x="0" y="3200" width="617" height="634"/>
+	<SubTexture name="menace0010" x="2492" y="0" width="617" height="634"/>
+	<SubTexture name="menace0011" x="3115" y="0" width="617" height="634"/>
+	<SubTexture name="menace0012" x="623" y="640" width="617" height="634"/>
+	<SubTexture name="menace0013" x="623" y="1280" width="617" height="634"/>
+	<SubTexture name="menace0014" x="623" y="1920" width="617" height="634"/>
+	<SubTexture name="menace0015" x="623" y="2560" width="617" height="634"/>
+	<SubTexture name="menace0016" x="623" y="3200" width="617" height="634"/>
+	<SubTexture name="menace0017" x="1246" y="640" width="617" height="634"/>
+	<SubTexture name="menace0018" x="1869" y="640" width="617" height="634"/>
+	<SubTexture name="menace0019" x="2492" y="640" width="617" height="634"/>
+	<SubTexture name="menace0020" x="3115" y="640" width="617" height="634"/>
+	<SubTexture name="menace0021" x="1246" y="1280" width="617" height="634"/>
+	<SubTexture name="menace0022" x="1246" y="1920" width="617" height="634"/>
+	<SubTexture name="menace0023" x="1246" y="2560" width="617" height="634"/>
+	<SubTexture name="menace0024" x="1246" y="3200" width="617" height="634"/>
+	<SubTexture name="menace0025" x="1869" y="1280" width="617" height="634"/>
+	<SubTexture name="menace0026" x="2492" y="1280" width="617" height="634"/>
+	<SubTexture name="menace0027" x="3115" y="1280" width="617" height="634"/>
+	<SubTexture name="menace0028" x="1869" y="1920" width="617" height="634"/>
+	<SubTexture name="menace0029" x="1869" y="2560" width="617" height="634"/>
+</TextureAtlas>

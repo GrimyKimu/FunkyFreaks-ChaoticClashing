@@ -116,15 +116,52 @@ class KadeEngineData
 
 		if (FlxG.save.data.optimize == null)
 			FlxG.save.data.optimize = false;
+
+		if (FlxG.save.data.noteskin == null)
+			FlxG.save.data.noteskin = 0;
 		
 		if (FlxG.save.data.cacheImages == null)
 			FlxG.save.data.cacheImages = false;
 
+		if (FlxG.save.data.middleScroll == null)
+			FlxG.save.data.middleScroll = false;
+
 		if (FlxG.save.data.editorBG == null)
 			FlxG.save.data.editor = false;
-		
+
 		if (FlxG.save.data.zoom == null)
 			FlxG.save.data.zoom = 1;
+
+		if (FlxG.save.data.judgementCounter == null)
+			FlxG.save.data.judgementCounter = true;
+
+		if (FlxG.save.data.laneUnderlay == null)
+			FlxG.save.data.laneUnderlay = true;
+
+		if (FlxG.save.data.healthBar == null)
+			FlxG.save.data.healthBar = true;
+
+		if (FlxG.save.data.laneTransparency == null)
+			FlxG.save.data.laneTransparency = 0;
+
+		if (FlxG.save.data.shitMs == null)
+			FlxG.save.data.shitMs = 160.0;
+
+		if (FlxG.save.data.badMs == null)
+			FlxG.save.data.badMs = 135.0;
+
+		if (FlxG.save.data.goodMs == null)
+			FlxG.save.data.goodMs = 90.0;
+
+		if (FlxG.save.data.sickMs == null)
+			FlxG.save.data.sickMs = 45.0;
+
+		Ratings.timingWindows = [
+			FlxG.save.data.shitMs,
+			FlxG.save.data.badMs,
+			FlxG.save.data.goodMs,
+			FlxG.save.data.sickMs
+		];
 
 		var gamepad:FlxGamepad = FlxG.gamepads.lastActive;
 		

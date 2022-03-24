@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="behindTitle.png">
+	<!-- Created with Adobe Animate version 22.0.4.185 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="behindTitle0000" x="0" y="0" width="987" height="730"/>
+	<SubTexture name="behindTitle0001" x="0" y="0" width="987" height="730"/>
+	<SubTexture name="behindTitle0002" x="993" y="0" width="987" height="730"/>
+	<SubTexture name="behindTitle0003" x="1986" y="0" width="987" height="730"/>
+	<SubTexture name="behindTitle0004" x="2979" y="0" width="987" height="730"/>
+	<SubTexture name="behindTitle0005" x="0" y="736" width="987" height="730"/>
+	<SubTexture name="behindTitle0006" x="0" y="1472" width="987" height="730"/>
+	<SubTexture name="behindTitle0007" x="0" y="2208" width="987" height="730"/>
+	<SubTexture name="behindTitle0008" x="0" y="2208" width="987" height="730"/>
+	<SubTexture name="behindTitle0009" x="0" y="2208" width="987" height="730"/>
+	<SubTexture name="behindTitle0010" x="0" y="2944" width="987" height="730"/>
+	<SubTexture name="behindTitle0011" x="0" y="2944" width="987" height="730"/>
+	<SubTexture name="behindTitle0012" x="0" y="2944" width="987" height="730"/>
+	<SubTexture name="behindTitle0013" x="993" y="736" width="987" height="730"/>
+	<SubTexture name="behindTitle0014" x="993" y="736" width="987" height="730"/>
+	<SubTexture name="behindTitle0015" x="1986" y="736" width="987" height="730"/>
+	<SubTexture name="behindTitle0016" x="1986" y="736" width="987" height="730"/>
+	<SubTexture name="behindTitle0017" x="2979" y="736" width="987" height="730"/>
+	<SubTexture name="behindTitle0018" x="993" y="1472" width="987" height="730"/>
+	<SubTexture name="behindTitle0019" x="1986" y="1472" width="987" height="730"/>
+	<SubTexture name="behindTitle0020" x="2979" y="1472" width="987" height="730"/>
+	<SubTexture name="behindTitle0021" x="993" y="2208" width="987" height="730"/>
+	<SubTexture name="behindTitle0022" x="993" y="2944" width="987" height="730"/>
+	<SubTexture name="behindTitle0023" x="993" y="2944" width="987" height="730"/>
+	<SubTexture name="behindTitle0024" x="1986" y="2208" width="987" height="730"/>
+	<SubTexture name="behindTitle0025" x="2979" y="2208" width="987" height="730"/>
+	<SubTexture name="behindTitle0026" x="2979" y="2208" width="987" height="730"/>
+	<SubTexture name="behindTitle0027" x="2979" y="2208" width="987" height="730"/>
+	<SubTexture name="behindTitle0028" x="1986" y="2944" width="987" height="730"/>
+	<SubTexture name="behindTitle0029" x="1986" y="2944" width="987" height="730"/>
+</TextureAtlas>

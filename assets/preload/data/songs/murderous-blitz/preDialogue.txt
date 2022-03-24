@@ -1,0 +1,29 @@
+data:5
+loud:yes:(You can press the ESC-key to skip these cutscenes)
+normal:Blitz: ...
+normal:Blitz: I'm sure you'd much prefer if we spent our time together like this.
+normal:Blitz: Or perhaps not, you're quite loyal aren't you?
+normal:Blitz: Oh well.
+change:1
+normal:Blitz: Instead here we are, illusions of hope gone, the final strands of sanity soon to slip,
+normal:Blitz: mortal torment for endless eternity, immortal suffering for the one who has lost everything.
+normal:Blitz: You will soon die, puppet...
+normal:Blitz: But you will not die until after I remove your fingers.
+normal:Blitz: Your toes, your hands, your feet, your forearms, your calves, your shoulders, your thighs, your teeth, your ribs, your organs, your heart, your soul.
+normal:Blitz: Maybe then, and only then will you understand in modicum, the full extant of this horror you brought about with your existance.
+change:1
+normal:Blitz: Is this fair? Is this karmic?
+normal:Blitz: You had no choice in this turn of events either, so who am I to judge?
+normal:Blitz: Most of the time, I am a good judge, only performing my hunt against those who hurt others in a way that cannot be described.
+normal:Blitz: But now?
+change:1
+normal:Blitz: I resent my fairness, I reject my decency.
+normal:Blitz: I dress for this black hunt, I dance for this cursed funeral.
+normal:Blitz: For I mourn for what I've lost, and for all that will never be.
+normal:Blitz: For my sister and elder sibling, whom can no longer exist in peace.
+normal:Blitz: For me, whose choices mean nothing, but continues to dance my special dance.
+normal:Blitz: For who else can dance the dance I wish to dance?
+change:1
+normal:Blitz: Enough of this.
+normal:Blitz: Sing for me, puppet.
+normal:Blitz: Tell me for what reason I dance to this endless sonata.

@@ -1,0 +1,8 @@
+data:2
+change:1
+loud:Yes:(press [accept] to continue text)
+normal:Darian: Hello again.
+normal:BF: Bep
+normal:Sheol: Are you guys gonna sing my favorite song again?
+normal:Darian: Absolutely, are you ready, blue-haird rapper?
+normal:BF: Boop, skebop!

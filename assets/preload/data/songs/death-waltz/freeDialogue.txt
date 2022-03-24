@@ -1,0 +1,16 @@
+data:1
+loud:Yes:(you REALLY shouldn't be here, this level ain't even DONE done yet)
+normal:Blitz: Dear sister...
+normal:Sheol: Ye
+normal:Dari: Young sis...
+normal:Sheol: Ye?
+normal:Dari: You changed your wings.
+normal:Dari: Why? You have never done that before.
+normal:Sheol: For the cosplay, Dari! For the cosplay!
+normal:Blitz: Did, did you seriously rip out your wings and replace them with glowing lights?
+normal:Sheol: Yeah?
+normal:Dari: Is it reversable?
+normal:Sheol: Uh...?
+normal:Sheol: ...
+normal:Sheol: ... ...
+loud:Sheol: oh no

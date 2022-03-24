@@ -1,0 +1,39 @@
+data:2
+loud:Yes:(you should have just stopped while you were ahead...)
+normal:Blitz: This rain...
+normal:Sheol: So much wind...
+normal:Dari: The end has come...
+normal:BF: *maximum-concern beeping* 
+normal:Blitz: So we've reached the conclusion.
+normal:Blitz: We're nothing more than puppets as well.
+normal:Dari: Nothing even I could do to prevent this epiphany.
+normal:Sheol: What?
+normal:Blitz: Perhaps we'd never had ANY freedom whatsoever.
+normal:Blitz: Perhaps the "puppet" we've been harrassing has had more freedom than us, the whole time.
+normal:Sheol: Wait, I don’t understand, I don’t-
+normal:Sheol: We’re really just...?
+normal:Blitz: Oh darling, I'm so sorry it had to be this way.
+normal:Blitz: Not that any of us had a choice, I suppose.
+normal:Sheol: But! But...!
+normal:Sheol: Didn't I make the choice to bring the rapper here??
+normal:Sheol: I'm the one who suggested this universe!
+normal:Sheol: It was ME who said to play with the protagonist of this universe!
+normal:Sheol: Wasn't it me?
+normal:Dari: Yes it was you, it was all you.
+normal:Dari: However...
+normal:Dari: Your choices, everyone's choices, they were all preplanned.
+normal:Dari: Though it may have felt like it, we had no choice in the end.
+normal:Sheol: ...
+change:1
+normal:Blitz: Huh, that's new, never knew we could bleed.
+normal:Dari: Our hearts have shattered, our true selves are beginning to bleed into reality.
+normal:Dari: Soon all will dissapear, for we will have consumed it all.
+normal:Blitz: That's fine. Who cares if this universe is deleted?
+normal:Blitz: I'd do it myself if I could.
+normal:Sheol: Your fault...
+normal:Dari: Something big is happening, and not even I know what is to come next.
+normal:Blitz: Hahahahaha, so much for "all-knowing", huh dear.
+normal:Dari: Even in your last moments of sanity, you still crack jokes?
+normal:Dari: If only I had your tenacity, huh...
+normal:Sheol: It's your fault...
+loud:BF: ...

@@ -1,5 +1,6 @@
 package;
 
+import flixel.input.keyboard.FlxKey;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.FlxSubState;
@@ -15,7 +16,7 @@ class OutdatedSubState extends MusicBeatState
 	public static var leftState:Bool = false;
 
 	public static var needVer:String = "IDFK LOL";
-	public static var currChanges:String = "dk";
+	//public static var currChanges:String = "dk";
 	
 	private var bgColors:Array<String> = [
 		'#314d7f',
@@ -24,6 +25,8 @@ class OutdatedSubState extends MusicBeatState
 		'#594465'
 	];
 	private var colorRotation:Int = 1;
+
+	var txt:FlxText;
 
 	override function create()
 	{
@@ -44,22 +47,16 @@ class OutdatedSubState extends MusicBeatState
 		kadeLogo.antialiasing = FlxG.save.data.antialiasing;
 		add(kadeLogo);
 		
-		var txt:FlxText = new FlxText(0, 0, FlxG.width,
-			"Your Kade Engine is outdated!\nYou are on "
-			+ MainMenuState.kadeEngineVer
-			+ "\nwhile the most recent version is " + needVer + "."
-			+ "\n\nWhat's new:\n\n"
-			+ currChanges
-			+ "\n& more changes and bugfixes in the full changelog"
-			+ "\n\nPress Space to view the full changelog and update\nor ESCAPE to ignore this",
+		txt = new FlxText(0, 0, FlxG.width,
+			"Hey, uh, just in case you didn't know..."
+			+ "\nThis is a demo of my mod, it's currently uncompletable."
+			+ "\nThank you for coming to play it <3"
+			+ "\n\nI really do appreciate it.\n\n"
+			+ "\nIf you want spoilers as to what is currently missing,"
+			+ "\npress Space/Enter to view the planned stuff and things."
+			+ "\n\nOr press ESC to simply move on to the demo.",
 			32);
 
-		if (MainMenuState.nightly != "")
-			txt.text = 
-			"You are on\n"
-			+ MainMenuState.kadeEngineVer
-			+ "\nWhich is a PRE-RELEASE BUILD!"
-			+ "\n\nReport all bugs to the author of the pre-release.\nSpace/Escape ignores this.";
 		
 		txt.setFormat("VCR OSD Mono", 32, FlxColor.fromRGB(200, 200, 200), CENTER);
 		txt.borderColor = FlxColor.BLACK;
@@ -91,21 +88,36 @@ class OutdatedSubState extends MusicBeatState
 		}, 0);
 	}
 
+	var justOnce:Bool = false;
+
 	override function update(elapsed:Float)
 	{
-		if (controls.ACCEPT && MainMenuState.nightly == "")
-		{
-			fancyOpenURL("https://kadedev.github.io/Kade-Engine/changelogs/changelog-" + needVer);
-		}
-		else if (controls.ACCEPT)
-		{
-			leftState = true;
-			FlxG.switchState(new MainMenuState());
-		}
 		if (controls.BACK)
 		{
 			leftState = true;
 			FlxG.switchState(new MainMenuState());
+		}
+
+		if (controls.ACCEPT && !justOnce)
+		{
+			justOnce = true;
+			FlxTween.tween(txt, {alpha: 0.0}, 0.5, {ease: FlxEase.linear});
+
+			new FlxTimer().start(0.6, function(tmr:FlxTimer)
+			{
+				FlxTween.tween(txt, {alpha: 1.0}, 0.6, {ease: FlxEase.linear});
+
+				txt.text = "You asked for it!"
+					+ "\nCurrently missing: "
+					+ "\nBlitz's story 'boss battle': 'Murderous-Blitz'"
+					+ "\n Actually the music for it is done, it's hidden in the files (:"
+					+ "\n\nDarian's story 'boss battle': 'M-E-M-E'"
+					+ "\n & The finale song: 'Creator', which ends the main story."
+					+ "\n The actual music for both has yet to be finished."
+					+ "\nEach of those levels and stuff have animations, mechanics, and story CGs that they need. Plenty of stuff."
+					+ "\n + Bonus freeplay mode remixes and stuff, 'cause I gotta procrastinate in a way that still technically works towards completion"
+					+ "\n\nYou may now press ESC to simply move on to the demo.";
+			}, 0);
 		}
 		super.update(elapsed);
 	}

@@ -1,0 +1,26 @@
+data:1
+loud:yes:...
+normal:Sain: How was it? Ah, my stoic little child. 
+normal:BF: Lmao, they aren't taking this seriously.
+normal:BF: I mean, they still killed me, but come on.
+normal:Sain: Just in case the others did not make it clear enough, Darian is my eldest child. Still a mere child in my own eyes, but mine nonetheless.
+normal:Sain: Oh my sweet stable Darian, only just this once, crumbling… 
+normal:Sain: Oh, I digress…
+normal:Sain: It seems this copy of my eldest lacks the murderous intent of the true self. 
+normal:BF: Really? The real one is actually taking it seriously?
+normal:Sain: It seems that during the true encounter, Darian will attempt to execute you for holding your hopes too high, and would do the same if your hope has fallen…
+normal:Sain: Ah, in videogame words, what I mean by that is-
+normal:Sain: If your health percentage is too high or too low, Darian will execute you, instantly ending an attempt.
+normal:Sain: Or rather, you will be given a strike.
+normal:Sain: Three strikes, and THEN your attempt ends.
+normal:BF: What?
+normal:Sain: My advice is to take full advantage of the lack of “ghost tapping” that my children force upon you.
+normal:Sain: If your health is too high, MASH! (but not too much)
+normal:BF: Huh??
+normal:Sain: Ah, my unfortunate eldest child… 
+normal:Sain: Some might say they were cursed with omnipotence, and infinite knowledge… 
+normal:Sain: Would you consider that a curse, if it could also reveal an epiphany as terrible as the one they had to endure?
+normal:Sain: Oh my poor little baby… 
+normal:BF: Any advice for ME??
+normal:Sain: Keep going.
+normal:BF:  >:(

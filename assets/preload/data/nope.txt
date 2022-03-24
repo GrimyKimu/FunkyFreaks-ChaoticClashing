@@ -1,8 +1,0 @@
-data:1
-normal:Warning: You, [player.name] are attempting to play against [chr.name] on [curDifficulty = 'False']!
-normal:Warning: While both [curDifficulty = 'False'] and [curDifficulty = 'True'] have the same charts,
-normal:Warning: [song.name] on [curDifficulty = 'False'] lacks [chr.name]'s major hindering gimmicks.
-normal:Warning: These [curDifficulty = 'False'] versions exist so you may attempt to practice the non-gimmicky version of the chart.
-normal:Warning: However, completion of [song.name] on [curDifficulty = 'False'] will NOT award you anything.
-normal:Warning: If you wish to unlock [song.completionAward], you must complete the song in [curDifficulty = 'True'].
-normal:Warning: Good luck

@@ -1,11 +1,12 @@
 gf
+gf-none
 gf-blitz
 gf-wSheol
 gf-dari
 gf-marenol
-gf-ballistic
 gf-madness
 gf-death
 gf-sheol
-gf-church
 gf-endless
+gf-accel
+gf-trouble

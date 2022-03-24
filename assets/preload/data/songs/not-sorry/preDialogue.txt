@@ -1,0 +1,28 @@
+data:2
+loud:Yes:(press [accept] to accept your fate)
+normal:Darian: Do forgive my sister. She is a sore sport.
+loud:Sheol: I am not!
+normal:Blitz: Shut up, you. 
+normal:Darian: Go easier on her, Blitz. 
+normal:Darian: She is but a child, after all. You cannot expect mature behavior from someone still developing their mind. 
+normal:Darian: Regardless, I would like to apologize, on her behalf. 
+normal:BF: bep skee bebop
+normal:Darian: Ah, you hold no resentment? Wonderful news.
+normal:Darian: Are you seeing this, Sheol? You should remember that humans have emotions, not unlike your own.
+loud:Sheol: Hmph, whatever~
+loud:Blitz: Listen to your older siblings when they lecture you silly brat.
+normal:Darian: Blitz.
+normal:Blitz: Sorry, sorry.
+normal:Darian: I have an idea-
+change:1
+normal:Darian: Let us sing a song together. 
+normal:Darian: Sheol loves this song, it will soothe her fractured ego, and bury this axe.
+normal:Sheol: Doubt it! I know this human’s still a cheating piece of muck anyway, so what does that matter??
+normal:Blitz: Oh sheesh Sheol, quit it with that accusation. How could a human such as this cheat against you anyway? You said it yourself, the boy’s just a puppet.
+normal:Sheol: Hmph! Whatever, Dari!! Don’t bother singing! It won’t do a thing!
+normal:Darian: Well, what does the human want to do?
+normal:BF: beep! Skebop, beepo!
+normal:Darian: Observe sister, even your supposed cheater and bully wants to help calm you down by singing your favorite song.
+normal:Darian: If he was truly such an awful person, would he really want this?
+normal:Sheol:  :I
+normal:Darian: Now then, let us begin. And do not worry about lyrics, I am sure you can handle your way around gibberish, correct?

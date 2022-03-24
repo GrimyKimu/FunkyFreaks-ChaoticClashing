@@ -90,11 +90,11 @@ class Replay
 
 	public function SaveReplay(notearray:Array<Dynamic>, judge:Array<String>, ana:Analysis)
 	{
-		#if sys
+		/*#if sys
 		var chartPath = PlayState.isSM ? PlayState.pathToSm + "/converted.json" : "";
-		#else
+		#else*/
 		var chartPath = "";
-		#end
+		//#end
 		
 		var json = {
 			"songName": PlayState.SONG.song,

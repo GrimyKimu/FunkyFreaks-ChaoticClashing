@@ -1,0 +1,21 @@
+data:1
+loud:yes:...
+normal:BF: ...
+normal:Sain: ...
+normal:BF: ... ... 
+normal:Sain: Puppet?
+normal:Sain: Are you alright? 
+normal:BF: Funk no, duh.
+normal:BF: I'm the one that's dying like a gagillion million times over just to save a bunch of weirdos.
+normal:BF: Oh, no offense, I'm sure they're all lovely people when they're not KILLING me.
+normal:Sain: ...
+normal:Sain: You do not-
+normal:BF: I'm helping, and you won't stop me.
+normal:BF: I just needed a breather, that's it.
+normal:BF: I'll jump right back into it as soon as this headache goes away.
+normal:Sain: ...
+normal:Sain: Thank you, puppet.
+normal:Sain: No, apologies.
+normal:Sain: My sincerest gratitude, Boyfriend.
+normal:BF: Yeah yeah, let's get back to dying and all that jazz.
+normal:BF: Beep.

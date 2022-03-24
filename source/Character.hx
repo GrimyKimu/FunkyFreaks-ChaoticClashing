@@ -51,17 +51,14 @@ class Character extends FlxSprite
 				dumbVar = true;
 
 				playAnim('idle');
-
 			case 'gf-none':
 				tex = Paths.getSparrowAtlas('GF_assets','shared',true);
 				frames = tex;
 				//actually no
-				animation.addByPrefix('danceLeft', 'gone', 24, false);
-				animation.addByPrefix('danceRight', 'gone', 24, false);
-
-				loadOffsetFile('gf');
+				animation.addByIndices('idle', 'cheer', [0, 1, 2, 3], "", 24, false);
+				animation.addByIndices('danceLeft', 'NormalIdle', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
+				animation.addByIndices('danceRight', 'NormalIdle', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
 				visible = false;
-
 			case 'gf-blitz':
 				//the variation of "gf/blitz" during Kaos
 				tex = Paths.getSparrowAtlas('GF_assets','shared',true);
@@ -72,7 +69,6 @@ class Character extends FlxSprite
 				loadOffsetFile(curCharacter);
 
 				playAnim('danceRight');
-
 			case 'gf-dari':
 				//the variation of "gf/dari" during KC-S, where Dari has been broken...
 				tex = Paths.getSparrowAtlas('gf_Dari','shared',true);
@@ -83,7 +79,6 @@ class Character extends FlxSprite
 				loadOffsetFile(curCharacter);
 
 				playAnim('danceRight');
-
 			case 'gf-wSheol':
 				frames = Paths.getSparrowAtlas('characters/gfwSheol');
 				animation.addByIndices('danceRight', 'Idle', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
@@ -95,7 +90,6 @@ class Character extends FlxSprite
 				loadOffsetFile(curCharacter);
 
 				playAnim('danceRight');
-
 			case 'gf-marenol':
 				frames = Paths.getSparrowAtlas('characters/gf_marenol');
 				animation.addByIndices('idle-1', 'her eyes', [0,1,2,3,4,5], "", 24, true);
@@ -108,9 +102,8 @@ class Character extends FlxSprite
 				animation.addByPrefix('scream', 'screamer', 24, false);
 				
 				loadOffsetFile(curCharacter);
-
+			dumbVar = true;
 				playAnim('idle-1');
-			
 			case 'gf-madness': //D as Hank, B as theAuditor
 				tex = Paths.getSparrowAtlas('gfMadness','shared',true);
 				frames = tex;
@@ -164,7 +157,6 @@ class Character extends FlxSprite
 				playAnim('idle');
 
 				flipX = true;
-
 			case 'bf-marenol':
 				var tex = Paths.getSparrowAtlas('bf_marenol_assets','shared',true);
 				frames = tex;
@@ -201,7 +193,6 @@ class Character extends FlxSprite
 				loadOffsetFile(curCharacter);
 				playAnim('firstDeath');
 				flipX = true;
-
 			case 'bf-blitzDead': //Blitz's usual <3 
 				//time for some more death lmao!
 				frames = Paths.getSparrowAtlas('characters/blitzDead');
@@ -212,7 +203,6 @@ class Character extends FlxSprite
 				loadOffsetFile(curCharacter);
 				playAnim('firstDeath');
 				flipX = true;
-
 			case 'bf-bonked': //byonk 
 				//time for some more death lmao!
 				frames = Paths.getSparrowAtlas('characters/bfBonk');
@@ -239,6 +229,7 @@ class Character extends FlxSprite
 
 				scale.set(.85, .85);
 				loadOffsetFile(curCharacter);
+				dumbVar = true;
 				playAnim('idle-alt');
 			case 'sheol-angry':
 				frames = Paths.getSparrowAtlas('characters/sheol_angry');
@@ -331,7 +322,23 @@ class Character extends FlxSprite
 
 			case 'dari':
 				frames = Paths.getSparrowAtlas('characters/dari_assets');
-				animation.addByPrefix('idle', 'Idle', 24, false);
+				animation.addByPrefix('idle', 'Idle0', 24, false);
+				animation.addByPrefix('singUP', 'Up Note', 24, false);
+				animation.addByPrefix('singDOWN', 'Down Note', 24, false);
+				animation.addByPrefix('singLEFT', 'Left Note', 24, false);
+				animation.addByPrefix('singRIGHT', 'Right Note', 24, false);
+
+				animation.addByPrefix('idle-alt', 'Idle-alt', 24, true);
+				animation.addByPrefix('singDOWN-alt', 'Down alt', 24, false);
+
+				animation.addByPrefix('cheer', 'stop', 24, false);
+
+				loadOffsetFile(curCharacter);
+
+				playAnim('idle');
+			case 'dari-serious':
+				frames = Paths.getSparrowAtlas('characters/dari_assets');
+				animation.addByPrefix('idle', 'Idle0', 24, false);
 				animation.addByPrefix('singUP', 'Up Note', 24, false);
 				animation.addByPrefix('singDOWN', 'Down Note', 24, false);
 				animation.addByPrefix('singLEFT', 'Left Note', 24, false);
@@ -353,17 +360,40 @@ class Character extends FlxSprite
 				animation.addByPrefix('singDOWN', 'Down Note', 24, false);
 				animation.addByPrefix('singLEFT', 'Left Note', 24, false);
 				animation.addByPrefix('singRIGHT', 'Right Note', 24, false);
-
-				animation.addByPrefix('idle-alt', 'Idle ALT', 24, true);
-				animation.addByPrefix('singUP-alt', 'Up ALT', 24, false);
-				animation.addByPrefix('singDOWN-alt', 'Down ALT', 24, false);
-				animation.addByPrefix('singLEFT-alt', 'Left ALT', 24, false);
-				animation.addByPrefix('singRIGHT-alt', 'Right ALT', 24, false);
 				
 				animation.addByPrefix('scarUP', 'slashUp', 24, false);
 				animation.addByPrefix('scarDOWN', 'slashDown', 24, false);
 				animation.addByPrefix('scarLEFT', 'slashLeft', 24, false);
 				animation.addByPrefix('scarRIGHT', 'slashRight', 24, false);
+				loadOffsetFile(curCharacter);
+
+				playAnim('idle');
+			case 'blitz-horror':
+				frames = Paths.getSparrowAtlas('characters/blitz_horror');
+				animation.addByPrefix('idle', 'Idle', 24, true);
+				animation.addByPrefix('singUP', 'Up Note', 24, false);
+				animation.addByPrefix('singDOWN', 'Down Note', 24, false);
+				animation.addByPrefix('singLEFT', 'Left Note', 24, false);
+				animation.addByPrefix('singRIGHT', 'Right Note', 24, false);
+				
+				animation.addByPrefix('scarUP', 'slashUp', 24, false);
+				animation.addByPrefix('scarDOWN', 'slashDown', 24, false);
+				animation.addByPrefix('scarLEFT', 'slashLeft', 24, false);
+				animation.addByPrefix('scarRIGHT', 'slashRight', 24, false);
+				loadOffsetFile(curCharacter);
+
+				dumbVar = true;
+
+				playAnim('idle');
+			case 'blitz-h2':
+				frames = Paths.getSparrowAtlas('characters/blitz_horror2');
+				// 'idle' has three frames
+				// each 'sing' has two possible frames
+				animation.addByPrefix('idle', 'Idle', 24, true);
+				animation.addByPrefix('singUP', 'Up Note', 24, false);
+				animation.addByPrefix('singDOWN', 'Down Note', 24, false);
+				animation.addByPrefix('singLEFT', 'Left Note', 24, false);
+				animation.addByPrefix('singRIGHT', 'Right Note', 24, false);
 				loadOffsetFile(curCharacter);
 
 				playAnim('idle');
@@ -431,11 +461,58 @@ class Character extends FlxSprite
 			{
 				case 'gf-marenol':
 					if (animation.curAnim.name == 'scream')
-					{
 						scale.set(1.7,1.7);
-					}
 					else
 						scale.set(1,1);
+					
+					if (dumbVar && PlayState.dad.animation.curAnim.name.startsWith('sing'))
+					{
+						visible = false;
+						alpha = 0;
+					}
+					else
+						visible = true;
+
+					if (alpha < 1 && visible)
+						alpha += 0.01;
+					if (alpha > 1)
+						alpha = 1;
+				case 'blitz-horror':
+					if (animation.curAnim.name != 'idle')
+					{
+						alpha = FlxG.random.float(0.5, 1.0);
+					}
+					else
+						alpha = 1;
+				case 'blitz-h2':
+					//lmao how many layers of random bools do you want
+					if (!PlayState.dad.dumbVar)
+					{
+						visible = PlayState.dad.visible;
+
+						if (!PlayState.dad.animation.curAnim.name.startsWith('scar') && FlxG.random.bool(10))
+							animation.play(PlayState.dad.animation.curAnim.name,true);
+						else if (PlayState.dad.animation.curAnim.name == 'idle')
+							animation.play('idle',false);
+
+						animation.stop();
+						animation.randomFrame();
+
+						if (FlxG.random.bool(50))
+							alpha = FlxG.random.float(0.1,0.6);
+						
+						if (FlxG.random.bool(4))
+							x = PlayState.dad.x + FlxG.random.int(-15,15);
+						
+						if (FlxG.random.bool(4))
+							y = PlayState.dad.y + FlxG.random.int(-15,15);
+
+						var randoScale = FlxG.random.float(0.9,1.1);
+						if (FlxG.random.bool(15))
+							scale.set(randoScale,randoScale);
+					}
+					else
+						visible = false;
 			}
 		}
 		super.update(elapsed);
@@ -474,6 +551,7 @@ class Character extends FlxSprite
 						}
 					}
 				}
+				return;
 			}
 
 			if (curCharacter.startsWith('blitz'))
@@ -485,12 +563,13 @@ class Character extends FlxSprite
 					else 
 						playAnim('idle-alt', false);
 				}
+				return;
 			}
 
 			switch (curCharacter)
 			{
 				case 'dari':
-					if (!animation.curAnim.name.startsWith('sing') || animation.curAnim.name != 'cheer' || animation.curAnim.finished)
+					if ((!animation.curAnim.name.startsWith('sing') && animation.curAnim.name != 'cheer') || animation.curAnim.finished)
 					{
 						if (dumbVar)
 							playAnim('idle-alt');
@@ -501,7 +580,7 @@ class Character extends FlxSprite
 				case 'sheol':
 					danced = !danced;
 
-					if (altAnim && !animation.curAnim.name.startsWith('sing'))
+					if (dumbVar && !animation.curAnim.name.startsWith('sing'))
 						playAnim('idle-alt', false);
 					else if (!animation.curAnim.name.startsWith('sing') || animation.finished)
 					{

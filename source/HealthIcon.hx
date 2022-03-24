@@ -10,6 +10,9 @@ class HealthIcon extends FlxSprite
 	public var char:String = 'bf';
 	public var isPlayer:Bool = false;
 	public var isOldIcon:Bool = false;
+	public var nonDancer:Bool = false;
+
+	private var nonDanceMap:Map<String, Bool> = CoolUtil.coolMapFile(Paths.txt('data/characterList'));
 
 	/**
 	 * Used for FreeplayState! If you use it elsewhere, prob gonna annoying
@@ -19,6 +22,10 @@ class HealthIcon extends FlxSprite
 	public function new(?char:String = "bf", ?isPlayer:Bool = false)
 	{
 		super();
+
+		if (nonDanceMap.exists(char))
+			if (!nonDanceMap[char])
+				nonDancer = true;
 
 		this.char = char;
 		this.isPlayer = isPlayer;
@@ -49,6 +56,6 @@ class HealthIcon extends FlxSprite
 		super.update(elapsed);
 
 		if (sprTracker != null)
-			setPosition(sprTracker.x + sprTracker.width + 10, sprTracker.y - 30);
+			setPosition(sprTracker.x + sprTracker.width + 10, sprTracker.y - 40);
 	}
 }

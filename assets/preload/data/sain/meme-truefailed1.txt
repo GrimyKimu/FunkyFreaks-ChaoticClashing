@@ -1,0 +1,28 @@
+data:1
+loud:yes:...
+normal:Sain: How was it? Ah, my apathy-faced eldest child.
+normal:Sain: Darian is usually, how would you call it, “stone-faced”. 
+normal:Sain: They almost never emote, whether in how they speak, even how they move, if they move at all.
+normal:Sain: Oh, rather, they hardly act within the realm of physicality.
+normal:Sain: It is an incredibly rare sight, to see them so horribly worked up… 
+normal:BF: Honestly? If it weren't for the fact that they've been killing me repeatedly, they seem really chill and nice.
+normal:Sain: Again, my advice is take full advantage of the ghost tapping punishment that you must endure.
+normal:Sain: Another point of advice, it seems that when the health-bar portrait of my dear Darian changes into something more menacing, you are in danger of being executed… 
+normal:BF: That isn't helpful.
+normal:Sain: Ah, Boyfriend, my advice for you is stay as agile as possible.
+normal:Sain: They may not move much, but they are still aiming to take your head off with a single swing.
+normal:BF: Now that is barely helpful.
+normal:Sain: … … 
+normal:Sain: How would you react?
+normal:BF: ...?
+normal:Sain: How would you react if the pillar of your everything suddenly collapsed?
+normal:Sain: For my two younger children, Darian was their pillar.
+normal:Sain: They were sensible, and they were incredibly thorough. 
+normal:Sain: It may seem like they are always doing nothing, but in reality, they are doing more for them than you could imagine… 
+normal:Sain: To see your stable rock, suddenly shatter?
+normal:Sain: How would you react?
+normal:BF: I'd cry, if I saw GF break down like that, she's so cool.
+normal:BF: And to be honest, I nearly did cry too, when they first started acting up, that was...
+normal:BF: Whatever, back to getting my head swung off by a goddamn baseball bat.
+normal:Sain: ...
+normal:Sain: That's the spirit.

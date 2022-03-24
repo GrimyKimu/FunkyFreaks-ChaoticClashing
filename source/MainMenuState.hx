@@ -29,7 +29,7 @@ class MainMenuState extends MusicBeatState
 	var menuItems:FlxTypedGroup<FlxSprite>;
 
 	#if !switch
-	var optionShit:Array<String> = ['story mode', 'freeplay', 'donate', 'options'];
+	var optionShit:Array<String> = ['story mode', 'freeplay'/*, 'gallery'*/, 'options'];
 	#else
 	var optionShit:Array<String> = ['story mode', 'freeplay'];
 	#end
@@ -60,7 +60,7 @@ class MainMenuState extends MusicBeatState
 
 		if (!FlxG.sound.music.playing)
 		{
-			if (!weeksBeaten[0])
+			if (!FlxG.save.data.weeksBeaten[0] || FlxG.save.data.weeksBeaten[5])
 				FlxG.sound.playMusic(Paths.music('freakyMenu'));
 			else
 				FlxG.sound.playMusic(Paths.music('freakyMenu-goner'));
@@ -87,53 +87,26 @@ class MainMenuState extends MusicBeatState
 		bgVariety = new FlxTypedGroup<FlxSprite>();
 		add(bgVariety);
 
+		var childArray:Array<String> = ["","sheol","blitz","dari"];
+
 		if (weeksBeaten[0])
 		{
-			if (weeksBeaten[1])
+			for (w in 1...4)
 			{
-				var yes:FlxSprite = new FlxSprite(-100);
-				yes.frames = Paths.getSparrowAtlas('menuVariety/sheol');
-				yes.animation.addByPrefix('idle', 'sheol_beaten', 24, true);
-				yes.alpha = 0.5;
-				bgVariety.add(yes);
-			}
-			else
-			{
-				var yes:FlxSprite = new FlxSprite(-100);
-				yes.frames = Paths.getSparrowAtlas('menuVariety/sheol');
-				yes.animation.addByPrefix('idle', 'sheol_menace', 24, true);
-				bgVariety.add(yes);
-			}
+				var menacingString = "_menace";
 
-			if (weeksBeaten[2])
-			{
-				var yes:FlxSprite = new FlxSprite(-100);
-				yes.frames = Paths.getSparrowAtlas('menuVariety/blitz');
-				yes.animation.addByPrefix('idle', 'blitz_beaten', 24, true);
-				yes.alpha = 0.5;
-				bgVariety.add(yes);
-			}
-			else
-			{
-				var yes:FlxSprite = new FlxSprite(-100);
-				yes.frames = Paths.getSparrowAtlas('menuVariety/blitz');
-				yes.animation.addByPrefix('idle', 'blitz_menace', 24, true);
-				bgVariety.add(yes);
-			}
-
-			if (weeksBeaten[3])
-			{
-				var yes:FlxSprite = new FlxSprite(-100);
-				yes.frames = Paths.getSparrowAtlas('menuVariety/dari');
-				yes.animation.addByPrefix('idle', 'dari_beaten', 24, true);
-				yes.alpha = 0.5;
-				bgVariety.add(yes);
-			}
-			else
-			{
-				var yes:FlxSprite = new FlxSprite(-100);
-				yes.frames = Paths.getSparrowAtlas('menuVariety/dari');
-				yes.animation.addByPrefix('idle', 'dari_menace', 24, true);
+				var yes = new FlxSprite();
+				yes.frames = Paths.getSparrowAtlas('menuVariety/' + childArray[w]);
+				if (weeksBeaten[w])
+				{
+					menacingString = "_beaten";
+					yes.alpha = 0.5;
+				}
+				yes.animation.addByPrefix('idle', childArray[w] + menacingString, 24, true);
+				yes.scrollFactor.set();
+				yes.updateHitbox();
+				yes.antialiasing = FlxG.save.data.antialiasing;
+				yes.animation.play('idle');
 				bgVariety.add(yes);
 			}
 		}
@@ -142,28 +115,22 @@ class MainMenuState extends MusicBeatState
 			var yes:FlxSprite = new FlxSprite(-100);
 			yes.frames = Paths.getSparrowAtlas('menuVariety/menuBG');
 			yes.animation.addByPrefix('idle', 'menuBG', 24, true);
+			yes.updateHitbox();
+			yes.antialiasing = FlxG.save.data.antialiasing;
 			yes.alpha = 0.5;
+			yes.animation.play('idle');
 			bgVariety.add(yes);
 		}
-
-		bgVariety.forEach(function(spr:FlxSprite)
-		{
-			spr.scrollFactor.set();
-			spr.updateHitbox();
-			spr.screenCenter();
-			spr.antialiasing = FlxG.save.data.antialiasing;
-			spr.animation.play('idle');
-			add(spr);
-		});
 
 		menuItems = new FlxTypedGroup<FlxSprite>();
 		add(menuItems);
 
 		var tex = Paths.getSparrowAtlas('FNF_main_menu_assets');
 
-		
 		if (!weeksBeaten[0])
 			optionShit.remove('freeplay');
+		if (weeksBeaten[5])
+			optionShit.remove('story mode');
 
 		for (i in 0...optionShit.length)
 		{
@@ -315,11 +282,16 @@ class MainMenuState extends MusicBeatState
 		switch (daChoice)
 		{
 			case 'story mode':
+				StoryMenuState.songOrigin = 'menu';
+				StoryMenuState.diffOrigin = '';
+				StoryMenuState.didLose = false;
 				FlxG.switchState(new StoryMenuState());
 				//trace("Story Menu Selected");
 			case 'freeplay':
 				FlxG.switchState(new FreeplayState());
 				//trace("Freeplay Menu Selected");
+			/*case 'gallery':
+				*/
 			case 'options':
 				FlxG.switchState(new OptionsMenu());
 		}

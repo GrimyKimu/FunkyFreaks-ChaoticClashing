@@ -1,0 +1,6 @@
+data:5
+change:4
+loud:yes:(You have died death_count times)
+normal:Blitz: ...
+normal:Blitz: ... ...
+normal:Blitz: I mourn for what I've lost.

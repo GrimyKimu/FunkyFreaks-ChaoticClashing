@@ -69,9 +69,7 @@ class MP4Handler
 
 		if (outputTo != null)
 		{
-			// lol this is bad kek
 			bitmap.alpha = 0;
-
 			sprite = outputTo;
 		}
 	}
@@ -101,32 +99,7 @@ class MP4Handler
 
 	public function onVLCComplete()
 	{
-		bitmap.stop();
-
-		// Clean player, just in case! Actually no.
-
-		FlxG.camera.fade(FlxColor.BLACK, 0, false);
-
-		trace("Big, Big Chungus, Big Chungus!");
-
-		new FlxTimer().start(0.3, function(tmr:FlxTimer)
-		{
-			if (finishCallback != null)
-			{
-				finishCallback();
-			}
-			else if (stateCallback != null)
-			{
-				LoadingState.loadAndSwitchState(stateCallback);
-			}
-
-			bitmap.dispose();
-
-			if (FlxG.game.contains(bitmap))
-			{
-				FlxG.game.removeChild(bitmap);
-			}
-		});
+		kill();
 	}
 
 	public function kill()
@@ -134,23 +107,20 @@ class MP4Handler
 		bitmap.stop();
 
 		if (finishCallback != null)
-		{
 			finishCallback();
-		}
+		else if (stateCallback != null)
+			LoadingState.loadAndSwitchState(stateCallback);
 
 		bitmap.visible = false;
+		bitmap.dispose();
+
+		if (FlxG.game.contains(bitmap))
+			FlxG.game.removeChild(bitmap);
 	}
 
 	function onVLCError()
 	{
-		if (finishCallback != null)
-		{
-			finishCallback();
-		}
-		else if (stateCallback != null)
-		{
-			LoadingState.loadAndSwitchState(stateCallback);
-		}
+		kill();
 	}
 
 	function update(e:Event)
@@ -163,7 +133,7 @@ class MP4Handler
 			}
 		}
 
-		bitmap.volume = FlxG.sound.volume + 0.3; // shitty volume fix. then make it louder.
+		bitmap.volume = FlxG.sound.volume + 0.3;
 
 		if (FlxG.sound.volume <= 0.1)
 			bitmap.volume = 0;

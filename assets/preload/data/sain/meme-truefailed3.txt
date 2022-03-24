@@ -1,0 +1,23 @@
+data:1
+loud:yes:...
+normal:Sain: Ah, my charming stone pillar...
+normal:BF: That, uh, that's one wierd way to describe your kid.
+normal:Sain: All a matter of perspective.
+normal:Sain: Especially to the other two, Darian is their pillar.
+normal:Sain: They all support each other in their own ways.
+normal:Sain: Darian just so happens to be omnipotent and all-knowing, so most of their support comes from being an encyclopedia.
+normal:Sain: But also, Darian is responsible for the ultimate maintinance of any universe we visit.
+normal:Sain: I merely create them into existance,
+normal:Sain: Darian puts things inside of it, then creates things to do.
+normal:BF: Huh?
+normal:Sain: Rather, Darian is the one that gives Sheol endless entertainment by crafting endless "fun" scenarios for them to partake in.
+normal:BF: So Darian's the planner? They think of stuff like, uh, like going to the arcade or hanging out in a church or something?
+normal:Sain: Yes, precisely.
+normal:Sain: It is difficult to put into words, just how much Darian bends a universe in order to satisfy the entertainment needs of Sheol.
+normal:BF: Oh, if that's the case, then why doesn't Darian just delete all the evil?
+normal:Sain: That is beyond me.
+normal:Sain: I may be capable of doing anything, but I strive to remain outside their minds.
+normal:Sain: They act in the way they act because that is what they want to do.
+normal:BF: Wierd.
+normal:Sain: Oh my, you should get back to dying for them.
+normal:BF: Still wierd.
