@@ -1,5 +1,6 @@
 data:6
-loud:Yes:(you shouldn't have done that)
+bgm:LunchboxScary:2.5
+loud:(you shouldn't have done that)
 normal:BF: Beep!
 normal:No One: ...
 normal:Not A Single Soul: ... ...
@@ -13,31 +14,46 @@ normal:Sheol: That means that they were actually wrong about something!
 normal:Blitz: Darling, no, this isn't about simple cheating, this is-
 normal:Sheol: Pshh, what could this possibly-
 change:1:
+vfx:color:0.9:1.5:RED
+vfx:shake:25:0.9
+sfx:slam2:1.0
 normal:Dari: Shut it! Shut   up! !
 normal:Everyone: !!!
+sfx:badnoise3:0.6
 normal:Dari: I-   No,   wait-
 change:1:
+bgm:stop:5.0
 loud:Dari: N-no- I mean- Wait- Hold on- I- Wait- Hold- No- Wait no- Hold on- Give me a- Wait- Just hold- No wait- Just- I mean- Wait- No- Hold on- I am- Wait- Give me a- Just- Wait- N-no- I mean- Wait- Hold on- I- Wait- Hold- No- Wait no- Hold on- Give me a- Wait- Just hold- No wait- Just- I mean- Wait- No- Hold on- I am- Wait- Give me a- Just- Wait- N-no- I mean- Wait- Hold on- I- Wait- Hold- No- Wait no- Hold on- Give me a- Wait- Just hold- No wait- Just- I mean- Wait- No- Hold on- I am- Wait- Give me a- Just- Wait- N-no- I mean- Wait- Hold on- I- Wait- Hold- No- Wait no- Hold on- Give me a- Wait- Just hold- No wait- Just- I mean- Wait- No- Hold on- I am- Wait- Give me a- Just- Wait- 
 normal:Dari: Hey                      H-Hey,      Blitz.
 normal:Blitz: Uh, yeah?
 normal:Dari: Hey,   uh,  nothing,  uh nothing  special but,      uh,  can you,    uh,    just kinda sort of,     well  you   know-
 normal:Dari: Distract         the puppet     as well? You  know, sing  with them, while not  holding back,  and                  stuff.
+sfx:defeat:0.4
 normal:BF: *concerned bep*
 normal:Blitz: Dari, what happened? What’s wrong?
 normal:Sheol: Dari? Darian, you’re scaring us...
 change:1:
+vfx:color:0.9:3.5RED
+vfx:shake:15:1.0
+sfx:stab:1.0
 loud:Dari: HaahaAHHAhhHAHAHHhAHHAHHAHahhHAHaHAHHAAAAHAHhaHAHhHAHAHAHHAHAHhHAHAHAHHAHHAHaHAHAHAHAHAHHHAHAHAHAAHhahhahahahHAHhahahAHAHHaahaAHHAhhHAHAHHhAHHAHHAHahhHAHaHAHHAAAAHAHhaHAHhHAHAHAHHAHAHhHAHAHAHHAHHAHaHAHAHAHAHAHHHAHAHAHAAHhahhahahahHAHhahahAHAHHaahaAHHAhhHAHAHHhAHHAHHAHahhHAHaHAHHAAAAHAHhaHAHhHAHAHAHHAHAHhHAHAHAHHAHHAHaHAHAHAHAHAHHHAHAHAHAAHhahhahahahHAHhahahAHAHHaahaAHHAhhHAHAHHhAHHAHHAHahhHAHaHAHHAAAAHAHhaHAHhHAHAHAHHAHAHhHAHAHAHHAHHAHaHAHAHAHAHAHHHAHAHAHAAHhahhahahahHAHhahahAHAHHaahaAHHAhhHAHAHHhAHHAHHAHahhHAHaHAHHAAAAHAHhaHAHhHAHAHAHHAHAHhHAHAHAHHAHHAHaHAHAHAHAHAHHHAHAHAHAAHhahhahahahHAHhahahAHAHHaahaAHHAhhHAHAHHhAHHAHHAHahhHAHaHAHHAAAAHAHhaHAHhHAHAHAHHAHAHhHAHAHAHHAHHAHaHAHAHAHAHAHHHAHAHAHAAHhahhahahahHAHhahahAHAHHaahaAHHAhhHAHAHHhAHHAHHAHahhHAHaHAHHAAAAHAHhaHAHhHAHAHAHHAHAHhHAHAHAHHAHHAHaHAHAHAHAHAHHHAHAHAHAAHhahhahahahHAHhahahAHAHHaahaAHHAhhHAHAHHhAHHAHHAHahhHAHaHAHHAAAAHAHhaHAHhHAHAHAHHAHAHhHAHAHAHHAHHAHaHAHAHAHAHAHHHAHAHAHAAHhahhahahahHAHhahahAHAHHaahaAHHAhhHAHAHHhAHHAHHAHahhHAHaHAHHAAAAHHha
 change:1:
+vfx:shake:5:0.8
 normal:Dari: hahahaha, ehaha.. . Hah   hah h a h  .  .. 
 normal:Blitz: What happened? What went wrong?
+bgm:moonlight sonata:15.0
 normal:Blitz: Actually, you know what, no. Darian, dear, please just sit with Sheol.
 normal:Dari: Haaaa aaaah.. .
 change:1:
+sfx:gunshot:0.5
+vfx:color:0.9:0.4:RED
 normal:Blitz: ...
 normal:Blitz: I’ll have you know puppet-
+sfx:badnoise1:0.4
 loud:BF: *scared boop*
 normal:Blitz: There are only two things that can leave my dear elder sibling in such an awful state...
 normal:Blitz: One: Outside interference. And unless you're our father in a shitty disguise, then that's out of the question.
+sfx:insight:0.5
 normal:Blitz: Two: They’ve had an epiphany. One that broke them.
 loud:Dari: No- wait- stop- No-
 normal:Blitz: It’s too late now, dear. 
@@ -50,4 +66,5 @@ normal:Blitz: Sheol, darling, I'm sorry, but this is going to be incredibly pain
 normal:Sheol: What? No, I'm scared!
 loud:BF: *increasingly confused & concerned beeping*
 normal:Blitz: Stop concerning yourself with us, puppet.
+bgm:stop:
 loud:Blitz: Just sing.

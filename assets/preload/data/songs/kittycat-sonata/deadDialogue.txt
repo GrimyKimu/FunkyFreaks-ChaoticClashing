@@ -1,6 +1,7 @@
 data:6
+bgm:sonata scary:5.0
 change:5
-loud:Yes:(press [accept] to continue text)
+loud:(press [accept] to continue text)
 normal:Blitz: ...
 normal:Sheol: I don't understand...
 normal:Blitz: Welcome back.

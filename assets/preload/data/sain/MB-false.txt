@@ -1,5 +1,6 @@
 data:1
-loud:yes:...
+bgm:sain-blitz:10.0
+loud:...
 normal:Sain: How was it? Ah, my aloof little kitten… 
 normal:BF: They mourn for what they've lost.
 normal:Sain: Comparatively, Blitz is the 2nd oldest, older than Sheol by a significant margin, but younger than Darian to a much lesser degree.

@@ -1,5 +1,5 @@
 data:5
-loud:yes:(You can press the ESC-key to skip these cutscenes)
+loud:(You can press the ESC-key to skip these cutscenes)
 normal:Blitz: ...
 normal:Blitz: I'm sure you'd much prefer if we spent our time together like this.
 normal:Blitz: Or perhaps not, you're quite loyal aren't you?
@@ -20,8 +20,10 @@ change:1
 normal:Blitz: I resent my fairness, I reject my decency.
 normal:Blitz: I dress for this black hunt, I dance for this cursed funeral.
 normal:Blitz: For I mourn for what I've lost, and for all that will never be.
-normal:Blitz: For my sister and elder sibling, whom can no longer exist in peace.
-normal:Blitz: For me, whose choices mean nothing, but continues to dance my special dance.
+normal:Blitz: For my sister whose future was forevermore taken from her.
+normal:Blitz: For my elder sibling, whom can no longer exist in peace.
+normal:Blitz: For me, whose choices meant nothing
+normal:Blitz: But I shall continue to dance my special dance.
 normal:Blitz: For who else can dance the dance I wish to dance?
 change:1
 normal:Blitz: Enough of this.

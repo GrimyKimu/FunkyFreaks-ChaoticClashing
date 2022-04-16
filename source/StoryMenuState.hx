@@ -137,18 +137,6 @@ class StoryMenuState extends MusicBeatState
 		transIn = FlxTransitionableState.defaultTransIn;
 		transOut = FlxTransitionableState.defaultTransOut;
 
-		if (FlxG.sound.music != null)
-		{
-			if (!FlxG.sound.music.playing)
-			{
-				if (!FlxG.save.data.weeksBeaten[0])
-					FlxG.sound.playMusic(Paths.music('freakyMenu'));
-				else
-					FlxG.sound.playMusic(Paths.music('freakyMenu-goner'));
-				Conductor.changeBPM(102);
-			}
-		}
-
 		persistentUpdate = persistentDraw = true;
 
 		scoreText = new FlxText(10, 10, 0, "SCORE: 49324858", 36);
@@ -241,6 +229,11 @@ class StoryMenuState extends MusicBeatState
 		rightArrow.animation.play('idle');
 		difficultySelectors.add(rightArrow);
 
+		diabg = new FlxSprite().makeGraphic(FlxG.width * 4, FlxG.height * 4, FlxColor.BLACK);
+		diabg.scrollFactor.set();
+		diabg.screenCenter();
+		diabg.updateHitbox();
+
 		add(yellowBG);
 		add(grpWeekCharacters);
 
@@ -314,25 +307,55 @@ class StoryMenuState extends MusicBeatState
 
 				sainShallSpeak(doof);
 			}
+			else
+			{
+				if (FlxG.sound.music != null)
+				{
+					if (!FlxG.sound.music.playing)
+					{
+						if (!FlxG.save.data.weeksBeaten[0])
+							FlxG.sound.playMusic(Paths.music('freakyMenu'));
+						else
+							FlxG.sound.playMusic(Paths.music('freakyMenu-goner'));
+						Conductor.changeBPM(102);
+					}
+				}
+			}
 		}
 		super.create();
 	}
 
 	function returnToMenu():Void
 	{
+		remove(diabg, true);
 		songOrigin = null;
 		diffOrigin = null;
 		inCutscene = false;
 		didLose = false;
+		/*
 		if (!FlxG.save.data.weeksBeaten[0] || FlxG.save.data.weeksBeaten[5])
-			FlxG.sound.playMusic(Paths.music('freakyMenu'));
+		{
+			FlxG.sound.playMusic(Paths.music('freakyMenu'),0);
+			FlxG.sound.music.loopTime = 9433;
+			FlxG.sound.music.endTime = 131787;
+			FlxG.sound.music.time = 9433;
+			FlxG.sound.music.fadeIn(2.5,0.0,1.0);
+		}
 		else
-			FlxG.sound.playMusic(Paths.music('freakyMenu-goner'));
+		{
+			FlxG.sound.playMusic(Paths.music('freakyMenu-goner'),0);
+			FlxG.sound.music.loopTime = 12900;
+			FlxG.sound.music.endTime = 144990;
+			FlxG.sound.music.time = 12900;
+			FlxG.sound.music.fadeIn(2.5,0.0,1.0);
+		}
+		*/
 	}
 
 	function sainShallSpeak(?dialogueBox:DialogueBox):Void
 	{
-		FlxG.sound.music.stop();
+		//FlxG.sound.music.stop();
+		add(diabg);
 
 		if (dialogueBox != null)
 		{
@@ -349,6 +372,11 @@ class StoryMenuState extends MusicBeatState
 	public static var diffOrigin:String;
 	public static var didLose:Bool;
 	public static var savedChildren:Array<Bool> = [false,false,false,false]; //0 = she, 1 = blitz, 2 = dari
+	private var songName:String = "";
+	private var bgmList:Array<String> = CoolUtil.coolTextFile(Paths.txt('music/bgmData', "shared"));
+	var bgmStats:Array<String> = [];
+	private var diabg:FlxSprite;
+	// bgmStats[0 = name, 1 = parsed looping point, 2 = parsed end point(can be null, if so simply loop from the end of the bgm rather than a specific point)]
 
 	override function update(elapsed:Float)
 	{
@@ -460,7 +488,7 @@ class StoryMenuState extends MusicBeatState
 
 	function selectWeek()
 	{
-		if (weekUnlocked[curWeek] || (isDemo ? curWeek != 1 | 2 : false))
+		if (weekUnlocked[curWeek]/* || (isDemo ? curWeek != 1 | 2 : false)*/)
 		{
 			if (stopspamming == false)
 			{
@@ -471,6 +499,8 @@ class StoryMenuState extends MusicBeatState
 					grpWeekCharacters.members[1].animation.play('bfConfirm');
 				stopspamming = true;
 			}
+
+			FlxG.sound.music.fadeOut(0.75,0.0);
 
 			PlayState.storyPlaylist = weekData()[curWeek];
 			PlayState.isStoryMode = true;

@@ -61,9 +61,21 @@ class MainMenuState extends MusicBeatState
 		if (!FlxG.sound.music.playing)
 		{
 			if (!FlxG.save.data.weeksBeaten[0] || FlxG.save.data.weeksBeaten[5])
-				FlxG.sound.playMusic(Paths.music('freakyMenu'));
+			{
+				FlxG.sound.playMusic(Paths.music('freakyMenu'),0);
+				FlxG.sound.music.loopTime = 9433;
+				FlxG.sound.music.endTime = 131787;
+				FlxG.sound.music.time = 9433;
+				FlxG.sound.music.fadeIn(2.5,0.0,1.0);
+			}
 			else
-				FlxG.sound.playMusic(Paths.music('freakyMenu-goner'));
+			{
+				FlxG.sound.playMusic(Paths.music('freakyMenu-goner'),0);
+				FlxG.sound.music.loopTime = 12900;
+				FlxG.sound.music.endTime = 144990;
+				FlxG.sound.music.time = 12900;
+				FlxG.sound.music.fadeIn(2.5,0.0,1.0);
+			}
 		}
 
 		persistentUpdate = persistentDraw = true;
@@ -112,10 +124,12 @@ class MainMenuState extends MusicBeatState
 		}
 		else
 		{
-			var yes:FlxSprite = new FlxSprite(-100);
+			var yes:FlxSprite = new FlxSprite();
 			yes.frames = Paths.getSparrowAtlas('menuVariety/menuBG');
 			yes.animation.addByPrefix('idle', 'menuBG', 24, true);
+			yes.screenCenter();
 			yes.updateHitbox();
+			yes.scrollFactor.set();
 			yes.antialiasing = FlxG.save.data.antialiasing;
 			yes.alpha = 0.5;
 			yes.animation.play('idle');

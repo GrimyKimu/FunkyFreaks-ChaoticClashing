@@ -1,5 +1,5 @@
 data:1
-loud:Yes:(you REALLY shouldn't be here, this level ain't even DONE done yet)
+loud:(you REALLY shouldn't be here, this level ain't even DONE done yet)
 normal:Blitz: Dear sister...
 normal:Sheol: Ye
 normal:Dari: Young sis...

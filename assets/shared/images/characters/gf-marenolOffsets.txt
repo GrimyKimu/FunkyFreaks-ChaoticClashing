@@ -1,7 +1,7 @@
 idle-1 0 0
 idle-2 0 0
 idle-3 0 0
-drown 50 50
+drown 50 0
 suffer -50 -70
 turnAround 45 -63
-scream 1430 1290
+scream 1073 968

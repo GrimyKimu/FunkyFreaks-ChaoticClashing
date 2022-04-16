@@ -1,5 +1,6 @@
 data:6
-loud:yes:(You have died death_count times)
+bgm:sheol-horror:3.5
+loud:(You have died death_count times)
 normal:Sheol: ...
 change:1
 normal:Sheol: ...

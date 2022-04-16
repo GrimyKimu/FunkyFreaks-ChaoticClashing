@@ -99,10 +99,10 @@ class Stage extends MusicBeatState
 					bgSibs['bgDari'] = bgDari;
 				}
 
-				var lostRain = new FlxSprite(-1000, -450);
+				var lostRain = new FlxSprite(-650, -300);
 				lostRain.frames = Paths.getSparrowAtlas('nowhere/lostRain', 'shared');
 				lostRain.animation.addByPrefix('idle', 'lostRain', 24, true);
-				lostRain.setGraphicSize(Std.int(lostRain.width * 4));
+				lostRain.setGraphicSize(Std.int(lostRain.width * 2.5));
 				lostRain.updateHitbox();
 				lostRain.antialiasing = true;
 				lostRain.scrollFactor.set(2.5, 2.5);
@@ -112,7 +112,7 @@ class Stage extends MusicBeatState
 				layInFront[2].push(lostRain);
 				swagBacks['lostRain'] = lostRain;
 
-				var moreBitz = new FlxSprite(-750, 1000);
+				var moreBitz = new FlxSprite(-750, 1100);
 				moreBitz.frames = Paths.getSparrowAtlas('nowhere/groundBitz', 'shared');
 				moreBitz.animation.addByPrefix('idle', 'groundBitz', 20, true, false, true);
 				moreBitz.setGraphicSize(Std.int(moreBitz.width * 1.5));
@@ -176,7 +176,7 @@ class Stage extends MusicBeatState
 					bgSibs['bgDari'] = bgDari;
 				}
 
-				var moreBitz = new FlxSprite(-750, 1000);
+				var moreBitz = new FlxSprite(-750, 1100);
 				moreBitz.frames = Paths.getSparrowAtlas('nowhere/groundBitz', 'shared');
 				moreBitz.animation.addByPrefix('idle', 'groundBitz', 20, true, false, true);
 				moreBitz.setGraphicSize(Std.int(moreBitz.width * 1.5));
@@ -198,7 +198,8 @@ class Stage extends MusicBeatState
 				fgHorror.animation.play('idle');
 				layInFront[0].push(fgHorror);
 				swagBacks['fgHorror'] = fgHorror;
-			case 'arg':
+				// fghorror is not showing up properly(or at all), even when its alpha values are still being read and manipulated as intended
+			case 'arg': 
 				camZoom = 0.5;
 
 				//a completely empty stage, devoid of anything except for Sheol(?) and the player

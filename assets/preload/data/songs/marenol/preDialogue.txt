@@ -1,5 +1,6 @@
 data:6
-loud:yes:(You can press the ESC-key to skip these cutscenes)
+bgm:sheol-horror:5.0
+loud:(You can press the ESC-key to skip these cutscenes)
 normal:Sheol: You...
 normal:Sheol: I don’t understand… 
 normal:Sheol: I just don’t understand...!

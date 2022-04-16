@@ -277,10 +277,18 @@ class TitleState extends MusicBeatState
 			// music.loadStream(Paths.music('freakyMenu'));
 			// FlxG.sound.list.add(music);
 			// music.play();
-			if (!weeksBeaten[0] || weeksBeaten[5])
+			if (!FlxG.save.data.weeksBeaten[0] || FlxG.save.data.weeksBeaten[5])
+			{
 				FlxG.sound.playMusic(Paths.music('freakyMenu'));
+				FlxG.sound.music.loopTime = 9433;
+				FlxG.sound.music.endTime = 131787;
+			}
 			else
+			{
 				FlxG.sound.playMusic(Paths.music('freakyMenu-goner'));
+				FlxG.sound.music.loopTime = 12900;
+				FlxG.sound.music.endTime = 144990;
+			}
 
 			FlxG.sound.music.fadeIn(4, 0, 0.7);
 			Conductor.changeBPM(102);

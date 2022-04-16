@@ -1,5 +1,6 @@
 data:1
-loud:yes:...
+bgm:sain-sain:10.0
+loud:...
 normal:BF: I gots me a question.
 normal:Sain: Ask away.
 normal:BF: Like, what are you?

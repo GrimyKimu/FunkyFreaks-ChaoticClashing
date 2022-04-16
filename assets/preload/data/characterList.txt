@@ -1,4 +1,5 @@
 bf:0
+bf-worry:0
 bf-marenol:0
 sheol:0
 sheol-angry:0

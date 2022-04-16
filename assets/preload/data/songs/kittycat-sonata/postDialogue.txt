@@ -1,5 +1,6 @@
 data:2
-loud:Yes:(you should have just stopped while you were ahead...)
+bgm:blitz:5.0
+loud:(you should have just stopped while you were ahead...)
 normal:Blitz: This rain...
 normal:Sheol: So much wind...
 normal:Dari: The end has come...
@@ -25,6 +26,8 @@ normal:Dari: Your choices, everyone's choices, they were all preplanned.
 normal:Dari: Though it may have felt like it, we had no choice in the end.
 normal:Sheol: ...
 change:1
+vfx:static:1.0:1.0
+bgm:sonata scary:5.0
 normal:Blitz: Huh, that's new, never knew we could bleed.
 normal:Dari: Our hearts have shattered, our true selves are beginning to bleed into reality.
 normal:Dari: Soon all will dissapear, for we will have consumed it all.

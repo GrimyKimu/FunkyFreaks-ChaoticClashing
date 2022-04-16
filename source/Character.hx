@@ -150,7 +150,25 @@ class Character extends FlxSprite
 				animation.addByPrefix('deathLoop', "BF Dead Loop", 24, false);
 				animation.addByPrefix('deathConfirm', "BF Dead confirm", 24, false);
 
-				animation.addByPrefix('scared', 'BF idle shaking', 24);
+				loadOffsetFile(curCharacter);
+
+				playAnim('idle');
+
+				flipX = true;
+			case 'bf-worry':
+				var tex = Paths.getSparrowAtlas('bf_worried','shared',true);
+				frames = tex;
+
+				animation.addByPrefix('idle', 'idle', 24, false);
+				animation.addByPrefix('singUP', 'NOTE UP0', 24, false);
+				animation.addByPrefix('singLEFT', 'NOTE LEFT0', 24, false);
+				animation.addByPrefix('singRIGHT', 'NOTE RIGHT0', 24, false);
+				animation.addByPrefix('singDOWN', 'NOTE DOWN0', 24, false);
+
+				animation.addByPrefix('singUPmiss', 'NOTE UP MISS', 24, false);
+				animation.addByPrefix('singLEFTmiss', 'NOTE LEFT MISS', 24, false);
+				animation.addByPrefix('singRIGHTmiss', 'NOTE RIGHT MISS', 24, false);
+				animation.addByPrefix('singDOWNmiss', 'NOTE DOWN MISS', 24, false);
 
 				loadOffsetFile(curCharacter);
 
@@ -367,6 +385,26 @@ class Character extends FlxSprite
 				animation.addByPrefix('scarRIGHT', 'slashRight', 24, false);
 				loadOffsetFile(curCharacter);
 
+				dumbVar = true;
+
+				playAnim('idle');
+			case 'blitz2':
+				frames = Paths.getSparrowAtlas('characters/blitz_assets');
+				animation.addByPrefix('idle', 'Idle', 24, true);
+				animation.addByPrefix('singUP', 'Up Note', 24, false);
+				animation.addByPrefix('singDOWN', 'Down Note', 24, false);
+				animation.addByPrefix('singLEFT', 'Left Note', 24, false);
+				animation.addByPrefix('singRIGHT', 'Right Note', 24, false);
+				
+				animation.addByPrefix('scarUP', 'slashUp', 24, false);
+				animation.addByPrefix('scarDOWN', 'slashDown', 24, false);
+				animation.addByPrefix('scarLEFT', 'slashLeft', 24, false);
+				animation.addByPrefix('scarRIGHT', 'slashRight', 24, false);
+				loadOffsetFile(curCharacter);
+
+				dumbVar = true;
+				visible = false;
+
 				playAnim('idle');
 			case 'blitz-horror':
 				frames = Paths.getSparrowAtlas('characters/blitz_horror');
@@ -435,11 +473,18 @@ class Character extends FlxSprite
 		}
 	}
 
+	private var swapTimer:Float = 0;
+
 	override function update(elapsed:Float)
 	{
+		if (swapTimer > 0)
+			swapTimer -= elapsed;
+		if (swapTimer <= 0)
+			swapTimer = 0;
+
 		if (!debugMode)
 		{
-			if (!curCharacter.startsWith('bf'))
+			if (!curCharacter.startsWith('bf') && curCharacter != 'blitz-h2' && curCharacter !='blitz2' && animation.curAnim != null)
 			{
 				if (animation.curAnim.name.startsWith('sing'))
 				{
@@ -459,6 +504,9 @@ class Character extends FlxSprite
 			
 			switch (curCharacter)
 			{
+				case 'sheol-horror':
+					scrollFactor.set(0,0);
+					screenCenter();
 				case 'gf-marenol':
 					if (animation.curAnim.name == 'scream')
 						scale.set(1.7,1.7);
@@ -484,35 +532,38 @@ class Character extends FlxSprite
 					}
 					else
 						alpha = 1;
-				case 'blitz-h2':
+				case 'blitz-h2' | 'blitz2':
 					//lmao how many layers of random bools do you want
 					if (!PlayState.dad.dumbVar)
 					{
-						visible = PlayState.dad.visible;
+						//visible = PlayState.dad.visible;
 
-						if (!PlayState.dad.animation.curAnim.name.startsWith('scar') && FlxG.random.bool(10))
-							animation.play(PlayState.dad.animation.curAnim.name,true);
-						else if (PlayState.dad.animation.curAnim.name == 'idle')
-							animation.play('idle',false);
+						var chanceMulti:Float = 1 / PlayState.dad.alpha;
 
-						animation.stop();
-						animation.randomFrame();
+						if (swapTimer == 0)
+						{
+							if (FlxG.random.bool(85 * PlayState.dad.alpha))
+								playAnim(PlayState.dad.animation.curAnim.name,true,false,-1);
+							else
+								animation.randomFrame();
 
-						if (FlxG.random.bool(50))
-							alpha = FlxG.random.float(0.1,0.6);
+							animation.stop();
+							swapTimer = FlxG.random.float(0.1,Math.max(3.5 * PlayState.dad.alpha, 1.1));
+						}
+
+						if (FlxG.random.bool(5 * chanceMulti))
+							alpha = FlxG.random.float(0.05,0.2);
 						
-						if (FlxG.random.bool(4))
+						if (FlxG.random.bool(3 * chanceMulti))
 							x = PlayState.dad.x + FlxG.random.int(-15,15);
 						
-						if (FlxG.random.bool(4))
+						if (FlxG.random.bool(3 * chanceMulti))
 							y = PlayState.dad.y + FlxG.random.int(-15,15);
 
 						var randoScale = FlxG.random.float(0.9,1.1);
-						if (FlxG.random.bool(15))
+						if (FlxG.random.bool(1 * chanceMulti))
 							scale.set(randoScale,randoScale);
 					}
-					else
-						visible = false;
 			}
 		}
 		super.update(elapsed);
@@ -556,6 +607,7 @@ class Character extends FlxSprite
 
 			if (curCharacter.startsWith('blitz'))
 			{
+				dumbVar = false;
 				if ((!animation.curAnim.name.startsWith('sing') && !animation.curAnim.name.startsWith('scar')) || animation.curAnim.finished)
 				{
 					if (!altAnim)
@@ -619,6 +671,9 @@ class Character extends FlxSprite
 
 	public function playAnim(animName:String, force:Bool = false, reversed:Bool = false, frame:Int = 0):Void
 	{
+		/*if (animation.curAnim.name == 'firstDeath' && !animation.curAnim.finished)
+			return;*/
+
 		if (animName.endsWith('alt') && animation.getByName(animName) == null)
 		{
 			#if debug

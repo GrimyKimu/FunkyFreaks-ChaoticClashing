@@ -1,9 +1,11 @@
 data:3
-loud:Yes:(press [accept] to continue text)
+bgm:puppet:2.5
+loud:(press [accept] to continue text)
 loud:Strange Girl: Yaaay! I did it! I brought a protagonist into a pocket dimension!
 normal:Cat Thing: Congratulations Sheol, our darling sister, you! You are now in total control of the fate of this strange blue-haired gibberish rapper!
 normal:Scarfed One: Blitz is correct, sister. You did well to manipulate this universe so freely.
 normal:Sheol: Aw, thank you guys, I’m getting so much better at this, huh?
+sfx:ANGRY:0.8
 loud:BF: A? EEE?!
 normal:Sheol: Oh, right! How rude of me!
 normal:Sheol: Welcome to our little peice of Nowhere-
@@ -13,16 +15,19 @@ normal:Darian: That is… Horrifically incorrect.
 normal:Sheol: Oh, uh...
 normal:Sheol: That doesn’t really matter right? What matters is-
 change:1
+sfx:ANGRY:0.8
 loud:BF: BEEP!!
 normal:Sheol: Eh? Your girlfriend? Oh, uh, I guess I didn’t bring her with you did I?
 normal:Darian: No, that is intentional. Only the blue rapper should be here.
 normal:Darian: Things are as it should be.
+sfx:ANGRY:0.8
 normal:BF: Bop? Skebep??
 normal:Sheol: I’m sorry, but we can’t bring her here.
 normal:Blitz: Suck it, loser~
 normal:Sheol: But-!
 normal:Sheol: What if I let him fight me for it?
 normal:Darian: Eh, why not.
+sfx:ANGRY_TEXT_BOX:0.8
 change:1
 normal:Sheol: Ok!
 loud:Sheol: Then this is a singing contest!

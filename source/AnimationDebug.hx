@@ -112,7 +112,8 @@ class AnimationDebug extends FlxState
 
 	override function update(elapsed:Float)
 	{
-		textAnim.text = char.animation.curAnim.name;
+		if (char.animation.curAnim != null)
+			textAnim.text = char.animation.curAnim.name;
 
 		if (FlxG.keys.justPressed.E)
 			FlxG.camera.zoom += 0.25;
@@ -161,7 +162,7 @@ class AnimationDebug extends FlxState
 
 		if (FlxG.keys.justPressed.S || FlxG.keys.justPressed.W || FlxG.keys.justPressed.SPACE)
 		{
-			char.playAnim(animList[curAnim]);
+			char.playAnim(animList[curAnim], true);
 
 			updateTexts();
 			genBoyOffsets(false);

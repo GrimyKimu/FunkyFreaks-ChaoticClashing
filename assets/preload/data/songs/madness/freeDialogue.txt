@@ -1,5 +1,5 @@
 data:1
-loud:Yes:(lmao you shouldn't be here, this level ain't done yet)
+loud:(lmao you shouldn't be here, this level ain't done yet)
 normal:Blitz: Uh huh...
 normal:Sheol:  (:
 normal:Dari: ...

@@ -1,5 +1,6 @@
-data:1
-loud:Yes:(press [accept] to continue text)
+data:3
+bgm:puppet:2.5
+loud:(press [accept] to continue text)
 change:2
 normal:Sheol: HEHE FUFU
 normal:Sheol: IT'S TIME FOR NEW-PUPPET!!

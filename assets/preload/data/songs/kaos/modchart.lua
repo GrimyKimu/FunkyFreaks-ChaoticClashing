@@ -65,6 +65,47 @@ function playerOneTurn()
 	switch = true
 end
 
+followXOffset = 0
+followYOffset = 0
+
+function playerTwoSing(note, songPos)
+    -- 0 = left, 1 = down, 2 = up, 3 = right
+	if switch == false then
+		if note == 0 then
+			followXOffset = -30 - (30 * math.random())
+			followYOffset = 0
+		elseif note == 1 then
+			followYOffset = 30 + (30 * math.random())
+			followXOffset = 0
+		elseif note == 2 then
+			followYOffset = -30 - (30 * math.random())
+			followXOffset = 0
+		elseif note == 3 then
+			followXOffset = 30 + (30 * math.random())
+			followYOffset = 0
+		end
+	end
+end
+
+function playerOneSing(note, songPos)
+    -- 0 = left, 1 = down, 2 = up, 3 = right
+	if switch == true then
+		if note == 0 then
+			followXOffset = -30 - (30 * math.random())
+			followYOffset = 0
+		elseif note == 1 then
+			followYOffset = 30 + (30 * math.random())
+			followXOffset = 0
+		elseif note == 2 then
+			followYOffset = -30 - (30 * math.random())
+			followXOffset = 0
+		elseif note == 3 then
+			followXOffset = 30 + (30 * math.random())
+			followYOffset = 0
+		end
+	end
+end
+
 camVar = 1;
 cameraZoom = 0.7
 hudZoom = 1.0

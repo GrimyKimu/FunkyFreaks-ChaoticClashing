@@ -1,6 +1,7 @@
 data:2
+bgm:kaos manifest:5.0
 change:1
-loud:Yes:Keep going, you got this.
+loud:Keep going, you got this.
 normal:BF: ...!
 loud:BF: I ain't done yet!
 loud:BF: I only died death_count times now, that ain't stopping me!

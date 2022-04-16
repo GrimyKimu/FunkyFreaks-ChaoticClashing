@@ -1,5 +1,6 @@
 data:1
-loud:yes:...
+bgm:sain-sain:10.0
+loud:...
 normal:BF: Hey B?
 normal:Sain: My name is Sain.
 normal:BF: Yeah, that.

@@ -1,5 +1,6 @@
 data:1
-loud:yes:...
+bgm:sain-dari:10.0
+loud:...
 normal:Sain: How was it? Ah, my apathy-faced eldest child.
 normal:Sain: Darian is usually, how would you call it, “stone-faced”. 
 normal:Sain: They almost never emote, whether in how they speak, even how they move, if they move at all.

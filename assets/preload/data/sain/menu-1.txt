@@ -1,5 +1,6 @@
 data:1
-loud:yes:...
+bgm:sain-sain:10.0
+loud:...
 normal:BF: Hey, I know this is an awkward time for all of us, but I have a question.
 normal:Sain: Ask away, we have nothing but endless time in this void.
 normal:BF: Are ya hot?

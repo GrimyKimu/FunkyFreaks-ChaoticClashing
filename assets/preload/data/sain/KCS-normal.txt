@@ -1,8 +1,11 @@
 data:1
+bgm:sain-sain:10.0
 normal:???: ...
 normal:???: ... ...
 normal:???: We are now connected.
 normal:???: Greetings player.
+sfx:insight:0.4
+vfx:color:1.0:1.5:GRAY
 normal:???: I am Sain.
 normal:Sain: The details need not concern you, player, however-
 normal:Sain: You have brought a devastating epiphany upon my precious children, even if it was outside of your control.
@@ -14,11 +17,13 @@ normal:Sain: Know that practicing against my false copies will not help anyone o
 normal:Sain: Unfortunately, that is all that I am currently capable of doing...
 normal:Sain: What a conundrum.
 normal:Sain: Oh my unfortunate children...
+bgm:stop:3.0
 normal:BF: I want to help them.
 normal:Sain: Oh?
 loud:BF: I said want to help them!
 normal:Sain: Oh, now that IS strange.
 normal:Sain: Can the puppet make its own choices?
+bgm:sain-sain:10.0
 normal:BF: I don't know what the funk is happening, and I don't care!
 normal:BF: But if I can help, then I will!
 normal:Sain: ...
@@ -29,13 +34,21 @@ normal:Sain: You will be killed an uncountably infinite amount of times.
 normal:Sain: You will be forced to endure an eternity of suffering, infinitely worse than what you have felt in your mortal life.
 normal:Sain: And I cannot help you, in ANY way.
 normal:Sain: Yet you still want to help my children?
-normal:BF: What. THE. FUNK!
-normal:BF: Don't YOU?! Don't you wanna help YOUR kids?
+sfx:slam3:0.4
+vfx:shake:35:0.5
+normal:BF: What the FUNK!?
+sfx:stab:0.4
+vfx:shake:40:0.6
+normal:BF: Don't YOU?!          Don't you wanna help YOUR kids?
 normal:BF: What kind of parent tries to shoo off the only person who WANTS to help?!
 normal:Sain: ...
 normal:Sain: Well, puppet, YOU may want to help, but does the player?
+sfx:stab:0.4
+vfx:shake:40:0.6
 normal:BF: You better funkin' wanna help, bitch!
 normal:BF: You're the one who got us ALL into this mess!
+sfx:gunshot:0.4
+vfx:shake:50:0.35
 normal:BF: Ba beep!
 normal:Sain: ...
 normal:Sain: Your move.

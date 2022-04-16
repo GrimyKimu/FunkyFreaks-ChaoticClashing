@@ -1,5 +1,6 @@
 data:1
-loud:Yes:(press [accept] to continue text)
+bgm:puppet:2.5
+loud:(press [accept] to continue text)
 change:1
 normal:Sheol: Huh, what happened?
 normal:Sheol: Oh, right, singing battle!

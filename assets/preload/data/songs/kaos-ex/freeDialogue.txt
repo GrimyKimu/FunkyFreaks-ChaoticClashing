@@ -1,6 +1,7 @@
 data:2
+bgm:kaos manifest:5.0
 change:1
-loud:Yes:In an alternate reality, where BF and Sheol had more sensible proportions...
+loud:In an alternate reality, where BF and Sheol had more sensible proportions...
 normal:Sheol: All out?
 loud:BF: All out, baby!
 normal:Sheol: Hell yeah!

@@ -1,5 +1,6 @@
 data:6
-loud:yes:(Why are you making her re-live this?)
+bgm:sheol-horror:5.0
+loud:(Why are you making her re-live this?)
 normal:Sheol: You...
 change:1
 normal:Sheol: W-what is this…?

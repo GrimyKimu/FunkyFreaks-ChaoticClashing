@@ -1,11 +1,17 @@
 data:2
+bgm:kaos manifest:5.0
 change:1
-loud:Yes:(press [accept] to continue text)
+loud:(press [accept] to continue text)
 normal:Sheol: Hello again dummy.
+sfx:defeat:1.0
+vfx:shake:55:0.65
 loud:BF: ..!?
 normal:Sheol: Boo.
+sfx:stab:0.7
+vfx:shake:40:0.75
 loud:Sheol: Sing your way out of this!!
 normal:Blitz: ...
 normal:Blitz: Should we-
+sfx:slam1:0.6
 normal:Darian: No, stay out of her shenanigans.
 normal:Blitz: A'ight, fair enough.

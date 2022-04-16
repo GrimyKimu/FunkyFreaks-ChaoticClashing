@@ -1,6 +1,7 @@
 data:6
+bgm:moonlight sonata:5.0
 change:5
-loud:Yes:(press [accept] to continue text)
+loud:(press [accept] to continue text)
 normal:BF: Beep!
 normal:Blitz: Moonlight Sonata, Ludwig van Beethoven
 normal:Blitz: La Companella, Franz Liszt and Niccolò Paganini

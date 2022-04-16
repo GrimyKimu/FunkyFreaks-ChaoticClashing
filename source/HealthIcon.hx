@@ -49,6 +49,14 @@ class HealthIcon extends FlxSprite
 		antialiasing = FlxG.save.data.antialiasing;
 		animation.add(char, [0, 1], 0, false, isPlayer);
 		animation.play(char);
+
+		if (nonDanceMap.exists(char))
+			if (!nonDanceMap[char])
+				nonDancer = true;
+			else
+				nonDancer = false;
+		else
+			nonDancer = false;
 	}
 
 	override function update(elapsed:Float)

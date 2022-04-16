@@ -1,0 +1,16 @@
+This is where to put the information for any looping BGM in the menu, seperate each data point with a ":"
+name:loop-start:loop-end (leave sections blank/null to default them to 0.0/end)
+freakyMenu:9433:131787
+freakyMenu-goner:12900:144990
+kaos manifest:9000:27000
+blitz:10666:
+moonlight sonata:4000:
+sonata scary::58000
+sad girl:3600:46716
+puppet:4500:
+sheol:750:
+sheol-horror:750:
+sain-sain:2000:
+sain-sheol:2000:
+sain-blitz:2000:
+sain-dari:2000:

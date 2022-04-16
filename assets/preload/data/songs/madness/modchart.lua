@@ -53,15 +53,26 @@ downVar = 0.0
 upVar = 0.0
 rightVar = 0.0
 
+followXOffset = 0
+followYOffset = 0
+
 function playerTwoSing(note, songPos)
 	if note == 0 then
 		leftVar = leftVar + 2.5
+		followXOffset = -200 + (10 * math.random())
+		followYOffset = 0
 	elseif note == 1 then
 		downVar = downVar + 2.5
+		followYOffset = -200 + (10 * math.random())
+		followXOffset = 0
 	elseif note == 2 then
 		upVar = upVar + 2.5
+		followYOffset = 200 + (10 * math.random())
+		followXOffset = 0
 	elseif note == 3 then
 		rightVar = rightVar + 2.5
+		followXOffset = 200 + (10 * math.random())
+		followYOffset = 0
 	end
 
 	if Game.health > 0.1 then
@@ -72,12 +83,20 @@ end
 function playerOneSing(note, songPos)
 	if note == 0 then
 		leftVar = leftVar + 1.0
+		followXOffset = -200 + (10 * math.random())
+		followYOffset = 0
 	elseif note == 1 then
 		downVar = downVar + 1.0
+		followYOffset = -200 + (10 * math.random())
+		followXOffset = 0
 	elseif note == 2 then
 		upVar = upVar + 1.0
+		followYOffset = 200 + (10 * math.random())
+		followXOffset = 0
 	elseif note == 3 then
 		rightVar = rightVar + 1.0
+		followXOffset = 200 + (10 * math.random())
+		followYOffset = 0
 	end
 end
 

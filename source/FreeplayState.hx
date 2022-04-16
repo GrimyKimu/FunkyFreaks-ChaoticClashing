@@ -281,10 +281,8 @@ class FreeplayState extends MusicBeatState
 		if (exclusionTimer > 0)
 			exclusionTimer -= FlxG.elapsed;// this is just in case doing excludeWeeks() causes slowdown, this prevents spamming keypresses and crashing the shit
 
-		if (FlxG.sound.music.volume < 0.7)
-		{
-			FlxG.sound.music.volume += 0.5 * FlxG.elapsed;
-		}
+		if (FlxG.sound.music.volume != 1.0)
+			FlxG.sound.music.volume = FlxMath.lerp(FlxG.sound.music.volume, 1.0, 0.15);
 
 		lerpScore = Math.floor(FlxMath.lerp(lerpScore, intendedScore, 0.4));
 
@@ -294,11 +292,6 @@ class FreeplayState extends MusicBeatState
 		scoreText.text = "PERSONAL BEST:" + lerpScore;
 		comboText.text = combo + '\n';
 		exludedText.text = childArray[exclusionaryZone].toUpperCase();
-
-		if (FlxG.sound.music.volume > 0.8)
-		{
-			FlxG.sound.music.volume -= 0.5 * FlxG.elapsed;
-		}
 
 		var upP = FlxG.keys.justPressed.UP;
 		var downP = FlxG.keys.justPressed.DOWN;
@@ -390,7 +383,7 @@ class FreeplayState extends MusicBeatState
 		iconArray.forEach(function(icon)
 		{
 			icon.scale.set(FlxMath.lerp(1.0, icon.scale.x, 0.95),FlxMath.lerp(1.0, icon.scale.y, 0.95));
-			//icon.angle = FlxMath.lerp(0, icon.angle, 0.95);
+			icon.angle = FlxMath.lerp(0, icon.angle, 0.95);
 			icon.updateHitbox();
 		});
 
@@ -494,7 +487,7 @@ class FreeplayState extends MusicBeatState
 		curSelected = 0;
 		exclusionaryZone += dir;
 
-		exclusionTimer = 0.5;
+		exclusionTimer = 0.2;
 
 		if (exclusionaryZone < 0)
 			exclusionaryZone = 4;
@@ -516,12 +509,14 @@ class FreeplayState extends MusicBeatState
 	}
 
 	var measureFinder:Int = 0;
+	var backAndForth:Int = 1;
 
 	override function beatHit()
 	{
 		super.beatHit();
 
 		measureFinder++;
+		backAndForth *= -1;
 		if (measureFinder > 3)
 			measureFinder = 0;
 
@@ -529,7 +524,7 @@ class FreeplayState extends MusicBeatState
 		{
 			if (!icon.nonDancer)
 			{	
-				icon.scale.set(0.9,0.9);
+				icon.scale.set(0.98,0.98);
 				icon.updateHitbox();
 				//icon.angle = 6;
 			}
@@ -539,7 +534,7 @@ class FreeplayState extends MusicBeatState
 		{
 			iconArray.members[curSelected].scale.set(1.2,1.2);
 			iconArray.members[curSelected].updateHitbox();
-			iconArray.members[curSelected].angle = 6;
+			iconArray.members[curSelected].angle = 8 * backAndForth;
 		}
 		
 

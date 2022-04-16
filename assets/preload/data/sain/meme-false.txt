@@ -1,5 +1,6 @@
 data:1
-loud:yes:...
+bgm:sain-dari:10.0
+loud:...
 normal:Sain: How was it? Ah, my stoic little child. 
 normal:BF: Lmao, they aren't taking this seriously.
 normal:BF: I mean, they still killed me, but come on.

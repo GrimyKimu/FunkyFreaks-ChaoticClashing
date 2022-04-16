@@ -51,7 +51,7 @@ class ModchartState
 		{
 			if (e != "attempt to call a nil value")
 			{
-				trace(StringTools.replace(e, "c++", "haxe function"));
+				//(StringTools.replace(e, "c++", "haxe function"));
 			}
 		}
 		if (result == null)
@@ -83,7 +83,7 @@ class ModchartState
 			case Type.ValueType.TObject:
 				objectToLua(l, val);
 			default:
-				trace("haxe value not supported - " + val + " which is a type of " + Type.typeof(val));
+				//trace("haxe value not supported - " + val + " which is a type of " + Type.typeof(val));
 				return false;
 		}
 
@@ -95,7 +95,7 @@ class ModchartState
 		var FUCK = 0;
 		for (n in Reflect.fields(res))
 		{
-			trace(Type.typeof(n).getName());
+			//trace(Type.typeof(n).getName());
 			FUCK++;
 		}
 
@@ -303,7 +303,7 @@ class ModchartState
 		sprite.frames = FlxAtlasFrames.fromSparrow(FlxGraphic.fromBitmapData(data),
 			Sys.getCwd() + "assets/data/songs/" + PlayState.SONG.songId + "/" + spritePath + ".xml");
 
-		trace(sprite.frames.frames.length);
+		//trace(sprite.frames.frames.length);
 
 		for (p in 0...names.length)
 		{

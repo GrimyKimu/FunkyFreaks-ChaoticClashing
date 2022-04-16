@@ -1,11 +1,17 @@
 data:2
-loud:Yes:(press [accept] to continue text)
+bgm:kaos manifest:5.0
+loud:(press [accept] to continue text)
 change:1
 loud:BF: ...!
 loud:Sheol: ...! 
+sfx:stab:0.4
+vfx:shake:35:0.6
 loud:Sheol: I knew it!
+sfx:stab:0.5
+vfx:shake:35:0.8
 loud:Sheol: Stop it!!
 normal:Blitz: ...
 normal:Darian: ...
+sfx:eureka:0.5
 normal:Blitz: She's not correct, is she, dari dear?
 normal:Darian: ...

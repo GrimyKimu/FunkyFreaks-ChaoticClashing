@@ -1,22 +1,30 @@
 data:2
-loud:Yes:(press [accept] to continue text)
+bgm:kaos manifest:5.0
+loud:(press [accept] to continue text)
 loud:BF: Ye!
 normal:Sheol: ...
+sfx:insight:0.5
 normal:Blitz: Hey, hey! Sheol, I recognize that look-
 normal:Blitz: This is just a game, no need to lose your cool over nothing now, darling.
+vfx:shake:2:1.0
 normal:Sheol: …
 normal:Blitz: Sh-Sheol? Sis?? Are you-
 normal:Dari: Oh no...
 change:1
+vfx:color:0.9:1.5:RED
+sfx:slam2:1.0
 loud:Sheol: SHUT UP!!
 normal:Blitz: ...!
+vfx:shake:55:0.6
 loud:Sheol: And YOU! Puppet human! How are you doing that??
 loud:BF: ??
 loud:Sheol: I thought I made it plain and clear that this is just a game?
 loud:Sheol: But apparently, you still feel the need to cheat!
+sfx:slam3:0.5
 loud:Sheol: And don’t lie! I can feel it!
 loud:Sheol: You’re doing something unfair, and I’m going to MAKE you stop!
 loud:Sheol: Can you handle THIS??
 loud:BF: Boop, bep bop!
+sfx:failure:0.25
 normal:Blitz: Ah, children~ Can’t ever take losses, huh Dari~
 normal:Darian: ...

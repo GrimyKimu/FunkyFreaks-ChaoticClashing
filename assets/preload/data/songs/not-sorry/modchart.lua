@@ -3,7 +3,6 @@
 adjustVar = 0.0;
 multiVar = 1
 showOnlyStrums = false
-cameraZoom = 0.7
 painBool = false
 
 -- receptor.alpha = math.random(25, 50) / 50
@@ -104,9 +103,44 @@ function beatHit(beat)
 			cameraZoom = 0.7 + (0.05 * multiVar)
 		end
 	end
+
+	if beat == 132 then
+		boyfriend:changeCharacter('bf-worry',boyfriend.x,boyfriend.y)
+	end
 end
 
+switch = false;
+
+function playerTwoTurn()
+	-- variable that determines who the camera is currently focusing
+	switch = false
+end
+
+function playerOneTurn()
+	switch = true
+end
+
+followXOffset = 0
+followYOffset = 0
+
 function playerTwoSing(note, songPos)
+    -- 0 = left, 1 = down, 2 = up, 3 = right
+	if switch == false then
+		if note == 0 then
+			followXOffset = -30 - (30 * math.random())
+			followYOffset = 0
+		elseif note == 1 then
+			followYOffset = 30 + (30 * math.random())
+			followXOffset = 0
+		elseif note == 2 then
+			followYOffset = -30 - (30 * math.random())
+			followXOffset = 0
+		elseif note == 3 then
+			followXOffset = 30 + (30 * math.random())
+			followYOffset = 0
+		end
+	end
+
 	if painBool then
 		cameraZoom = cameraZoom + (0.02 * (0.7 / cameraZoom) * adjustVar)
 		camHudAngle = (math.abs(camHudAngle) + 1.5) * camVar * adjustVar
@@ -115,6 +149,25 @@ function playerTwoSing(note, songPos)
 
 		if Game.health > 0.1 then
 			Game.health = Game.health - (.035 * Game.health)
+		end
+	end
+end
+
+function playerOneSing(note, songPos)
+    -- 0 = left, 1 = down, 2 = up, 3 = right
+	if switch == true then
+		if note == 0 then
+			followXOffset = -30 - (30 * math.random())
+			followYOffset = 0
+		elseif note == 1 then
+			followYOffset = 30 + (30 * math.random())
+			followXOffset = 0
+		elseif note == 2 then
+			followYOffset = -30 - (30 * math.random())
+			followXOffset = 0
+		elseif note == 3 then
+			followXOffset = 30 + (30 * math.random())
+			followYOffset = 0
 		end
 	end
 end

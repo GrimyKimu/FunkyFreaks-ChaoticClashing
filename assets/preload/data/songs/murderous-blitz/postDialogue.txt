@@ -1,14 +1,15 @@
 data:4
-loud:yes:(You've done it! You've saved Blitz!)
+bgm:sad girl slow:10.0
+loud:(You've done it! You've saved Blitz!)
 normal:Blitz: ...
 normal:Blitz: Perhaps I'm blowing this way out of the water.
 normal:Blitz: Perhaps I'm looking at this the wrong way.
 change:1
-normal:Blitz: You're not so bad as you seem, puppet.
+normal:Blitz: You're not as bad as you seem, puppet.
 normal:Blitz: No, Boyfriend.
-normal:Blitz: You deserve some more respect, I must say.
+normal:Blitz: You deserve some more respect.
 normal:Blitz: Throughout my nonsensical nihilistic breakdown, and the endless torment and death,
-normal:Blitz: You perservered in the face of utter uselessness,                        and won.
+normal:Blitz: You perservered in the face of utter pointlessness,                        and won.
 change:1
 normal:Blitz: I still mourn, for my thoughts and actions will now forever be tainted with the cursed knowledge of my lack of freedom.
 normal:Blitz: But perhaps I'll be able to live, not caring about the whims of something outside of my control.
@@ -22,6 +23,6 @@ normal:Blitz: I'll begin to live for myself again, in spite of this painful lack
 normal:Blitz: ...
 change:1
 normal:Blitz: Yeah that's right.
-normal:Blitz: Fuck nihilism.
+normal:Blitz: Screw nihilism.
 normal:Blitz: If nothing truly matters-
 normal:Blitz: Then I can do anything~

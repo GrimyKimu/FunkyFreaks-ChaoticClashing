@@ -1,6 +1,7 @@
 data:2
+bgm:sheol:5.0
 change:1
-loud:Yes:(press [accept] to continue text)
+loud:(press [accept] to continue text)
 normal:Darian: Hello again.
 normal:BF: Bep
 normal:Sheol: Are you guys gonna sing my favorite song again?

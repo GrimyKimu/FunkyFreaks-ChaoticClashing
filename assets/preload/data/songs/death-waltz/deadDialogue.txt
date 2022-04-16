@@ -1,5 +1,5 @@
 data:1
-loud:Yes:(the cosplay wasn't worth it)
+loud:(the cosplay wasn't worth it)
 normal:Sheol: death_count
 normal:Sheol: Apparently, you've already died that many times.
 normal:Dari: Now back to realizing that the cosplay was not worth it.

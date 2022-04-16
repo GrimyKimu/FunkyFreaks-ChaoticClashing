@@ -1387,12 +1387,28 @@ class LuaCharacter extends LuaClass
 
 		PlayState.instance.remove(char);
 
-		PlayState.dad = new Character(x, y, newName, char.isPlayer);
+		switch (property.className)
+		{
+			case "gf":
+				PlayState.gf = new Character(x, y, newName);
+				property.char = PlayState.gf;
+				PlayState.instance.add(PlayState.gf);
 
-		property.char = PlayState.dad;
+			case "dad":
+				PlayState.dad = new Character(x, y, newName);
+				property.char = PlayState.dad;
+				PlayState.instance.add(PlayState.dad);
 
-		PlayState.instance.add(PlayState.dad);
+				PlayState.instance.iconP2.changeIcon(newName);
+			case "boyfriend":
+				PlayState.boyfriend = new Boyfriend(x, y, newName);
+				property.char = PlayState.boyfriend;
+				PlayState.instance.add(PlayState.boyfriend);
 
+				PlayState.instance.iconP1.changeIcon(newName);
+
+				// what the fuck fuck this shit
+		}
 		return 0;
 	}
 
