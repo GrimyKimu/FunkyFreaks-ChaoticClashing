@@ -97,6 +97,8 @@ hudZoom = 1.0
 camHudAngle = 0.0
 cameraAngle = 0.0
 
+mercyMode = mercyMode
+
 function beatHit(beat)
 	if (beat > 32 and beat < 156) or (beat > 240 and beat < 496) or (beat > 624 and beat < 752) then
 		if math.fmod(beat, 2) == 0 then
@@ -147,9 +149,13 @@ function playerTwoSing(note, songPos)
 
 		camVar = camVar * -1
 
-		if Game.health > 0.1 then
+		if Game.health > 0.1 and mercyMode == false then
+			Game.health = Game.health - (.035 * Game.health)
+		elseif Game.health > 0.35 then
 			Game.health = Game.health - (.035 * Game.health)
 		end
+	else
+	
 	end
 end
 

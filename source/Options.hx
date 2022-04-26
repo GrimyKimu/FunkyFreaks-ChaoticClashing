@@ -668,6 +668,38 @@ class DownscrollOption extends Option
 	}
 }
 
+class MercyModeOption extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		if (OptionsMenu.isInPause)
+			description = "This option cannot be toggled in the pause menu.";
+		else
+			description = desc;
+	}
+
+	public override function left():Bool
+	{
+		if (OptionsMenu.isInPause)
+			return false;
+		FlxG.save.data.mercyMode = !FlxG.save.data.mercyMode;
+		display = updateDisplay();
+		return true;
+	}
+
+	public override function right():Bool
+	{
+		left();
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return "Mercy Mode: < " + (FlxG.save.data.mercyMode ? "Enabled" : "Disabled") + " >";
+	}
+}
+
 class GhostTapOption extends Option
 {
 	public function new(desc:String)

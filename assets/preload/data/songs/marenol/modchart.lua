@@ -308,6 +308,7 @@ function beatHit(beat)
 end
 
 widthMod = 0
+mercyMode = mercyMode
 
 function receptorReset(matchArrow, timer)
     for i = 0,7 do

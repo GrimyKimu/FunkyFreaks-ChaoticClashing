@@ -54,7 +54,7 @@ class OutdatedSubState extends MusicBeatState
 			+ "\n\nI really do appreciate it.\n\n"
 			+ "\nIf you want spoilers as to what is currently missing,"
 			+ "\npress Space/Enter to view the planned stuff and things."
-			+ "\n\nOr press ESC to simply move on to the demo.",
+			+ "\n\nOr press ESC to move on to the demo.",
 			32);
 
 		
@@ -109,14 +109,13 @@ class OutdatedSubState extends MusicBeatState
 
 				txt.text = "You asked for it!"
 					+ "\nCurrently missing: "
-					+ "\nBlitz's story 'boss battle': 'Murderous-Blitz'"
-					+ "\n Actually the music for it is done, it's hidden in the files (:"
-					+ "\n\nDarian's story 'boss battle': 'M-E-M-E'"
-					+ "\n & The finale song: 'Creator', which ends the main story."
-					+ "\n The actual music for both has yet to be finished."
+					+ "\nBlitz's & Darian's 'boss music': 'Murderous-Blitz' and 'M-E-M-E' respectively"
+					+ "\n Actually the music for both is actually 'done', barring any major changes, it's hidden in the files (:"
+					+ "\n\n The finale song: 'Creator', which ends the main story."
+					+ "\n The actual music has yet to be finished."
 					+ "\nEach of those levels and stuff have animations, mechanics, and story CGs that they need. Plenty of stuff."
 					+ "\n + Bonus freeplay mode remixes and stuff, 'cause I gotta procrastinate in a way that still technically works towards completion"
-					+ "\n\nYou may now press ESC to simply move on to the demo.";
+					+ "\n\nYou may now press ESC to move on to the demo.";
 			}, 0);
 		}
 		super.update(elapsed);

@@ -2,6 +2,7 @@
 switch = false;
 num = 0.0;
 hudWidth = hudWidth
+mercyMode = mercyMode
 
 function update(elapsed)
 	if switch == false then
@@ -43,7 +44,11 @@ function update(elapsed)
 			local receptor = _G['receptor_'..p]
 			local widthMod = (hudWidth - (hudWidth / 6)) / 4
 
-			receptor:tweenAlpha(0.25, 3.0)
+			if mercyMode == true then
+				receptor:tweenAlpha(0.1, 3.0)
+			else
+				receptor:tweenAlpha(0.25, 3.0)
+			end
 			receptor:tweenPos(widthMod + (widthMod * p), receptor.defaultY, 3.5)
 		end
 	end

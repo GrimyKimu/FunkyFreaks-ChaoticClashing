@@ -1,9 +1,0 @@
-data:1
-loud:(press [accept] to continue text)
-normal:Sheol: I've killed you death_count times already
-normal:Sheol: Lmao, you suck.
-normal:Dari: Wow, how rude.
-normal:Sheol: Wow, how stupid, how dumb, dummy big sibling.
-normal:Sheol: Imagine not laughing at the dummy stupid stupid player puppet dummy.
-normal:Dari: You are incredibly childish today, Sheol.
-normal:Sheol: HAHA HEHU

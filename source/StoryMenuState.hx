@@ -111,6 +111,8 @@ class StoryMenuState extends MusicBeatState
 	var leftArrow:FlxSprite;
 	var rightArrow:FlxSprite;
 
+	var mercyPNG:FlxSprite;
+
 	function unlockWeeks():Array<Bool>
 	{
 		var weeks:Array<Bool> = [];
@@ -246,6 +248,15 @@ class StoryMenuState extends MusicBeatState
 		add(scoreText);
 		add(txtWeekTitle);
 
+		if (FlxG.save.data.mercyMode)
+		{
+			mercyPNG = new FlxSprite().loadGraphic(Paths.image('mercyMode'));
+			mercyPNG.scale.set(0.19,0.19);
+			mercyPNG.updateHitbox();
+			mercyPNG.setPosition(FlxG.width - mercyPNG.width * 1.3,FlxG.height - mercyPNG.height * 1.3);
+			add(mercyPNG);
+		}
+
 		updateText();
 
 
@@ -284,8 +295,10 @@ class StoryMenuState extends MusicBeatState
 					if (FlxG.save.data.weeksBeaten[0])
 					{
 						noPlay = FlxG.random.bool(60); //a 40% chance for moving from mainMenu -> StoryMenu to trigger a Sain dialogue
-						var randoInt = FlxG.random.int(1, 5);
-						superFail = '$randoInt';
+						superFail = '$menuDial';
+						menuDial++;
+						if (menuDial > 5)
+							menuDial = 1;
 					}
 					else
 						noPlay = true;
@@ -293,8 +306,11 @@ class StoryMenuState extends MusicBeatState
 
 			if (didLose && diffOrigin != 'false')
 			{
-				var randoInt = FlxG.random.int(1, 3);
-				superFail = 'failed' + '$randoInt';
+				superFail = 'failed' + '$songDial';
+				songDial++;
+
+				if (songDial > 3)
+					songDial = 1;
 			}
 
 			if (!noPlay)
@@ -327,7 +343,12 @@ class StoryMenuState extends MusicBeatState
 
 	function returnToMenu():Void
 	{
-		remove(diabg, true);
+		FlxTween.tween(diabg, {alpha: 0}, 1.5, { 
+			onComplete: function(tween:FlxTween) 
+				{
+					remove(diabg, true);
+				}
+			});
 		songOrigin = null;
 		diffOrigin = null;
 		inCutscene = false;
@@ -365,6 +386,8 @@ class StoryMenuState extends MusicBeatState
 	}
 
 	//find me
+	private static var songDial:Int = 1;
+	private static var menuDial:Int = 1;
 	private var inCutscene:Bool = false;
 	private var doof:DialogueBox;
 	private var dialogue:Array<String> = ['sain: Aw shit, here we go again.'];
@@ -475,6 +498,12 @@ class StoryMenuState extends MusicBeatState
 			}
 		}
 
+		if (mercyPNG != null)
+		{
+			mercyPNG.scale.set(FlxMath.lerp(0.19, mercyPNG.scale.x, 0.95),FlxMath.lerp(0.19, mercyPNG.scale.y, 0.95));
+			mercyPNG.updateHitbox();
+		}
+
 		if (FlxG.sound.music != null)
 			Conductor.songPosition = FlxG.sound.music.time;
 
@@ -484,11 +513,10 @@ class StoryMenuState extends MusicBeatState
 	var movedBack:Bool = false;
 	var selectedWeek:Bool = false;
 	var stopspamming:Bool = false;
-	var isDemo = true;
 
 	function selectWeek()
 	{
-		if (weekUnlocked[curWeek]/* || (isDemo ? curWeek != 1 | 2 : false)*/)
+		if (weekUnlocked[curWeek])
 		{
 			if (stopspamming == false)
 			{
@@ -666,6 +694,12 @@ class StoryMenuState extends MusicBeatState
 	override function beatHit()
 	{
 		super.beatHit();
+
+		if (mercyPNG != null)
+		{
+			mercyPNG.scale.set(0.2,0.2);
+			mercyPNG.updateHitbox();
+		}
 
 		grpWeekCharacters.members[0].bopHead();
 		grpWeekCharacters.members[1].bopHead();

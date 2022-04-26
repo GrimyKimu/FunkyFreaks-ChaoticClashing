@@ -1,6 +1,7 @@
 -- "Kaos"
 num = 0.0;
 hudWidth = hudWidth
+mercyMode = mercyMode
 
 function songStart()
     for i = 4,7 do
@@ -15,7 +16,11 @@ function songStart()
         local receptor = _G["receptor_"..p]
         local widthMod = (hudWidth - (hudWidth / 6)) / 4
 
-        receptor:tweenAlpha(0.25, 1.8)
+        if mercyMode == true then
+			receptor:tweenAlpha(0.1, 3.0)
+		else
+			receptor:tweenAlpha(0.25, 3.0)
+		end
         receptor:tweenPos(widthMod + (widthMod * p), receptor.defaultY, 0.3)
     end
 end

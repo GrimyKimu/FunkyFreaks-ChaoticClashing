@@ -129,13 +129,14 @@ class OptionsMenu extends FlxSubState
 				new BotPlay("A bot plays for you!"),
 				#if desktop new FPSCapOption("Change your FPS Cap."),
 				#end
+				new MercyModeOption("For if the gimmicks are simply TOO much for you. Does not make the charts easier, only the gimmicks"),
 				new ResetButtonOption("Toggle pressing R to gameover."),
 				new InstantRespawn("Toggle if you instantly respawn after dying."),
 				new CamZoomOption("Toggle the camera zoom in-game."),
 				// new OffsetMenu("Get a note offset based off of your inputs!"),
 				new DFJKOption(),
 				new Judgement("Create a custom judgement preset"),
-				new CustomizeGameplay("Drag and drop gameplay modules to your prefered positions!")
+				// new CustomizeGameplay("Drag and drop gameplay modules to your prefered positions!")
 			]),
 			new OptionCata(345, 40, "Appearance", [
 				new NoteskinOption("Change your current noteskin"), new EditorRes("Not showing the editor grid will greatly increase editor performance"),

@@ -1,9 +1,0 @@
-data:1
-loud:(press [accept] to continue text)
-normal:Sheol: lmao
-normal:Sheol: lololololololololololol
-normal:Sheol: You dieded death_count times already
-normal:Sheol: you suck
-normal:Blitz: Ok, I have no idea what is happening to our sister, but just, like, deal with it...
-normal:Dari: Good luck.
-normal:Sheol: lmao tiky toime

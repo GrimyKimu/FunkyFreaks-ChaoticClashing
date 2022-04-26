@@ -67,6 +67,8 @@ class FreeplayState extends MusicBeatState
 	var exludedText:FlxText;
 	var magenta:FlxSprite;
 
+	var mercyPNG:FlxSprite;
+
 	public static function loadDiff(diff:Int, format:String, name:String, array:Array<SongData>)
 	{
 		try 
@@ -173,6 +175,15 @@ class FreeplayState extends MusicBeatState
 		comboText = new FlxText(diffText.x + 100, diffText.y, 0, "", 24);
 		comboText.font = scoreText.font;
 		add(comboText);
+		
+		if (FlxG.save.data.mercyMode)
+		{
+			mercyPNG = new FlxSprite().loadGraphic(Paths.image('mercyMode'));
+			mercyPNG.scale.set(0.19,0.19);
+			mercyPNG.updateHitbox();
+			mercyPNG.setPosition(FlxG.width - mercyPNG.width * 1.3,FlxG.height - mercyPNG.height * 1.3);
+			add(mercyPNG);
+		}
 
 		add(scoreText);
 
@@ -387,7 +398,11 @@ class FreeplayState extends MusicBeatState
 			icon.updateHitbox();
 		});
 
-		var varInt:Int = 1;
+		if (mercyPNG != null)
+		{
+			mercyPNG.scale.set(FlxMath.lerp(0.19, mercyPNG.scale.x, 0.95),FlxMath.lerp(0.19, mercyPNG.scale.y, 0.95));
+			mercyPNG.updateHitbox();
+		}
 
 		if (FlxG.sound.music != null)
 			Conductor.songPosition = FlxG.sound.music.time;
@@ -535,6 +550,12 @@ class FreeplayState extends MusicBeatState
 			iconArray.members[curSelected].scale.set(1.2,1.2);
 			iconArray.members[curSelected].updateHitbox();
 			iconArray.members[curSelected].angle = 8 * backAndForth;
+		}
+
+		if (mercyPNG != null)
+		{
+			mercyPNG.scale.set(0.2,0.2);
+			mercyPNG.updateHitbox();
 		}
 		
 

@@ -374,11 +374,15 @@ class PlayState extends MusicBeatState
 		inResults = false;
 
 		PlayStateChangeables.useDownscroll = FlxG.save.data.downscroll;
+		PlayStateChangeables.mercyMode = FlxG.save.data.mercyMode;
 		PlayStateChangeables.safeFrames = FlxG.save.data.frames;
 		PlayStateChangeables.scrollSpeed = FlxG.save.data.scrollSpeed;
 		PlayStateChangeables.botPlay = FlxG.save.data.botplay;
 		PlayStateChangeables.Optimize = FlxG.save.data.optimize;
 		PlayStateChangeables.zoom = FlxG.save.data.zoom;
+
+		if (PlayStateChangeables.mercyMode)
+			dariLives = 3;
 
 		// pre lowercasing the song name (create)
 		var songLowercase = StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase();
@@ -1177,6 +1181,7 @@ class PlayState extends MusicBeatState
 	#if FEATURE_LUAMODCHART
 	public static var luaModchart:ModchartState = null;
 	#end
+	
 
 	function startCountdown():Void
 	{
@@ -1186,7 +1191,14 @@ class PlayState extends MusicBeatState
 		//generateStaticArrows(0);
 		//generateStaticArrows(1);
 
-		remove(diabg, true);
+		FlxTween.tween(diabg, {alpha: 0}, 1.5, {ease: FlxEase.linear, 
+			onComplete: function(tween:FlxTween) 
+				{
+					remove(diabg, true);
+				}
+			});
+
+		
 
 		talking = false;
 		startedCountdown = true;
@@ -2043,7 +2055,6 @@ class PlayState extends MusicBeatState
 
 	public var pastScrollChanges:Array<Song.Event> = [];
 
-	var executableBF:Bool = false;
 	var currentLuaIndex = 0;
 
 	override public function update(elapsed:Float)
@@ -2379,12 +2390,12 @@ class PlayState extends MusicBeatState
 				
 						//drowning section
 					}
-					if (curBeat >= 200 && curBeat < 228 && curBeat % 4 == 0)
+					if (curBeat >= 204 && curBeat < 228 && curBeat % 4 == 0)
 					{
 						redFlash(0.5);
 						gf.dumbVar = false;
 				
-						//heartbeat section
+						// heartbeat section
 					}
 					if (curBeat >= 228 && curBeat < 232)
 					{							
@@ -2463,9 +2474,24 @@ class PlayState extends MusicBeatState
 				else
 					gf.dumbVar = true;
 				
-
 			case 'Murderous-Blitz':
+				// staticFlash(false, true, Conductor.stepCrochet * 0.5);
 				redMinumum = Math.min(hpScars.members.length / 100, 0.5);
+
+			case 'M-E-M-E':
+				// oh boy here we go
+
+				if (PlayStateChangeables.mercyMode)
+					executableBF = health > 1.85 || health < 0.15;
+				else
+				{
+					if (curBeat < 666) // middle of song / ~3 min mark
+						executableBF = health > 1.85 || health < 0.15;
+					else if (curBeat >= 666 && curBeat < 666) // after the mid point + before the KARA KARA chorus
+						executableBF = health > 1.7 || health < 0.3;
+					else // after the KARA KARA chorus into the end
+						executableBF = health > 1.5 || health < 0.5;
+				}
 
 			case 'Death-Waltz':
 				//asdf
@@ -2546,15 +2572,16 @@ class PlayState extends MusicBeatState
 		}
 		else
 		{
-			if (healthBar.percent < 20)
-				iconP1.animation.curAnim.curFrame = 1;
-			else
-				iconP1.animation.curAnim.curFrame = 0;
-
 			if (executableBF)
+			{
 				iconP2.animation.curAnim.curFrame = 1;
+				iconP1.animation.curAnim.curFrame = 1;
+			}
 			else
+			{
 				iconP2.animation.curAnim.curFrame = 0;
+				iconP1.animation.curAnim.curFrame = 0;
+			}
 		}
 
 		#if debug
@@ -2761,16 +2788,21 @@ class PlayState extends MusicBeatState
 				var horrorHP:Bool = false;
 				var diff:Float = 1.0;
 
-				switch (storyDifficulty)
+				if (PlayStateChangeables.mercyMode)
+					diff = 0.4;
+				else
 				{
-					case 1:
-						diff = 1.7;
-					case 3:
-						diff = 1.1;
-					case 4:
-						diff = 3.3;
-					default:
-						diff = 1.1;
+					switch (storyDifficulty)
+					{
+						case 1:
+							diff = 1.7;
+						case 3:
+							diff = 1.1;
+						case 4:
+							diff = 3.3;
+						default:
+							diff = 1.1;
+					}
 				}
 
 				//dumb, bad code, spaghetii, stupid, nightmare nightmare nightmare
@@ -2809,21 +2841,6 @@ class PlayState extends MusicBeatState
 						health -= .003 * hpHorror.alpha * health * diff;
 				}
 			}
-
-			//precursor for Darian's executions
-			if (Stage.curStage == 'bonkers')
-			{
-				//it's probably better to set this up in where CPU note hits are handled,
-				//since there I can probably(?) tie this to CPU-alt notes
-				//so that whenever an alt note is hit by Dari it'll trigger an execution attempt
-				//or maybe I'll make it so that it requires 2 alt-notes to trigger, one to prep then one to fire
-				
-			}
-
-			//gimmick for "Murderous-Blitz"
-			//at first, it seems like the same bleed mechanic of KC-S, but in actuallity, it's a ruse
-			//You start at full health(HP = 2), but for every mistake, for every scar, you lose a bit of health that you cannot recover
-			//on your 51st mistake, you lose
 
 			#if FEATURE_LUAMODCHART
 			if (luaModchart != null)
@@ -3245,7 +3262,7 @@ class PlayState extends MusicBeatState
 				// trace(daNote.y);
 				// WIP interpolation shit? Need to fix the pause issue
 				// daNote.y = (strumLine.y - (songTime - daNote.strumTime) * (0.45 * PlayState.SONG.speed));
-
+				
 				if (daNote.isSustainNote && daNote.wasGoodHit && Conductor.songPosition >= daNote.strumTime)
 				{
 					daNote.kill();
@@ -3330,7 +3347,7 @@ class PlayState extends MusicBeatState
 
 							if (daNote.isParent && daNote.visible)
 							{
-								//health -= 0.15; // give a health punishment for failing a LN
+								health -= 0.15; // give a health punishment for failing a LN
 								trace("hold fell over at the start");
 								for (i in daNote.children)
 								{
@@ -4260,11 +4277,8 @@ class PlayState extends MusicBeatState
 	function noteMiss(direction:Int = 1, daNote:Note):Void
 	{
 		if (daNote != null)
-			if (daNote.isAlt)
-			{
-				altNoteMechanics(dataSuffix[daNote.noteData], false);
+			if (daNote.isAlt && altNoteMechanics(dataSuffix[daNote.noteData], false))
 				return;
-			}
 
 		if (!boyfriend.stunned)
 		{
@@ -4611,11 +4625,11 @@ class PlayState extends MusicBeatState
 
 				case 'Murderous-Blitz':
 					canBleed = false;
-					health = 2 - (0.04*hpScars.members.length) + 0.001;
+					health = 2 - ((PlayStateChangeables.mercyMode ? 0.04 : 0.1) * hpScars.members.length) + 0.001;
 			}
 
 			if (canBleed && !inCutscene)
-				health -= .0035 * hpScars.members.length; //(0.7% of hp * scars) loss per beat
+				health -= .0035 * hpScars.members.length * (PlayStateChangeables.mercyMode ? 0.25 : 1.0);
 		}
 
 		if (!endingSong && currentSection != null)
@@ -4820,18 +4834,69 @@ class PlayState extends MusicBeatState
 		}
 	}
 
+	var swingSwung:Bool = false;
+	var executableBF:Bool = false;
+	var executionerBats:FlxSprite;
+	var dariLives:Int = 1;
+
+	/**
+	 * [Description]
+	 * This function should be called an even number of times during the boss song(or any other songs using the mechanic lol)
+	 * 
+	 * On the first call, an animation plays of two bats rising on both sides of the health bar, 
+	 * On the seceond call, the bats swing down and kill the player if they are within the thresholds of execution
+	 * 
+	 * If mercyMode is enabled, the player has three strikes against before they die,
+	 * otherwise, this kills instantly.
+	 */
+	function dariExecution()
+	{
+		if (swingSwung)
+		{
+			// play downSwing anim here
+			if (executableBF)
+			{
+				FlxG.sound.play(Paths.sound('BONK'), 1.0);
+				dariLives--;
+			}
+		}
+		else
+		{
+			// play upSwing anim here
+		}
+
+		if (dariLives == 0)
+			health = -1;
+
+		swingSwung = !swingSwung;
+	}
+
 	function altNoteMechanics(?data:String, didHit:Bool):Bool
 	{
 		var dadChar:String = dad.curCharacter;
 
 		if (dadChar.startsWith('sheol'))
 		{
-			
+			return false;
 		}
 
 		if (dadChar.startsWith('dari'))
 		{
-			
+			/**
+			 * regardless of whether or not you hit or miss the alt notes, 
+			 * it immediately places you in a near death scenario where you can immediately be executed
+			 * 
+			 * Though missing an alt not is worse for you in that you might end up killing yourself
+			 */
+
+			FlxG.sound.play(Paths.sound('bonke'), 1.0);
+
+
+			if (didHit)
+				health = PlayStateChangeables.mercyMode ? 1.5 : 2;
+			else 
+				health = PlayStateChangeables.mercyMode ? 0.5 : 0.1;
+			return true;
 		}
 
 		if (dadChar.startsWith('blitz') && didHit)
