@@ -1,5 +1,6 @@
 package;
 
+import flixel.util.FlxSave;
 import flixel.util.FlxSpriteUtil;
 #if FEATURE_LUAMODCHART
 import LuaClass.LuaCamera;
@@ -300,7 +301,7 @@ class PlayState extends MusicBeatState
 	private var redMinumum:Float = 0;
 	private static var staticBehind:FlxSprite;
 	private static var staticFront:FlxSprite;
-	
+	private static var mercyIcon:HealthIcon;
 
 	private var postGame:Bool = false;
 
@@ -380,6 +381,7 @@ class PlayState extends MusicBeatState
 		PlayStateChangeables.botPlay = FlxG.save.data.botplay;
 		PlayStateChangeables.Optimize = FlxG.save.data.optimize;
 		PlayStateChangeables.zoom = FlxG.save.data.zoom;
+		cannotDie = PlayStateChangeables.botPlay;
 
 		if (PlayStateChangeables.mercyMode)
 			dariLives = 3;
@@ -849,12 +851,9 @@ class PlayState extends MusicBeatState
 		laneunderlay.screenCenter(Y);
 		laneunderlayOpponent.screenCenter(Y);
 
-		// startCountdown();
-
 		if (storyDifficulty == 3)
 			executeModchart = false;		
 
-		// pre lowercasing the song name (startCountdown)
 		var songLowercase = StringTools.replace(PlayState.SONG.song, " ", "-").toLowerCase();
 		switch (songLowercase)
 		{
@@ -1043,6 +1042,13 @@ class PlayState extends MusicBeatState
 		iconP2 = new HealthIcon(dad.curCharacter, false);
 		iconP2.y = healthBar.y - (iconP2.height / 2);
 		add(iconP2);
+		
+		mercyIcon = new HealthIcon("mercy", true);
+		mercyIcon.y = healthBar.y - (mercyIcon.height * 0.85);
+		mercyIcon.scale.set(0.7,0.7);
+
+		if (PlayStateChangeables.mercyMode)
+			add(mercyIcon);
 
 		hpScars = new FlxTypedGroup<FlxSprite>();
 		add(hpScars);
@@ -1076,6 +1082,7 @@ class PlayState extends MusicBeatState
 		healthBarBG.cameras = [camHUD];
 		iconP1.cameras = [camHUD];
 		iconP2.cameras = [camHUD];
+		mercyIcon.cameras = [camHUD];
 		scoreTxt.cameras = [camHUD];
 		laneunderlay.cameras = [camHUD];
 		laneunderlayOpponent.cameras = [camHUD];
@@ -1117,7 +1124,7 @@ class PlayState extends MusicBeatState
 
 			//story dialogue that only plays on the first attempt/life
 		}
-		else if ((FlxG.random.bool() && dedCounter > 1) || Stage.curStage == 'blitzy') //story dialogue that may(or may not) play on every subsequent death
+		else if ((FlxG.random.bool() && dedCounter > 1) || curSong == "Murderous-Blitz") //story dialogue that may(or may not) play on every subsequent death
 			sheolSaysHi(); 
 		else
 		{
@@ -1198,95 +1205,109 @@ class PlayState extends MusicBeatState
 				}
 			});
 
-		
-
 		talking = false;
 		startedCountdown = true;
-		Conductor.songPosition = 0;
-		Conductor.songPosition -= Conductor.crochet * 5;
 
-		var swagCounter:Int = 0;
+		// find me
 
-		startTimer = new FlxTimer().start(Conductor.crochet / 1000, function(tmr:FlxTimer)
+		var bossArray:Array<String> = ["MARENOL","Murderous-Blitz","M-E-M-E","Creator"];
+
+		if (!bossArray.contains(curSong))
 		{
-			dad.dance(true, false);
-			gf.dance();
-			boyfriend.playAnim('idle');
+			Conductor.songPosition = 0;
+			Conductor.songPosition -= Conductor.crochet * 5;
 
-			var introAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
-			introAssets.set('default', ['ready', "set", "go"]);
-			var introAlts:Array<String> = introAssets.get('default');
-			var altSuffix:String = "";
-			
-			if(dad.curCharacter.startsWith('dari'))
+			var swagCounter:Int = 0;
+
+			startTimer = new FlxTimer().start(Conductor.crochet / 1000, function(tmr:FlxTimer)
 			{
-				altSuffix = "-dari";
-			}
-			if(dad.curCharacter.startsWith('blitz'))
-			{
-				altSuffix = "-blitz";
-			}
-			if(dad.curCharacter.startsWith('sheol'))
-			{
-				altSuffix = "-sheol";
+				dad.dance(true, false);
+				gf.dance();
+				boyfriend.playAnim('idle');
 
-				if (dad.curCharacter == 'sheol-horror')
-					altSuffix = "-sheolTrue";
-			}
+				var introAssets:Map<String, Array<String>> = new Map<String, Array<String>>();
+				introAssets.set('default', ['ready', "set", "go"]);
+				var introAlts:Array<String> = introAssets.get('default');
+				var altSuffix:String = "";
+				
+				if(dad.curCharacter.startsWith('dari'))
+				{
+					altSuffix = "-dari";
+				}
+				if(dad.curCharacter.startsWith('blitz'))
+				{
+					altSuffix = "-blitz";
+				}
+				if(dad.curCharacter.startsWith('sheol'))
+				{
+					altSuffix = "-sheol";
 
-			switch (swagCounter)
-			{
-				case 0:
-					FlxG.sound.play(Paths.sound('intro3' + altSuffix), 0.6);
-				case 1:
-					var ready:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[0]));
-					ready.scrollFactor.set();
-					ready.updateHitbox();
+					if (dad.curCharacter == 'sheol-horror')
+						altSuffix = "-sheolTrue";
+				}
 
-					ready.screenCenter();
-					add(ready);
-					FlxTween.tween(ready, {y: ready.y += 100, alpha: 0}, Conductor.crochet / 1000, {
-						ease: FlxEase.cubeInOut,
-						onComplete: function(twn:FlxTween)
-						{
-							ready.destroy();
-						}
-					});
-					FlxG.sound.play(Paths.sound('intro2' + altSuffix), 0.6);
-				case 2:
-					var set:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[1]));
-					set.scrollFactor.set();
+				switch (swagCounter)
+				{
+					case 0:
+						FlxG.sound.play(Paths.sound('intro3' + altSuffix), 0.6);
+					case 1:
+						var ready:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[0]));
+						ready.scrollFactor.set();
+						ready.updateHitbox();
 
-					set.screenCenter();
-					add(set);
-					FlxTween.tween(set, {y: set.y += 100, alpha: 0}, Conductor.crochet / 1000, {
-						ease: FlxEase.cubeInOut,
-						onComplete: function(twn:FlxTween)
-						{
-							set.destroy();
-						}
-					});
-					FlxG.sound.play(Paths.sound('intro1' + altSuffix), 0.6);
-				case 3:
-					var go:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[2]));
-					go.scrollFactor.set();
-					go.updateHitbox();
+						ready.screenCenter();
+						add(ready);
+						FlxTween.tween(ready, {y: ready.y += 100, alpha: 0}, Conductor.crochet / 1000, {
+							ease: FlxEase.cubeInOut,
+							onComplete: function(twn:FlxTween)
+							{
+								ready.destroy();
+							}
+						});
+						FlxG.sound.play(Paths.sound('intro2' + altSuffix), 0.6);
+					case 2:
+						var set:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[1]));
+						set.scrollFactor.set();
 
-					go.screenCenter();
-					add(go);
-					FlxTween.tween(go, {y: go.y += 100, alpha: 0}, Conductor.crochet / 1000, {
-						ease: FlxEase.cubeInOut,
-						onComplete: function(twn:FlxTween)
-						{
-							go.destroy();
-						}
-					});
-					FlxG.sound.play(Paths.sound('introGo' + altSuffix), 0.6);
-				case 4:
-			}
+						set.screenCenter();
+						add(set);
+						FlxTween.tween(set, {y: set.y += 100, alpha: 0}, Conductor.crochet / 1000, {
+							ease: FlxEase.cubeInOut,
+							onComplete: function(twn:FlxTween)
+							{
+								set.destroy();
+							}
+						});
+						FlxG.sound.play(Paths.sound('intro1' + altSuffix), 0.6);
+					case 3:
+						var go:FlxSprite = new FlxSprite().loadGraphic(Paths.image(introAlts[2]));
+						go.scrollFactor.set();
+						go.updateHitbox();
 
-			swagCounter += 1;
-		}, 5);
+						go.screenCenter();
+						add(go);
+						FlxTween.tween(go, {y: go.y += 100, alpha: 0}, Conductor.crochet / 1000, {
+							ease: FlxEase.cubeInOut,
+							onComplete: function(twn:FlxTween)
+							{
+								go.destroy();
+							}
+						});
+						FlxG.sound.play(Paths.sound('introGo' + altSuffix), 0.6);
+					case 4:
+				}
+
+				swagCounter += 1;
+			}, 5);
+		}
+		else
+		{
+			Conductor.songPosition = 0;
+			Conductor.songPosition -= Conductor.crochet;
+
+			dad.playAnim('intro');
+			boyfriend.playAnim('intro');
+		}
 	}
 	
 	var previousFrameTime:Int = 0;
@@ -2257,6 +2278,7 @@ class PlayState extends MusicBeatState
 				healthBar.visible = false;
 				iconP1.visible = false;
 				iconP2.visible = false;
+				mercyIcon.visible = false;
 				scoreTxt.visible = false;
 
 				if (hpHorror != null)
@@ -2269,6 +2291,7 @@ class PlayState extends MusicBeatState
 				healthBar.visible = true;
 				iconP1.visible = true;
 				iconP2.visible = true;
+				mercyIcon.visible = true;
 				scoreTxt.visible = true;
 
 				if (hpHorror != null)
@@ -2390,7 +2413,7 @@ class PlayState extends MusicBeatState
 				
 						//drowning section
 					}
-					if (curBeat >= 204 && curBeat < 228 && curBeat % 4 == 0)
+					if (curBeat >= 200 && curBeat < 228 && curBeat % 4 == 0)
 					{
 						redFlash(0.5);
 						gf.dumbVar = false;
@@ -2500,7 +2523,6 @@ class PlayState extends MusicBeatState
 		var lengthInPx = scoreTxt.textField.length * scoreTxt.frameHeight; // bad way but does more or less a better job
 
 		scoreTxt.x = (originalX - (lengthInPx / 2)) + 335;
-		cannotDie = PlayStateChangeables.botPlay;
 
 		if (controls.PAUSE && startedCountdown && canPause && (!cannotDie || PlayStateChangeables.botPlay))
 		{
@@ -2554,6 +2576,7 @@ class PlayState extends MusicBeatState
 
 		iconP1.x = healthBar.x + (healthBar.width * (FlxMath.remapToRange(healthBar.percent, 0, 100, 100, 0) * 0.01) - iconOffset);
 		iconP2.x = healthBar.x + (healthBar.width * (FlxMath.remapToRange(healthBar.percent, 0, 100, 100, 0) * 0.01)) - (iconP2.width - iconOffset);
+		mercyIcon.setPosition(FlxMath.lerp(mercyIcon.x, iconP1.x + 12, 0.15), FlxMath.lerp(mercyIcon.y, healthBar.y - (mercyIcon.height * 0.85), 0.05));
 
 		if (health > 2)
 			health = 2;
@@ -2953,7 +2976,21 @@ class PlayState extends MusicBeatState
 
 		if (health <= 0 && !cannotDie)
 		{
-			if (!usedTimeTravel) 
+			if (PlayStateChangeables.mercyMode && mercyLife != 0)
+			{
+				FlxG.sound.play(Paths.sound('survive'), 1.0);
+				mercyLife--;
+				hpScars.clear();
+				remove(mercyIcon);
+				health = 0.25;
+				new FlxTimer().start(0.01, function(tmr:FlxTimer)
+					{
+						health += 0.03;
+						if (health < 1.85)
+							tmr.reset(0.01);
+					});
+			}
+			else if (!usedTimeTravel) 
 			{
 				boyfriend.stunned = true;
 
@@ -2966,8 +3003,10 @@ class PlayState extends MusicBeatState
 				alreadyDied = true;
 				dedCounter++;
 
-				if (FlxG.save.data.InstantRespawn)
+				if (FlxG.save.data.InstantRespawn || curSong == "Murderous-Blitz")
 				{
+					if (curSong == "Murderous-Blitz")
+						FlxG.save.data.blitzDeaths++;
 					FlxG.switchState(new PlayState());
 				}
 				else 
@@ -4066,7 +4105,7 @@ class PlayState extends MusicBeatState
 					goodNoteHit(possibleNotes[0]);
 				else if (possibleNotes.length > 0)
 				{
-					if (!FlxG.save.data.ghost|| noGhost)
+					if (!FlxG.save.data.ghost || noGhost)
 					{
 						for (shit in 0...pressArray.length)
 						{ // if a direction is hit that shouldn't be
@@ -4078,8 +4117,6 @@ class PlayState extends MusicBeatState
 					{
 						if (pressArray[coolNote.noteData] && !hit[coolNote.noteData])
 						{
-							if (mashViolations != 0)
-								mashViolations--;
 							hit[coolNote.noteData] = true;
 							scoreTxt.color = FlxColor.WHITE;
 							var noteDiff:Float = -(coolNote.strumTime - Conductor.songPosition);
@@ -4274,12 +4311,15 @@ class PlayState extends MusicBeatState
 		#end
 	}
 
-	function noteMiss(direction:Int = 1, daNote:Note):Void
+	function noteMiss(direction:Int = 1, daNote:Note, bypass:Bool = false):Void
 	{
-		if (daNote != null)
-			if (daNote.isAlt && altNoteMechanics(dataSuffix[daNote.noteData], false))
-				return;
-
+		if (daNote != null && bypass == false) // if (bypass), skip alt-Note check
+			if (daNote.badAlt && !altNoteMechanics(daNote, false))
+			{
+				trace("Alt Note miss does not do damage.");
+				return; 
+			}
+			
 		if (!boyfriend.stunned)
 		{
 			health -= 0.1;
@@ -4370,61 +4410,16 @@ class PlayState extends MusicBeatState
 		return possibleNotes.length;
 	}
 
-	var mashing:Int = 0;
-	var mashViolations:Int = 0;
-
-	var etternaModeScore:Int = 0;
-
-	function noteCheck(controlArray:Array<Bool>, note:Note):Void // sorry lol
-	{
-		var noteDiff:Float = -(note.strumTime - Conductor.songPosition);
-
-		note.rating = Ratings.judgeNote(noteDiff);
-
-		/* if (loadRep)
-			{
-				if (controlArray[note.noteData])
-					goodNoteHit(note, false);
-				else if (rep.replay.keyPresses.length > repPresses && !controlArray[note.noteData])
-				{
-					if (NearlyEquals(note.strumTime,rep.replay.keyPresses[repPresses].time, 4))
-					{
-						goodNoteHit(note, false);
-					}
-				}
-		}*/
-
-		if (controlArray[note.noteData])
-		{
-			goodNoteHit(note, (mashing > getKeyPresses(note)));
-
-			/*if (mashing > getKeyPresses(note) && mashViolations <= 2)
-				{
-					mashViolations++;
-
-					goodNoteHit(note, (mashing > getKeyPresses(note)));
-				}
-				else if (mashViolations > 2)
-				{
-					// this is bad but fuck you
-					playerStrums.members[0].animation.play('static');
-					playerStrums.members[1].animation.play('static');
-					playerStrums.members[2].animation.play('static');
-					playerStrums.members[3].animation.play('static');
-					health -= 0.4;
-					trace('mash ' + mashing);
-					if (mashing != 0)
-						mashing = 0;
-				}
-				else
-					goodNoteHit(note, false); */
-		}
-	}
-
 	function goodNoteHit(note:Note, resetMashViolation = true):Void
 	{
-		if (mashing != 0)
-			mashing = 0;
+		if (note.badAlt && altNoteMechanics(note, true))
+		{
+			trace("You hit an alt-note! YOU FOOL!!");
+			note.kill();
+			notes.remove(note, true);
+			note.destroy();
+			return;
+		}
 
 		var noteDiff:Float = -(note.strumTime - Conductor.songPosition);
 
@@ -4443,12 +4438,6 @@ class PlayState extends MusicBeatState
 		// the oldest notes are at the end and are removed first
 		if (!note.isSustainNote)
 			notesHitArray.unshift(Date.now());
-
-		if (!resetMashViolation && mashViolations >= 1)
-			mashViolations--;
-
-		if (mashViolations < 0)
-			mashViolations = 0;
 
 		if (!note.wasGoodHit)
 		{
@@ -4497,6 +4486,7 @@ class PlayState extends MusicBeatState
 			}
 			else
 			{
+				health += 0.5 * FlxG.elapsed;
 				note.wasGoodHit = true;
 			}
 			if (!note.isSustainNote)
@@ -4599,6 +4589,7 @@ class PlayState extends MusicBeatState
 		{
 			iconP1.scale.set(1.2,1.2);
 			iconP1.angle = -2.5 * oneAndTwo;
+			mercyIcon.y = healthBar.y - (mercyIcon.height * 0.85) + 10;
 		}
 
 		if (!iconP2.nonDancer)
@@ -4629,7 +4620,7 @@ class PlayState extends MusicBeatState
 			}
 
 			if (canBleed && !inCutscene)
-				health -= .0035 * hpScars.members.length * (PlayStateChangeables.mercyMode ? 0.25 : 1.0);
+				health -= .0035 * hpScars.members.length * (PlayStateChangeables.mercyMode ? 0.5 : 1.0);
 		}
 
 		if (!endingSong && currentSection != null)
@@ -4838,6 +4829,7 @@ class PlayState extends MusicBeatState
 	var executableBF:Bool = false;
 	var executionerBats:FlxSprite;
 	var dariLives:Int = 1;
+	var mercyLife:Int = 1;
 
 	/**
 	 * [Description]
@@ -4846,7 +4838,7 @@ class PlayState extends MusicBeatState
 	 * On the first call, an animation plays of two bats rising on both sides of the health bar, 
 	 * On the seceond call, the bats swing down and kill the player if they are within the thresholds of execution
 	 * 
-	 * If mercyMode is enabled, the player has three strikes against before they die,
+	 * If mercyMode is enabled, the player has four strikes against them before they die,
 	 * otherwise, this kills instantly.
 	 */
 	function dariExecution()
@@ -4865,47 +4857,49 @@ class PlayState extends MusicBeatState
 			// play upSwing anim here
 		}
 
-		if (dariLives == 0)
+		if (dariLives <= 0)
 			health = -1;
 
 		swingSwung = !swingSwung;
 	}
 
-	function altNoteMechanics(?data:String, didHit:Bool):Bool
+	function altNoteMechanics(daNote:Note, didHit:Bool):Bool
 	{
-		var dadChar:String = dad.curCharacter;
+		/**
+		 * Sheol has no alt-note mechanics, regardless of the level/song
+		 * as such, any alt-notes also do not visually appear in her levels
+		 */ 
 
-		if (dadChar.startsWith('sheol'))
-		{
-			return false;
-		}
-
-		if (dadChar.startsWith('dari'))
+		if (dad.curCharacter.startsWith('dari'))
 		{
 			/**
 			 * regardless of whether or not you hit or miss the alt notes, 
 			 * it immediately places you in a near death scenario where you can immediately be executed
 			 * 
-			 * Though missing an alt not is worse for you in that you might end up killing yourself
+			 * Though missing an alt note is worse for you in that you might end up killing yourself
 			 */
 
 			FlxG.sound.play(Paths.sound('bonke'), 1.0);
-
 
 			if (didHit)
 				health = PlayStateChangeables.mercyMode ? 1.5 : 2;
 			else 
 				health = PlayStateChangeables.mercyMode ? 0.5 : 0.1;
+
+			boyfriend.playAnim('sing' + dataSuffix[daNote.noteData] + 'miss', true);
 			return true;
 		}
 
-		if (dadChar.startsWith('blitz') && didHit)
+		if (dad.curCharacter.startsWith('blitz') && didHit)
 		{
-			if (data == null)
-				data = "UP";
-			bleedAndDie(data, null, true);
+			/**
+			 * Blitz's alt-notes are mines, 
+			 * hitting any will count as a "miss" and will incur a bleed stack on the player + other miss penalties
+			 */
+			noteMiss(daNote.noteData, daNote, true);
 			return true;
 		}
+
 		return false;
 	}
 }

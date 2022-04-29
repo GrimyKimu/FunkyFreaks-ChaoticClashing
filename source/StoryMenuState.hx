@@ -117,7 +117,7 @@ class StoryMenuState extends MusicBeatState
 	{
 		var weeks:Array<Bool> = [];
 		if(FlxG.save.data.weeksBeaten[0] && !FlxG.save.data.weeksBeaten[4])
-			for (i in 0...3)
+			for (i in 0...2)
 			{
 				weeks[i] = !FlxG.save.data.weeksBeaten[i + 1];
 			}
@@ -513,10 +513,11 @@ class StoryMenuState extends MusicBeatState
 	var movedBack:Bool = false;
 	var selectedWeek:Bool = false;
 	var stopspamming:Bool = false;
+	var isDemo = true;
 
 	function selectWeek()
 	{
-		if (weekUnlocked[curWeek])
+		if (weekUnlocked[curWeek] && isDemo ? curWeek == 0 : true)
 		{
 			if (stopspamming == false)
 			{

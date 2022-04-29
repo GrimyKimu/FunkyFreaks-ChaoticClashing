@@ -37,6 +37,7 @@ class Note extends FlxSprite
 
 	public var luaID:Int = 0;
 
+	public var badAlt:Bool = false;
 	public var isAlt:Bool = false;
 
 	public var noteCharterObject:FlxSprite;
@@ -121,55 +122,19 @@ class Note extends FlxSprite
 		// defaults if no noteStyle was found in chart
 		var noteTypeCheck:String = 'normal';
 
-		if (inCharter)
+		frames = Paths.getSparrowAtlas('noteskins/Arrows', "shared");
+		for (i in 0...4)
 		{
-			frames = Paths.getSparrowAtlas('noteskins/Arrows', "shared");
-			for (i in 0...4)
-			{
-				animation.addByPrefix(dataColor[i] + 'Scroll', dataColor[i] + ' alone'); // Normal notes
-				animation.addByPrefix(dataColor[i] + 'hold', dataColor[i] + ' hold'); // Hold
-				animation.addByPrefix(dataColor[i] + 'holdend', dataColor[i] + ' tail'); // Tails
-				animation.addByPrefix(dataColor[i] + 'alt', dataColor[i] + ' alt'); // // alt notes (spooky)
-			}
-
-			setGraphicSize(Std.int(width * 0.7));
-			updateHitbox();
-			antialiasing = FlxG.save.data.antialiasing;
+			animation.addByPrefix(dataColor[i] + 'Scroll', dataColor[i] + ' alone'); // Normal notes
+			animation.addByPrefix(dataColor[i] + 'hold', dataColor[i] + ' hold'); // Hold
+			animation.addByPrefix(dataColor[i] + 'holdend', dataColor[i] + ' tail'); // Tails
+			animation.addByPrefix(dataColor[i] + 'alt', dataColor[i] + ' alt'); // alt notes (spooky)
 		}
-		else
-		{
-			if (PlayState.SONG.noteStyle == null)
-			{
-				switch (PlayState.storyWeek)
-				{
-					case 6:
-						noteTypeCheck = 'pixel';
-				}
-			}
-			else
-			{
-				noteTypeCheck = PlayState.SONG.noteStyle;
-			}
 
-			switch (noteTypeCheck)
-			{
-				default:
-					frames = Paths.getSparrowAtlas('noteskins/Arrows', "shared");
+		setGraphicSize(Std.int(width * 0.7));
+		updateHitbox();
 
-					for (i in 0...4)
-					{
-						animation.addByPrefix(dataColor[i] + 'Scroll', dataColor[i] + ' alone'); // Normal notes
-						animation.addByPrefix(dataColor[i] + 'hold', dataColor[i] + ' hold'); // Hold
-						animation.addByPrefix(dataColor[i] + 'holdend', dataColor[i] + ' tail'); // Tails
-						animation.addByPrefix(dataColor[i] + 'alt', dataColor[i] + ' alt'); // alt notes (spooky)
-					}
-
-					setGraphicSize(Std.int(width * 0.7));
-					updateHitbox();
-
-					antialiasing = FlxG.save.data.antialiasing;
-			}
-		}
+		antialiasing = FlxG.save.data.antialiasing;
 
 		x += swagWidth * noteData;
 		if (isAlt)
@@ -255,6 +220,7 @@ class Note extends FlxSprite
 	override function update(elapsed:Float)
 	{
 		super.update(elapsed);
+
 		if (!modifiedByLua)
 			angle = modAngle + localAngle;
 		else
@@ -271,12 +237,26 @@ class Note extends FlxSprite
 		if (!isSustainNote)
 		{
 			if (isAlt)
-				animation.play(dataColor[noteData] + 'alt');
+			{
+				if (PlayState.dad != null)
+					if (!PlayState.dad.curCharacter.startsWith("sheol") && mustPress)
+					{
+						animation.play(dataColor[noteData] + 'alt');
+						badAlt = true;
+					}
+					else
+						animation.play(dataColor[noteData] + 'Scroll');
+				else
+					animation.play(dataColor[noteData] + 'Scroll');
+
+			}
 			else
 				animation.play(dataColor[noteData] + 'Scroll');
 		}
 		else 
 			angle = 0;
+
+		
 
 		if (mustPress)
 		{
@@ -284,6 +264,17 @@ class Note extends FlxSprite
 			{
 				if (strumTime - Conductor.songPosition <= (((166 * Conductor.timeScale) / (PlayState.songMultiplier < 1 ? PlayState.songMultiplier : 1) * 0.5))
 					&& strumTime - Conductor.songPosition >= (((-166 * Conductor.timeScale) / (PlayState.songMultiplier < 1 ? PlayState.songMultiplier : 1))))
+					canBeHit = true;
+				else
+					canBeHit = false;
+			}
+			else if (badAlt)
+			{
+				/**
+				 * "badAlts" have a smaller window to be hit
+				 */
+				if (strumTime - Conductor.songPosition <= (((80 * Conductor.timeScale) / (PlayState.songMultiplier < 1 ? PlayState.songMultiplier : 1)))
+					&& strumTime - Conductor.songPosition >= (((-80 * Conductor.timeScale) / (PlayState.songMultiplier < 1 ? PlayState.songMultiplier : 1))))
 					canBeHit = true;
 				else
 					canBeHit = false;

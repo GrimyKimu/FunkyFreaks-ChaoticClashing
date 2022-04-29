@@ -129,7 +129,7 @@ class OptionsMenu extends FlxSubState
 				new BotPlay("A bot plays for you!"),
 				#if desktop new FPSCapOption("Change your FPS Cap."),
 				#end
-				new MercyModeOption("For if the gimmicks are simply TOO much for you. Does not make the charts easier, only the gimmicks"),
+				new MercyModeOption("Only for those who wish only to see the story to its end."),
 				new ResetButtonOption("Toggle pressing R to gameover."),
 				new InstantRespawn("Toggle if you instantly respawn after dying."),
 				new CamZoomOption("Toggle the camera zoom in-game."),

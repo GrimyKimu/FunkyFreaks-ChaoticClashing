@@ -1742,15 +1742,18 @@ class LockWeeksOption extends Option
 		}
 		FlxG.save.data.weeksBeaten = [false, false, false, false, false];
 		StoryMenuState.savedChildren = [false,false,false,false];
+		FlxG.save.data.blitzDeaths = 0;
 		confirm = false;
 		trace('Weeks Locked');
 		display = updateDisplay();
+
+		FlxG.resetGame();
 		return true;
 	}
 
 	private override function updateDisplay():String
 	{
-		return confirm ? "Confirm Story Reset" : "Reset Story Progress";
+		return confirm ? "Confirm Story Reset? (Will Restart Game)" : "Reset Story Progress";
 	}
 }
 

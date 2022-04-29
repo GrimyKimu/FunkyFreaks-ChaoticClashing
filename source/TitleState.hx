@@ -354,7 +354,6 @@ class TitleState extends MusicBeatState
 
 			new FlxTimer().start(2, function(tmr:FlxTimer)
 			{
-				var isDemo = true;
 				if (isDemo)
 				{
 					FlxG.switchState(new OutdatedSubState());
@@ -388,6 +387,8 @@ class TitleState extends MusicBeatState
 			textGroup.add(money);
 		}
 	}
+
+	var isDemo = true;
 
 	function addMoreText(text:String)
 	{

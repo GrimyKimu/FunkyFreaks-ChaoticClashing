@@ -1330,19 +1330,77 @@ class ChartingState extends MusicBeatState
 		check_naltAnim = new FlxUICheckBox(10, 150, null, null, "Toggle Alternative Animation", 100);
 		check_naltAnim.callback = function()
 		{
-			if (curSelectedNote != null)
-			{
-				for (i in selectedBoxes)
-				{
-					i.connectedNoteData[3] = check_naltAnim.checked;
+			var toDelete:Array<Note> = [];
+			var toAdd:Array<ChartingBox> = [];
 
-					for (ii in _song.notes)
+			// For each selected note...
+			for (i in 0...selectedBoxes.members.length)
+			{
+				var originalNote = selectedBoxes.members[i].connectedNote;
+				// Delete after the fact to avoid tomfuckery.
+				toDelete.push(originalNote);
+
+				var strum = originalNote.strumTime;
+				// Remove the old note.
+				// Find the position in the song to put the new note.
+				for (ii in _song.notes)
+				{
+					if (ii.startTime <= strum && ii.endTime > strum)
 					{
-						for (n in ii.sectionNotes)
-							if (n[0] == i.connectedNoteData[0] && n[1] == i.connectedNoteData[1])
-								n[3] = i.connectedNoteData[3];
+						// alright we're in this section lets paste the note here.
+						var newData:Array<Dynamic> = [
+							strum,
+							originalNote.rawNoteData,
+							originalNote.sustainLength,
+							originalNote.isAlt,
+							originalNote.beat
+						];
+						ii.sectionNotes.push(newData);
+
+						var thing = ii.sectionNotes[ii.sectionNotes.length - 1];
+
+						var note:Note = new Note(strum, originalNote.noteData, originalNote.prevNote, originalNote.isSustainNote, true, check_naltAnim.checked,
+							originalNote.beat);
+						note.rawNoteData = originalNote.rawNoteData;
+						note.sustainLength = originalNote.sustainLength;
+						note.setGraphicSize(Math.floor(GRID_SIZE), Math.floor(GRID_SIZE));
+						note.updateHitbox();
+						note.x = Math.floor(originalNote.rawNoteData * GRID_SIZE);
+
+						note.charterSelected = true;
+
+						note.y = Math.floor(getYfromStrum(strum) * zoomFactor);
+
+						var box = new ChartingBox(note.x, note.y, note);
+						box.connectedNoteData = thing;
+						// Add to selection after the fact to avoid tomfuckery.
+						toAdd.push(box);
+
+						curRenderedNotes.add(note);
+
+						pastedNotes.push(note);
+
+						if (note.sustainLength > 0)
+						{
+							var sustainVis:FlxSprite = new FlxSprite(note.x + (GRID_SIZE / 2),
+								note.y + GRID_SIZE).makeGraphic(8, Math.floor((getYfromStrum(note.strumTime + note.sustainLength) * zoomFactor) - note.y));
+
+							note.noteCharterObject = sustainVis;
+
+							curRenderedSustains.add(sustainVis);
+						}
+						trace("Made selected notes " + (check_naltAnim.checked ? "Alt-Notes" : "Normal-Notes"));
+						continue;
 					}
 				}
+			}
+			for (note in toDelete)
+			{
+				deleteNote(note);
+			}
+			for (box in toAdd)
+			{
+				selectedBoxes.add(box);
 			}
 		}
 
@@ -1895,8 +1953,10 @@ class ChartingState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
+		/*
 		try
 		{
+			*/
 			if (FlxG.sound.music != null)
 				if (FlxG.sound.music.time > FlxG.sound.music.length - 85)
 				{
@@ -2553,7 +2613,7 @@ class ChartingState extends MusicBeatState
 
 			FlxG.watch.addQuick('daBeat', curDecimalBeat);
 
-			if (FlxG.mouse.justPressed && !waitingForRelease)
+			if ((FlxG.mouse.justPressed || FlxG.mouse.justPressedRight) && !waitingForRelease)
 			{
 				if (FlxG.mouse.overlaps(curRenderedNotes))
 				{
@@ -2576,8 +2636,17 @@ class ChartingState extends MusicBeatState
 				{
 					if (FlxG.mouse.x > 0 && FlxG.mouse.x < 0 + gridBG.width && FlxG.mouse.y > 0 && FlxG.mouse.y < 0 + height)
 					{
-						FlxG.log.add('added note');
-						addNote();
+						if (FlxG.mouse.justPressed)
+						{
+							trace('added note');
+							addNote();
+						}
+						else
+						{
+							trace('added alt-note');
+							addNote(null, true);
+						}
+
 					}
 				}
 			}
@@ -2696,37 +2765,42 @@ class ChartingState extends MusicBeatState
 				{
 					Debug.logTrace("Let's go!! Time to MURDER THEM DOUBLED-UP BASTARDS!!");
 					var victims:Int = 0;
-					var oops:Int = 0;
 
-					//forces the chart to check through all the notes and see if there are any doubled up notes(I.E. notes directly on top of each other)
-					for (curNote in curRenderedNotes.members)
-					{
-						if (curNote == null)
-							continue; // let's avoid a null throw okay?
-
-						for (i in 0...curRenderedNotes.members.length)
+					/**
+					 * [
+					 * 	0 = strumTime, 
+					 * 	1 = noteData,
+					 * 	2 = sustainLength,
+					 * 	3 = isAlt,
+					 * 	4 = TimingStruct.getBeatFromTime(n.strumTime)
+					 * ]
+					*/
+					for (i in _song.notes)
+						for (curNote in i.sectionNotes)
 						{
-							var checkNote:Note = curRenderedNotes.members[i];
-							if (checkNote == null)
+							if (curNote == null)
+								continue; // let's avoid a null throw okay?
+	
+							for (s in 0...i.sectionNotes.length)
 							{
-								if (oops > 3)
-									break;
-								else
-									oops++;
-								continue;	
-							}
-
-							if (Math.abs(checkNote.strumTime - curNote.strumTime) < 10
-								&& checkNote != curNote && checkNote.rawNoteData == curNote.rawNoteData 
-								&& checkNote.noteData == curNote.noteData && curNote.mustPress == checkNote.mustPress)
-							{
-								victims++;
-								deleteNote(checkNote);
+								var checkNote = i.sectionNotes[s];
+	
+								if (checkNote == null)
+									continue; // let's avoid a null throw okay?
+	
+								if (Math.abs(checkNote[0] - curNote[0]) < 10 && checkNote != curNote && checkNote[1] == curNote[1] 
+									&& curNote[3] == checkNote[3] && curNote[4] == checkNote[4])
+								{
+									victims++;
+									i.sectionNotes.remove(checkNote);
+								}
 							}
 						}
-					}
+
+					//forces the chart to check through all the notes and see if there are any doubled up notes(I.E. notes directly on top of each other)
+					
 					if (victims > 0)
-						Debug.logTrace('$victims' + " notes that didn't make the cut... (:");
+						Debug.logTrace('$victims' + " notes didn't make the cut... (:");
 					else
 						Debug.logTrace("Aw, no bastards to murder... ): ");
 				}
@@ -2802,11 +2876,12 @@ class ChartingState extends MusicBeatState
 				}
 			}
 			_song.bpm = tempBpm;
+		/*
 		}
 		catch (e)
 		{
 			Debug.logError("Error on this shit???\n" + e);
-		}
+		}*/
 		super.update(elapsed);
 	}
 
@@ -3338,7 +3413,7 @@ class ChartingState extends MusicBeatState
 
 	public var curSelectedNoteObject:Note = null;
 
-	private function addNote(?n:Note):Void
+	private function addNote(?n:Note, ?tisAlt:Bool):Void
 	{
 		var strum = getStrumTime(dummyArrow.y) / zoomFactor;
 
@@ -3360,11 +3435,11 @@ class ChartingState extends MusicBeatState
 				n.strumTime,
 				n.noteData,
 				n.sustainLength,
-				false,
+				n.isAlt,
 				TimingStruct.getBeatFromTime(n.strumTime)
 			]);
 		else
-			section.sectionNotes.push([noteStrum, noteData, noteSus, false, TimingStruct.getBeatFromTime(noteStrum)]);
+			section.sectionNotes.push([noteStrum, noteData, noteSus, tisAlt == null ? false : tisAlt, TimingStruct.getBeatFromTime(noteStrum)]);
 
 		var thingy = section.sectionNotes[section.sectionNotes.length - 1];
 
@@ -3374,7 +3449,7 @@ class ChartingState extends MusicBeatState
 
 		if (n == null)
 		{
-			var note:Note = new Note(noteStrum, noteData % 4, null, false, true, TimingStruct.getBeatFromTime(noteStrum));
+			var note:Note = new Note(noteStrum, noteData % 4, null, false, true, tisAlt == null ? false : tisAlt, TimingStruct.getBeatFromTime(noteStrum));
 			note.rawNoteData = noteData;
 			note.sustainLength = noteSus;
 			note.setGraphicSize(Math.floor(GRID_SIZE), Math.floor(GRID_SIZE));
@@ -3598,8 +3673,6 @@ class ChartingState extends MusicBeatState
 
 	private function saveLevel()
 	{
-		var difficultyArray:Array<String> = ["-easy", "", "-hard"];
-
 		var toRemove = [];
 
 		for (i in _song.notes)
@@ -3625,7 +3698,7 @@ class ChartingState extends MusicBeatState
 			_file.addEventListener(Event.COMPLETE, onSaveComplete);
 			_file.addEventListener(Event.CANCEL, onSaveCancel);
 			_file.addEventListener(IOErrorEvent.IO_ERROR, onSaveError);
-			_file.save(data.trim(), _song.songId.toLowerCase() + difficultyArray[PlayState.storyDifficulty] + ".json");
+			_file.save(data.trim(), _song.songId.toLowerCase() + ".json");
 		}
 	}
 

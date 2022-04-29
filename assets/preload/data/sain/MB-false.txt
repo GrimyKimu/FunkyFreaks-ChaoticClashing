@@ -9,8 +9,8 @@ normal:Sain: Ah, I digress…
 normal:Sain: This copy child lacks the violent dismembering they will perform on the puppet.
 normal:Sain: For every mistake you make, Blitz removes a peice of flesh from the puppet...
 normal:Sain: Mistakes include the false notes or mines, ghost tapping, and actual misses.
-normal:Sain: Each of these count as a mistake, and you are only allowed to make 50 of them.
-normal:Sain: They will kill you in 51 mistakes, hard stop.
+normal:Sain: Each of these count as a mistake, and you are only allowed to make 20 of them.
+normal:Sain: They will kill you in 21 mistakes, hard stop.
 normal:BF: They mourn for what they've lost.
 normal:Sain: ...
 normal:Sain: Ah, did Blitz break the puppet?

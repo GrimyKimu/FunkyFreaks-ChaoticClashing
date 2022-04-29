@@ -14,6 +14,9 @@ class KadeEngineData
 		if (FlxG.save.data.weeksBeaten == null)
 			FlxG.save.data.weeksBeaten = [false, false, false, false, false];
 
+		if (FlxG.save.data.blitzDeaths == null)
+			FlxG.save.data.blitzDeaths == 0;
+
 		if (FlxG.save.data.newInput == null)
 			FlxG.save.data.newInput = true;
 

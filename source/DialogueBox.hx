@@ -78,6 +78,7 @@ class DialogueBox extends FlxSpriteGroup
 				curSong = 'meme';
 			case 'murderous-blitz':
 				curSong = 'MB';
+				deathCount = FlxG.save.data.blitzDeaths;
 				if (didDie)
 					for (i in 0...dialogueList.length)
 						if (dialogueList[i] != dialogueList[deathCount])
@@ -85,8 +86,8 @@ class DialogueBox extends FlxSpriteGroup
 			case 'kittycat-sonata':
 				curSong = 'KCS';
 		}
-		var afterString = '';
 
+		var afterString = '';
 		if (postGame)
 			afterString = '-after';
 		
