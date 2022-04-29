@@ -1,3 +1,4 @@
 data:1
 loud:This is a test level, meant to test stages and character animations.
-loud:"Minus-chrome" remix made by: "NAME-HERE"
+loud:"Minus-chrome" remix made by: "Uniimations" (@UniiAnimates on Twitter)
+loud:I absolutely do not claim the song as my own, it is only here in the demo for testing purposes

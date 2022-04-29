@@ -4,9 +4,3 @@ gf-blitz
 gf-wSheol
 gf-dari
 gf-marenol
-gf-madness
-gf-death
-gf-sheol
-gf-endless
-gf-accel
-gf-trouble

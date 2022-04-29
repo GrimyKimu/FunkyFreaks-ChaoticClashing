@@ -4,4 +4,5 @@ Not-Sorry:dari:0:0
 KittyCat-Sonata:blitz:0:0
 MARENOL:sheol-horror:1:1
 Kaos-EX:sheol-angry:1:1
-Test:face:0:0
+Murderous-Blitz:blitz-horror:2:1
+M-E-M-E:dari-serious:3:1
