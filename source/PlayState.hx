@@ -1302,6 +1302,8 @@ class PlayState extends MusicBeatState
 		}
 		else
 		{
+			startTimer = new FlxTimer();
+
 			Conductor.songPosition = 0;
 			Conductor.songPosition -= Conductor.crochet;
 
@@ -4370,7 +4372,7 @@ class PlayState extends MusicBeatState
 			
 			if(FlxG.save.data.missSounds)
 			{
-				FlxG.sound.play(Paths.soundRandom('missnote', 1, 3), FlxG.random.float(0.1, 0.2));
+				FlxG.sound.play(Paths.soundRandom('missnote', 1, 3), 0.35);
 			}
 
 			boyfriend.playAnim('sing' + dataSuffix[direction] + 'miss', true);
@@ -4882,9 +4884,15 @@ class PlayState extends MusicBeatState
 			FlxG.sound.play(Paths.sound('bonke'), 1.0);
 
 			if (didHit)
+			{
 				health = PlayStateChangeables.mercyMode ? 1.5 : 2;
+				return true;
+			}
 			else 
+			{
 				health = PlayStateChangeables.mercyMode ? 0.5 : 0.1;
+				return false;
+			}
 
 			boyfriend.playAnim('sing' + dataSuffix[daNote.noteData] + 'miss', true);
 			return true;

@@ -9,7 +9,7 @@ normal:Blitz: This is just a game, no need to lose your cool over nothing now, d
 vfx:shake:2:1.0
 normal:Sheol: …
 normal:Blitz: Sh-Sheol? Sis?? Are you-
-normal:Dari: Oh no...
+normal:Dari: Oh good, here we go.
 change:1
 vfx:color:0.9:1.5:RED
 sfx:slam2:1.0

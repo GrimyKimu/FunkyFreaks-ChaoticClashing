@@ -117,7 +117,7 @@ class StoryMenuState extends MusicBeatState
 	{
 		var weeks:Array<Bool> = [];
 		if(FlxG.save.data.weeksBeaten[0] && !FlxG.save.data.weeksBeaten[4])
-			for (i in 0...2)
+			for (i in 0...3)
 			{
 				weeks[i] = !FlxG.save.data.weeksBeaten[i + 1];
 			}

@@ -60,7 +60,7 @@ class FreeplayState extends MusicBeatState
 
 	var weeksBeaten:Array<Bool> = FlxG.save.data.weeksBeaten;
 	var bgVariety:FlxTypedGroup<FlxSprite>;
-	static var childArray:Array<String> = ["all","sheol","blitz","dari", "sain"];
+	static var childArray:Array<String> = ["all","sheol","blitz","dari"/*, "sain"*/];
 
 	static var exclusionaryZone:Int = 0;
 	var exclusionTimer:Float = 0;

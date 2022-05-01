@@ -165,8 +165,8 @@ class OptionsMenu extends FlxSubState
 				#if desktop // new ReplayOption("View saved song replays."),
 				#end
 				new ResetScoreOption("Reset your score on all songs and weeks. This is irreversible!"),
-				new LockWeeksOption("Reset your story mode progress. This is irreversible!"),
-				new ResetSettings("Reset ALL your settings. This is irreversible!")
+				new LockWeeksOption("Reset your story mode progress. This is irreversible!")
+				//new ResetSettings("Reset ALL your settings. This is irreversible!")
 			]),
 			new OptionCata(-1, 125, "Editing Keybinds", [
 				new LeftKeybind("The left note's keybind"), new DownKeybind("The down note's keybind"), new UpKeybind("The up note's keybind"),

@@ -1,5 +1,7 @@
 package;
 
+import flixel.FlxState;
+import flixel.system.FlxSound;
 import lime.app.Application;
 import lime.system.DisplayMode;
 import flixel.util.FlxColor;
@@ -1747,7 +1749,8 @@ class LockWeeksOption extends Option
 		trace('Weeks Locked');
 		display = updateDisplay();
 
-		FlxG.resetGame();
+		FlxG.sound.music.stop();
+		FlxG.switchState(new TitleState());
 		return true;
 	}
 

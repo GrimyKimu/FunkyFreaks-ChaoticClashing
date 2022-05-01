@@ -432,14 +432,8 @@ class ChartingState extends MusicBeatState
 		selectedBoxes = new FlxTypedGroup();
 
 		add(selectedBoxes);
-
-		Debug.logTrace("bruh");
-
 		// add(blackBorder);
 		add(snapText);
-
-		Debug.logTrace("bruh");
-
 		Debug.logTrace("create");
 
 		super.create();
@@ -2788,7 +2782,7 @@ class ChartingState extends MusicBeatState
 								if (checkNote == null)
 									continue; // let's avoid a null throw okay?
 	
-								if (Math.abs(checkNote[0] - curNote[0]) < 10 && checkNote != curNote && checkNote[1] == curNote[1] 
+								if (Math.abs(checkNote[0] - curNote[0]) < 25 && checkNote != curNote && checkNote[1] == curNote[1] 
 									&& curNote[3] == checkNote[3] && curNote[4] == checkNote[4])
 								{
 									victims++;

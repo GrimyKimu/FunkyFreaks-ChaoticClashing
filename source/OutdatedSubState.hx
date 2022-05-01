@@ -109,13 +109,11 @@ class OutdatedSubState extends MusicBeatState
 
 				txt.text = "You asked for it!"
 					+ "\nCurrently missing: "
-					+ "\nBlitz's & Darian's 'boss music': 'Murderous-Blitz' and 'M-E-M-E' respectively"
-					+ "\n Actually the music for both is actually 'done', barring any major changes, it's hidden in the files (:"
-					+ "\n\n The finale song: 'Creator', which ends the main story."
-					+ "\n The actual music has yet to be finished."
-					+ "\nEach of those levels and stuff have animations, mechanics, and story CGs that they need. Plenty of stuff."
+					+ "\n Blitz's & Darian's boss music + levels: 'Murderous-Blitz' and 'M-E-M-E' respectively"
+					+ "\n The finale song: 'Creator', which ends the main story."
+					+ "\n\n Each of those levels and stuff have animations, mechanics, and story CGs that they need. Plenty of stuff."
 					+ "\n + Bonus freeplay mode remixes and stuff, 'cause I gotta procrastinate in a way that still technically works towards completion"
-					+ "\n\nYou may now press ESC to move on to the demo.";
+					+ "\n\n You may now press ESC to move on to the demo.";
 			}, 0);
 		}
 		super.update(elapsed);

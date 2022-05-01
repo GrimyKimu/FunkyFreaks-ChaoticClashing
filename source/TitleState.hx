@@ -253,7 +253,7 @@ class TitleState extends MusicBeatState
 
 		FlxG.mouse.visible = false;
 
-		if (initialized)
+		if (initialized && FlxG.sound.music != null)
 			skipIntro();
 		else
 		{
@@ -565,9 +565,22 @@ class TitleState extends MusicBeatState
 			// It always bugged me that it didn't do this before.
 			// Skip ahead in the song to the drop.
 			if (!FlxG.save.data.weeksBeaten[0] || FlxG.save.data.weeksBeaten[5])
-				FlxG.sound.music.time = 9400; // 9.4 seconds
+			{
+				if (!FlxG.sound.music.playing)
+					FlxG.sound.playMusic(Paths.music('freakyMenu'));
+
+				FlxG.sound.music.loopTime = 9400; // 9.4 seconds
+				FlxG.sound.music.endTime = 131787; 
+			}
 			else
-				FlxG.sound.music.time = 12900; // 12.9 seconds for "-goner" variation of title music
+			{
+				if (!FlxG.sound.music.playing)
+					FlxG.sound.playMusic(Paths.music('freakyMenu-goner'));
+
+				FlxG.sound.music.loopTime = 12900; // 12.9 seconds for "-goner" variation of title music
+				FlxG.sound.music.endTime = 144990;
+			} 
+			FlxG.sound.music.time = FlxG.sound.music.loopTime;
 
 			skippedIntro = true;
 		}
