@@ -184,8 +184,8 @@ class DialogueBox extends FlxSpriteGroup
 		}
 		*/
 
-		staticFront.flipX == FlxG.random.bool(50) ? !staticFront.flipX : staticFront.flipX;
-		staticFront.flipY == FlxG.random.bool(50) ? !staticFront.flipY : staticFront.flipY;
+		staticFront.flipX = FlxG.random.bool(50);
+		staticFront.flipY = FlxG.random.bool(50);
 
 		if (screenShake != 0)
 		{

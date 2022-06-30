@@ -1,2 +1,2 @@
-data:0
-lmao what a joke
+data:1
+loud:death_count <- that should be a number(number of deaths this run)

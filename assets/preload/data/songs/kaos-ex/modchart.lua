@@ -9,7 +9,7 @@ function songStart()
         -- only a simple repositioning, no fancy spreading or anything
         local receptor = _G["receptor_"..i]
 
-        receptor:tweenPos(receptor.defaultX - 275, receptor.defaultY, 0.4)
+        receptor:tweenPos(receptor.defaultX - 310, receptor.defaultY, 0.4)
     end
 
     for p = 0,3 do

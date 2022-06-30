@@ -1,5 +1,10 @@
 package;
 
+import flixel.group.FlxSpriteGroup;
+import flixel.addons.plugin.screengrab.FlxScreenGrab;
+import flixel.math.FlxRandom;
+import flixel.util.FlxGradient;
+import flixel.util.FlxColor;
 import flixel.FlxSprite;
 import flixel.FlxG;
 import flixel.FlxBasic;
@@ -23,8 +28,8 @@ class Stage extends MusicBeatState
 	public var toAdd:Array<Dynamic> = []; // Add BGs on stage startup, load BG in by using "toAdd.push(bgVar);"
 	// Layering algorithm for noobs: Everything loads by the method of "On Top", example: You load wall first(Every other added BG layers on it), then you load road(comes on top of wall and doesn't clip through it), then loading street lights(comes on top of wall and road)
 	public var swagBacks:Map<String,
-		Dynamic> = []; // Store BGs here to use them later (for example with slowBacks, using your custom stage event or to adjust position in stage debug menu(press 8 while in PlayState with debug build of the game))
-	public var swagGroup:Map<String, FlxTypedGroup<Dynamic>> = []; // Store Groups
+		FlxSprite> = []; // Store BGs here to use them later (for example with slowBacks, using your custom stage event or to adjust position in stage debug menu(press 8 while in PlayState with debug build of the game))
+	public var swagGroup:Map<String, FlxSpriteGroup> = []; // Store Groups
 	public var bgSibs:Map<String, BGSibs> = [];
 	public var animatedBacks:Array<FlxSprite> = []; // Store animated backgrounds and make them play animation(Animation must be named Idle!! Else use swagGroup/swagBacks and script it in stepHit/beatHit function of this file!!)
 	public var layInFront:Array<Array<FlxSprite>> = [[], [], []]; // BG layering, format: first [0] - in front of GF, second [1] - in front of opponent, third [2] - in front of boyfriend(and technically also opponent since Haxe layering moment)
@@ -65,10 +70,10 @@ class Stage extends MusicBeatState
 				camZoom = 0.7;
 				//LOAD ALL THE CUSTOM STAGE ART IN THE RIGHT ORDER, FROM HERE DOWN IT GOES FROM BACK TO FRONT
 
-				var bg:FlxSprite = new FlxSprite(-1000, 0).loadGraphic(Paths.image('nowhere/noBG', 'shared'));
-				bg.setGraphicSize(Std.int(bg.width * 2));
+				var bg:FlxSprite = FlxGradient.createGradientFlxSprite(FlxG.width * 2, FlxG.height * 2, FlxColor.gradient(FlxColor.WHITE, FlxColor.GRAY, 6));
+				//new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2);
+				bg.screenCenter().y += 240;
 				bg.updateHitbox(); 
-				bg.antialiasing = true;
 				bg.active = false;
 				toAdd.push(bg);
 
@@ -122,13 +127,14 @@ class Stage extends MusicBeatState
 				moreBitz.animation.play('idle');
 				layInFront[2].push(moreBitz);
 				swagBacks['moreBitz'] = moreBitz;
+			
 			case 'nowhereScary':
 				camZoom = 0.7;
 
-				var bg:FlxSprite = new FlxSprite(-1000, 0).loadGraphic(Paths.image('nowhere/noBG2', 'shared'));
-				bg.setGraphicSize(Std.int(bg.width * 2));
+				var bg:FlxSprite = FlxGradient.createGradientFlxSprite(FlxG.width * 2, FlxG.height * 2, FlxColor.gradient(FlxColor.WHITE, FlxColor.BLACK, 6, FlxEase.quadIn));
+				//new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2);
+				bg.screenCenter().y += 240;
 				bg.updateHitbox(); 
-				bg.antialiasing = true;
 				bg.active = false;
 				toAdd.push(bg);
 
@@ -187,10 +193,10 @@ class Stage extends MusicBeatState
 				layInFront[2].push(moreBitz);
 				swagBacks['moreBitz'] = moreBitz;
 
-				var fgHorror = new FlxSprite(-580, 100);
+				var fgHorror = new FlxSprite(-580, 0);
 				fgHorror.frames = Paths.getSparrowAtlas('nowhere/fgHorror', 'shared');
 				fgHorror.animation.addByPrefix('idle', 'fgHorror', 24, true);
-				fgHorror.setGraphicSize(Std.int(fgHorror.width * 1.15));
+				fgHorror.setGraphicSize(Std.int(fgHorror.width * 1.2));
 				fgHorror.updateHitbox();
 				fgHorror.antialiasing = true;
 				fgHorror.scrollFactor.set(1.55, 1.55);
@@ -198,7 +204,7 @@ class Stage extends MusicBeatState
 				fgHorror.animation.play('idle');
 				layInFront[0].push(fgHorror);
 				swagBacks['fgHorror'] = fgHorror;
-				// fghorror is not showing up properly(or at all), even when its alpha values are still being read and manipulated as intended
+			
 			case 'arg': 
 				camZoom = 0.5;
 
@@ -226,16 +232,81 @@ class Stage extends MusicBeatState
 				drown.animation.play('idle');
 				toAdd.push(drown);
 				swagBacks['drown'] = drown;
+			
 			case 'blitzy':
-				/**
-				 * a pure black void, but in actuallity, as the song continues and it grows into more of a reddish evil gradient, 
-				 * visions of chains and hanging/impaled bodies are strewen across the endless "battlefield"
-				 * each and every single one of these is a dead BF... and the more you lose the song...
-				 * 
-				 * Well, I think you see where this is going, don't you?
-				 **/ 
+	
+				var bDeaths = FlxG.save.data.blitzDeaths;
+				camZoom = 0.85;
+
+				var bg:FlxSprite = FlxGradient.createGradientFlxSprite(FlxG.width * 2, FlxG.height * 2, FlxColor.gradient(FlxColor.RED, FlxColor.BLACK, 8, FlxEase.circInOut));
+				//new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2);
+				bg.screenCenter();
+				bg.updateHitbox(); 
+				bg.alpha = 0;
+				toAdd.push(bg);
+				swagBacks['bg'] = bg;
+
+				var bgChains = new FlxSprite();
+				bgChains.frames = Paths.getSparrowAtlas('nowhere/MB_bgChains', 'shared');
+				bgChains.animation.addByPrefix('idle', 'bgChains', 24, true, true);
+				bgChains.setGraphicSize(Std.int(bgChains.width * 1.2));
+				bgChains.scrollFactor.set(0.1,0.1);
+				bgChains.screenCenter();
+				bgChains.y -= 180;
+				bgChains.x -= 120;
+				bgChains.updateHitbox();
+				bgChains.animation.play('idle');
+				toAdd.push(bgChains);
+
+				
+				var hangingGroup = new FlxSpriteGroup();
+				for (d in 0...bDeaths)
+				{
+					// The many hanging bodies of the many(?) lives lost
+					var mathShit:Float = 0.2 + 0.8 * Math.abs(Math.sin(d * 666));
+					var lostBF = new FlxSprite().loadGraphic(Paths.image('nowhere/MB_hanging', 'shared'));
+					lostBF.scale.set(mathShit, mathShit);
+					lostBF.screenCenter().setPosition(666 * Math.sin(d * 0.25) + 600, lostBF.y - (40 + 360 * lostBF.scale.y));
+					lostBF.scrollFactor.set(0.1 * lostBF.scale.x, 0.05 * lostBF.scale.x);
+					lostBF.alpha = 0.4 + 0.6 * lostBF.scale.x;
+					lostBF.origin.set(lostBF.graphic.width / 2, 0);
+
+					hangingGroup.add(lostBF);
+				}
+				toAdd.push(hangingGroup);
+				swagGroup["hangingGroup"] = hangingGroup;
+
+				var poikeGroup = new FlxSpriteGroup();
+
+				for (p in 0...FlxG.random.int(10,30))
+				{
+					// the positions of the BG pikes are randomized, to add a bit of randomized flair to the stage
+					var randoVar:Float = FlxG.random.float(-1.0,1.0);
+					var poike = new FlxSprite().loadGraphic(Paths.image('nowhere/MB_pike', 'shared'));
+					poike.origin.set(poike.graphic.width / 2, poike.graphic.height);
+					poike.scale.set(FlxG.random.float(0.2,0.9), FlxG.random.float(0.8,1.5));
+					poike.screenCenter().setPosition(720 * randoVar + 480,-300 + (360 * poike.scale.y));
+					poike.scrollFactor.set(1.5 * poike.scale.x,0.2 * poike.scale.y);
+					poike.alpha = 0.2 + 0.8 * poike.scale.x;
+					poike.angle = ((poike.x - 250) / 100) + (33 * randoVar);
+
+					poikeGroup.add(poike);
+				}
+				toAdd.push(poikeGroup);
+				swagGroup["poikeGroup"] = poikeGroup;
+
+				var fgChains = new FlxSprite();
+				fgChains.frames = Paths.getSparrowAtlas('nowhere/MB_fgChains', 'shared');
+				fgChains.animation.addByPrefix('idle', 'fgChains', 24, true, true);
+				fgChains.setGraphicSize(Std.int(fgChains.width * 1.5));
+				fgChains.scrollFactor.set(2.5,2.5);
+				fgChains.screenCenter().x -= 360;
+				fgChains.updateHitbox();
+				fgChains.animation.play('idle');
+				layInFront[2].push(fgChains);
+
 			case 'bonkers':
-				//asdf
+				// It's literally just Dari's true form as the BG
 		}
 	}
 
@@ -250,14 +321,22 @@ class Stage extends MusicBeatState
 				case "nowhere" | "nowhereScary":
 					swagBacks['groundBitz'].angle = 8 * Math.sin(Conductor.songPosition / 900);
 					swagBacks['moreBitz'].angle = -4 * Math.sin(Conductor.songPosition / 1400);
+				case "blitzy":
+					swagBacks['bg'].alpha = Math.abs(Math.sin(Conductor.songPosition / 1800));
+					swagGroup["poikeGroup"].forEach(function (poike:FlxSprite)
+						{
+							poike.y = -300 + (360 * poike.scale.y) + (35 * poike.scale.y * Math.sin(Conductor.songPosition / 2400));
+						});
+					swagGroup["hangingGroup"].forEach(function (lostBF:FlxSprite)
+						{
+							lostBF.angle = FlxMath.lerp(0, lostBF.angle, 0.85);
+						});
 			}
 		}
 	}
 
 	override function stepHit()
 	{
-		super.stepHit();
-
 		if (!PlayStateChangeables.Optimize)
 		{
 			var array = slowBacks[curStep];
@@ -290,12 +369,11 @@ class Stage extends MusicBeatState
 				}
 			}
 		}
+		super.stepHit();
 	}
 
 	override function beatHit()
 	{
-		super.beatHit();
-
 		if (FlxG.save.data.distractions && animatedBacks.length > 0)
 		{
 			for (bg in animatedBacks)
@@ -316,5 +394,6 @@ class Stage extends MusicBeatState
 						swagBacks['fgHorror'].animation.play('idle', false);
 			}
 		}
+		super.beatHit();
 	}
 }

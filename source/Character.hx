@@ -211,26 +211,57 @@ class Character extends FlxSprite
 				loadOffsetFile(curCharacter);
 				playAnim('firstDeath');
 				flipX = true;
-			case 'bf-blitzDead': //Blitz's usual <3 
-				//time for some more death lmao!
-				frames = Paths.getSparrowAtlas('characters/blitzDead');
-				animation.addByPrefix('firstDeath', "bf blitz start", 24, false);
-				animation.addByPrefix('deathLoop', "bf blitz loop", 24, true);
-				animation.addByPrefix('deathConfirm', "bf blitz end", 24, false);
+			case 'bf-blitz':
+				var tex = Paths.getSparrowAtlas('bf_Blitz','shared',true);
+				frames = tex;
+
+				animation.addByPrefix('idle', 'idle', 24, false);
+				animation.addByPrefix('singUP', 'NOTE UP', 24, false);
+				animation.addByPrefix('singLEFT', 'NOTE LEFT', 24, false);
+				animation.addByPrefix('singRIGHT', 'NOTE RIGHT', 24, false);
+				animation.addByPrefix('singDOWN', 'NOTE DOWN', 24, false);
+
+				animation.addByPrefix('singUPmiss', 'MISS', 24, false);
+				animation.addByPrefix('singLEFTmiss', 'MISS', 24, false);
+				animation.addByPrefix('singRIGHTmiss', 'MISS', 24, false);
+				animation.addByPrefix('singDOWNmiss', 'MISS', 24, false); // all directions of miss share the same animation
+
+				// does not have a unique death animation, because we skip the gameover screen during MB
+				// BOYFRIEND.y in Playstate will need to be WAAAAAY changed
 
 				loadOffsetFile(curCharacter);
-				playAnim('firstDeath');
+				scale.set(1.5,1.5);
+				updateHitbox();
+				screenCenter();
+
+				playAnim('idle');
 				flipX = true;
-			case 'bf-bonked': //byonk 
-				//time for some more death lmao!
-				frames = Paths.getSparrowAtlas('characters/bfBonk');
-				animation.addByPrefix('firstDeath', "bf bonk start", 24, false);
-				animation.addByPrefix('deathLoop', "bf bonk loop", 24, true);
-				animation.addByPrefix('deathConfirm', "bf bonk end", 24, false);
+
+			case 'bf-dari':
+				var tex = Paths.getSparrowAtlas('bf_dari','shared',true);
+				frames = tex;
+
+				animation.addByPrefix('idle', 'idle', 24, false);
+				animation.addByPrefix('singUP', 'NOTE UP', 24, false);
+				animation.addByPrefix('singLEFT', 'NOTE LEFT', 24, false);
+				animation.addByPrefix('singRIGHT', 'NOTE RIGHT', 24, false);
+				animation.addByPrefix('singDOWN', 'NOTE DOWN', 24, false);
+
+				animation.addByPrefix('singUPmiss', 'UP MISS', 24, false);
+				animation.addByPrefix('singLEFTmiss', 'LEFT MISS', 24, false);
+				animation.addByPrefix('singRIGHTmiss', 'RIGHT MISS', 24, false);
+				animation.addByPrefix('singDOWNmiss', 'DOWN MISS', 24, false);
+
+				animation.addByPrefix('singUP-alt', 'HEY', 24, false);
+
+				animation.addByPrefix('firstDeath', "BF dies", 24, false); // bonke
+				animation.addByPrefix('deathLoop', "BF Dead Loop", 24, false);
+				animation.addByPrefix('deathConfirm', "BF Dead confirm", 24, false);
 
 				loadOffsetFile(curCharacter);
-				playAnim('firstDeath');
-				flipX = true;
+
+				playAnim('idle');
+
 
 			case 'sheol':
 				frames = Paths.getSparrowAtlas('characters/sheol_assets');
@@ -355,17 +386,18 @@ class Character extends FlxSprite
 
 				playAnim('idle');
 			case 'dari-serious':
-				frames = Paths.getSparrowAtlas('characters/dari_assets');
-				animation.addByPrefix('idle', 'Idle0', 24, false);
+				frames = Paths.getSparrowAtlas('characters/dariSerious');
+				animation.addByPrefix('idle', 'Idle0', 24, true);
 				animation.addByPrefix('singUP', 'Up Note', 24, false);
 				animation.addByPrefix('singDOWN', 'Down Note', 24, false);
 				animation.addByPrefix('singLEFT', 'Left Note', 24, false);
 				animation.addByPrefix('singRIGHT', 'Right Note', 24, false);
 
-				animation.addByPrefix('idle-alt', 'Idle-alt', 24, true);
-				animation.addByPrefix('singDOWN-alt', 'Down alt', 24, false);
-
-				animation.addByPrefix('cheer', 'stop', 24, false);
+				animation.addByPrefix('singUP-alt', 'Alt Up', 24, false);
+				animation.addByPrefix('singDOWN-alt', 'Alt Down', 24, false);
+				animation.addByPrefix('singLEFT-alt', 'Alt Left', 24, false);
+				animation.addByPrefix('singRIGHT-alt', 'Alt Right', 24, false);
+				animation.addByPrefix('cheer', 'HEY', 24, false);
 
 				loadOffsetFile(curCharacter);
 
@@ -385,8 +417,6 @@ class Character extends FlxSprite
 				animation.addByPrefix('scarRIGHT', 'slashRight', 24, false);
 				loadOffsetFile(curCharacter);
 
-				dumbVar = true;
-
 				playAnim('idle');
 			case 'blitz2':
 				frames = Paths.getSparrowAtlas('characters/blitz_assets');
@@ -400,7 +430,7 @@ class Character extends FlxSprite
 				animation.addByPrefix('scarDOWN', 'slashDown', 24, false);
 				animation.addByPrefix('scarLEFT', 'slashLeft', 24, false);
 				animation.addByPrefix('scarRIGHT', 'slashRight', 24, false);
-				loadOffsetFile(curCharacter);
+				loadOffsetFile("blitz");
 
 				dumbVar = true;
 				visible = false;
@@ -409,30 +439,44 @@ class Character extends FlxSprite
 			case 'blitz-horror':
 				frames = Paths.getSparrowAtlas('characters/blitz_horror');
 				animation.addByPrefix('idle', 'Idle', 24, true);
-				animation.addByPrefix('singUP', 'Up Note', 24, false);
-				animation.addByPrefix('singDOWN', 'Down Note', 24, false);
-				animation.addByPrefix('singLEFT', 'Left Note', 24, false);
-				animation.addByPrefix('singRIGHT', 'Right Note', 24, false);
+				animation.addByPrefix('singUP', 'Note Up', 24, false);
+				animation.addByPrefix('singDOWN', 'Note Down', 24, false);
+				animation.addByPrefix('singLEFT', 'Note Left', 24, false);
+				animation.addByPrefix('singRIGHT', 'Note Right', 24, false);
+
+				animation.addByPrefix('singUP-alt', 'Scream', 24, false);
+				animation.addByPrefix('singDOWN-alt', 'Scream', 24, false);
+				animation.addByPrefix('singLEFT-alt', 'Scream', 24, false);
+				animation.addByPrefix('singRIGHT-alt', 'Scream', 24, false);
 				
 				animation.addByPrefix('scarUP', 'slashUp', 24, false);
 				animation.addByPrefix('scarDOWN', 'slashDown', 24, false);
 				animation.addByPrefix('scarLEFT', 'slashLeft', 24, false);
 				animation.addByPrefix('scarRIGHT', 'slashRight', 24, false);
-				loadOffsetFile(curCharacter);
 
-				dumbVar = true;
+				animation.addByPrefix('cheer', 'Scream', 24, false);
+				loadOffsetFile(curCharacter);
 
 				playAnim('idle');
 			case 'blitz-h2':
-				frames = Paths.getSparrowAtlas('characters/blitz_horror2');
-				// 'idle' has three frames
-				// each 'sing' has two possible frames
+				frames = Paths.getSparrowAtlas('characters/blitz_horror');
 				animation.addByPrefix('idle', 'Idle', 24, true);
-				animation.addByPrefix('singUP', 'Up Note', 24, false);
-				animation.addByPrefix('singDOWN', 'Down Note', 24, false);
-				animation.addByPrefix('singLEFT', 'Left Note', 24, false);
-				animation.addByPrefix('singRIGHT', 'Right Note', 24, false);
-				loadOffsetFile(curCharacter);
+				animation.addByPrefix('singUP', 'Note Up', 24, false);
+				animation.addByPrefix('singDOWN', 'Note Down', 24, false);
+				animation.addByPrefix('singLEFT', 'Note Left', 24, false);
+				animation.addByPrefix('singRIGHT', 'Note Right', 24, false);
+
+				animation.addByPrefix('singUP-alt', 'Scream', 24, false);
+				animation.addByPrefix('singDOWN-alt', 'Scream', 24, false);
+				animation.addByPrefix('singLEFT-alt', 'Scream', 24, false);
+				animation.addByPrefix('singRIGHT-alt', 'Scream', 24, false);
+				
+				animation.addByPrefix('scarUP', 'slashUp', 24, false);
+				animation.addByPrefix('scarDOWN', 'slashDown', 24, false);
+				animation.addByPrefix('scarLEFT', 'slashLeft', 24, false);
+				animation.addByPrefix('scarRIGHT', 'slashRight', 24, false);
+
+				animation.addByPrefix('cheer', 'Scream', 24, false);
 
 				playAnim('idle');
 		}
@@ -479,28 +523,12 @@ class Character extends FlxSprite
 	{
 		if (swapTimer > 0)
 			swapTimer -= elapsed;
-		if (swapTimer <= 0)
-			swapTimer = 0;
 
 		if (!debugMode)
 		{
-			if (!curCharacter.startsWith('bf') && curCharacter != 'blitz-h2' && curCharacter !='blitz2' && animation.curAnim != null)
-			{
-				if (animation.curAnim.name.startsWith('sing'))
-				{
-					holdTimer += elapsed;
-				}
-
-				var dadVar:Float = 4;
-
-				if (holdTimer >= Conductor.stepCrochet * dadVar * 0.001)
-				{
-					//trace('dance');
+			if (!curCharacter.startsWith('bf') && curCharacter != 'blitz-h2' && curCharacter != 'blitz2' && animation.curAnim != null)
+				if (!animation.curAnim.name.startsWith('idle') && animation.curAnim.finished)
 					dance();
-					holdTimer = 0;
-				}
-			}
-
 			
 			switch (curCharacter)
 			{
@@ -525,30 +553,30 @@ class Character extends FlxSprite
 						alpha += 0.01;
 					if (alpha > 1)
 						alpha = 1;
-				case 'blitz-horror':
-					if (animation.curAnim.name != 'idle')
+				case "blitz-horror":
+					if (animation.curAnim != null)
 					{
-						alpha = FlxG.random.float(0.5, 1.0);
+						if (animation.curAnim.name != "idle" && !dumbVar)
+						{
+							//alpha = FlxG.random.float(0.1,0.75);
+							alpha = 1.0;
+						}
+						else
+						{
+							alpha = 1.0;
+						}
 					}
-					else
-						alpha = 1;
-				case 'blitz-h2' | 'blitz2':
+				case 'blitz2':
 					//lmao how many layers of random bools do you want
 					if (!PlayState.dad.dumbVar)
 					{
-						//visible = PlayState.dad.visible;
+						// visible = PlayState.dad.visible;
 
 						var chanceMulti:Float = 1 / PlayState.dad.alpha;
 
-						if (swapTimer == 0)
+						if (PlayState.dad.animation.curAnim.name != animation.curAnim.name && (FlxG.random.bool(1)))
 						{
-							if (FlxG.random.bool(85 * PlayState.dad.alpha))
-								playAnim(PlayState.dad.animation.curAnim.name,true,false,-1);
-							else
-								animation.randomFrame();
-
-							animation.stop();
-							swapTimer = FlxG.random.float(0.1,Math.max(3.5 * PlayState.dad.alpha, 1.1));
+							playAnim(PlayState.dad.animation.curAnim.name,true);
 						}
 
 						if (FlxG.random.bool(5 * chanceMulti))
@@ -564,6 +592,34 @@ class Character extends FlxSprite
 						if (FlxG.random.bool(1 * chanceMulti))
 							scale.set(randoScale,randoScale);
 					}
+				case 'blitz-h2':
+					if (!PlayState.dad.dumbVar && PlayState.dad.animation.curAnim != null && animation.curAnim != null)
+					{
+						var screamVar:Bool = PlayState.dad.animation.curAnim.name == "cheer" || PlayState.dad.animation.curAnim.name.endsWith('-alt');
+						visible = PlayState.dad.visible && FlxG.random.bool(50);
+
+						if (PlayState.dad.animation.curAnim.name != animation.curAnim.name && (FlxG.random.bool(7.5) || screamVar))
+						{
+							playAnim(PlayState.dad.animation.curAnim.name,true);
+						}
+
+						if (FlxG.random.bool(5) || screamVar)
+							alpha = FlxG.random.float(0.01,0.6);
+						
+						if (FlxG.random.bool(1) || screamVar)
+							x = PlayState.dad.x + FlxG.random.int(-540,540);
+						
+						if (FlxG.random.bool(1) || screamVar)
+							y = PlayState.dad.y + FlxG.random.int(-5,5);
+
+						if (FlxG.random.bool(0.5) || screamVar)
+						{
+							var randoScale = FlxG.random.float(0.85,1.15);
+							scale.set(randoScale,randoScale);
+						}
+					}
+					else
+						visible = false;
 			}
 		}
 		super.update(elapsed);
@@ -573,7 +629,7 @@ class Character extends FlxSprite
 
 	public function dance(forced:Bool = false, altAnim:Bool = false):Void
 	{
-		if (!debugMode)
+		if (!debugMode && animation.curAnim != null)
 		{
 			if (curCharacter.startsWith('gf') && curCharacter != 'gf-marenol')
 			{
@@ -607,7 +663,6 @@ class Character extends FlxSprite
 
 			if (curCharacter.startsWith('blitz'))
 			{
-				dumbVar = false;
 				if ((!animation.curAnim.name.startsWith('sing') && !animation.curAnim.name.startsWith('scar')) || animation.curAnim.finished)
 				{
 					if (!altAnim)
@@ -629,6 +684,11 @@ class Character extends FlxSprite
 							playAnim('idle');
 					}
 
+				case 'dari-serious':
+					if ((!animation.curAnim.name.startsWith('sing') && !animation.curAnim.name.startsWith('cheer')) || animation.curAnim.finished)
+					{
+						playAnim('idle', false);
+					}
 				case 'sheol':
 					danced = !danced;
 

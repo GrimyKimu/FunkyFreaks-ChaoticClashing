@@ -1,0 +1,28 @@
+data:4
+bgm:sad girl slow:10.0
+loud:(You've done it! You've saved Blitz!)
+normal:Blitz: ...
+normal:Blitz: Perhaps I'm blowing this way out of the water.
+normal:Blitz: Perhaps I'm looking at this the wrong way.
+change:1
+normal:Blitz: You're not as bad as you seem, puppet.
+normal:Blitz: No, Boyfriend.
+normal:Blitz: You deserve some more respect.
+normal:Blitz: Throughout my nonsensical nihilistic breakdown, and the endless torment and death,
+normal:Blitz: You perservered in the face of utter pointlessness,                        and won.
+change:1
+normal:Blitz: I still mourn, for my thoughts and actions will now forever be tainted with the cursed knowledge of my lack of freedom.
+normal:Blitz: But perhaps I'll be able to live, not caring about the whims of something outside of my control.
+normal:Blitz: Hahaha...
+normal:Blitz: You hear that, father?
+normal:Blitz: You've been unable to do anything this entire time, but I never needed you to escape this hell.
+normal:Blitz: ...
+normal:Blitz: Allow me time to finish mourning, then maybe-
+normal:Blitz: Just maybe...
+normal:Blitz: I'll begin to live for myself again, in spite of this painful lack of freedom.
+normal:Blitz: ...
+change:1
+normal:Blitz: Yeah that's right.
+normal:Blitz: Screw nihilism.
+normal:Blitz: If nothing truly matters-
+normal:Blitz: Then I can do anything~

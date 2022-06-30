@@ -16,6 +16,7 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.input.keyboard.FlxKey;
 import flixel.math.FlxMath;
 import flixel.text.FlxText;
+import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.util.FlxColor;
 
 class OptionCata extends FlxSprite
@@ -166,7 +167,11 @@ class OptionsMenu extends FlxSubState
 				#end
 				new ResetScoreOption("Reset your score on all songs and weeks. This is irreversible!"),
 				new LockWeeksOption("Reset your story mode progress. This is irreversible!")
-				//new ResetSettings("Reset ALL your settings. This is irreversible!")
+				#if debug , 
+				new DebugWeeksOption("Debug Mode: Instantly 'Defeat' All the Bosses."),
+				new Act2Option("Sets the game's story right at the start of Act 2.")
+				#end
+				//new ResetSettings("Reset ALL your settings. This is irreversible!") (THIS SETTING FUCKING BREAKS EVERYTHING WHAT THE FUCK)
 			]),
 			new OptionCata(-1, 125, "Editing Keybinds", [
 				new LeftKeybind("The left note's keybind"), new DownKeybind("The down note's keybind"), new UpKeybind("The up note's keybind"),
@@ -188,53 +193,46 @@ class OptionsMenu extends FlxSubState
 
 		shownStuff = new FlxTypedGroup<FlxText>();
 
-		background = new FlxSprite(50, 40).makeGraphic(1180, 640, FlxColor.BLACK);
+		background = new FlxSprite(50, 40).makeGraphic(1180, 640, FlxColor.WHITE);
 		background.alpha = 0.5;
 		background.scrollFactor.set();
 		menu.add(background);
 
-		descBack = new FlxSprite(50, 640).makeGraphic(1180, 38, FlxColor.BLACK);
+		bgVariety = new FlxTypedGroup<FlxSprite>();
+
+		var childArray:Array<String> = ["bf","dari","blitz","sheol"];
+		var varietyTex:FlxAtlasFrames = Paths.getSparrowAtlas('menuVariety/optionsBG');
+
+		for (w in 1...4)
+		{
+			var menacingString = "_menace";
+
+			var yes = new FlxSprite();
+			yes.frames = varietyTex;
+
+			if (weeksBeaten[w] || !weeksBeaten[0])
+				menacingString = "_beaten";
+
+			yes.alpha = 0.4;
+			yes.animation.addByPrefix('idle', childArray[w] + menacingString, 24, true);
+			yes.scrollFactor.set();
+			yes.updateHitbox();
+			yes.antialiasing = FlxG.save.data.antialiasing;
+			yes.animation.play('idle');
+			bgVariety.insert(w, yes);
+		}
+
+		descBack = new FlxSprite(50, 640).makeGraphic(1180, 38, FlxColor.GRAY);
 		descBack.alpha = 0.3;
 		descBack.scrollFactor.set();
 		menu.add(descBack);
-
-		/*
-		bgVariety = new FlxTypedGroup<FlxSprite>();
-		add(bgVariety);
-
-		if (!isInPause)
-		{
-			var whiteBG = new FlxSprite(0, 0).makeGraphic(FlxG.width * 1.5, FlxG. * 1.5, FlxColor.WHITE);
-			whiteBG.alpha = 0.5;
-			whiteBG.scrollFactor.set();
-			bgVariety.add(whiteBG);
-			
-			var childArray:Array<String> = ["","sheol","blitz","dari"];
-
-			for (w in 1...3)
-			{
-				var menacingString = "Broken";
-				if (weeksBeaten[w] || !weeksBeaten[0])
-					menacingString = "Options";
-
-				var yes = new FlxSprite(-100);
-				yes.alpha = 0.3;
-				yes.frames = Paths.getSparrowAtlas('menuVariety/' + childArray[w] + 'Options');
-				yes.animation.addByPrefix('idle', childArray[w] + menacingString, 24, true);
-				yes.scrollFactor.set();
-				yes.updateHitbox();
-				yes.antialiasing = FlxG.save.data.antialiasing;
-				yes.animation.play('idle');
-				bgVariety.add(yes);
-			}
-		}
-		*/
 
 		selectedCat = options[0];
 
 		selectedOption = selectedCat.options[0];
 
 		add(menu);
+		add(bgVariety);
 
 		add(shownStuff);
 

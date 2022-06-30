@@ -68,6 +68,7 @@ class Note extends FlxSprite
 	public var parent:Note = null;
 	public var spotInLine:Int = 0;
 	public var sustainActive:Bool = true;
+	public var inCharter:Bool = false;
 
 	public var children:Array<Note> = [];
 
@@ -81,6 +82,7 @@ class Note extends FlxSprite
 		beat = bet;
 
 		this.isAlt = isAlt;
+		this.inCharter = inCharter;
 
 		this.prevNote = prevNote;
 		isSustainNote = sustainNote;
@@ -234,12 +236,12 @@ class Note extends FlxSprite
 			}
 		}
 
-		if (!isSustainNote)
+		if (!isSustainNote && !inCharter)
 		{
 			if (isAlt)
 			{
 				if (PlayState.dad != null)
-					if (!PlayState.dad.curCharacter.startsWith("sheol") && mustPress)
+					if ((!PlayState.dad.curCharacter.startsWith("sheol") && mustPress))
 					{
 						animation.play(dataColor[noteData] + 'alt');
 						badAlt = true;
@@ -271,10 +273,10 @@ class Note extends FlxSprite
 			else if (badAlt)
 			{
 				/**
-				 * "badAlts" have a smaller window to be hit
+				 * "badAlts" have a MUCH smaller hit window
 				 */
-				if (strumTime - Conductor.songPosition <= (((80 * Conductor.timeScale) / (PlayState.songMultiplier < 1 ? PlayState.songMultiplier : 1)))
-					&& strumTime - Conductor.songPosition >= (((-80 * Conductor.timeScale) / (PlayState.songMultiplier < 1 ? PlayState.songMultiplier : 1))))
+				if (strumTime - Conductor.songPosition <= (((65 * Conductor.timeScale) / (PlayState.songMultiplier < 1 ? PlayState.songMultiplier : 1)))
+					&& strumTime - Conductor.songPosition >= (((-65 * Conductor.timeScale) / (PlayState.songMultiplier < 1 ? PlayState.songMultiplier : 1))))
 					canBeHit = true;
 				else
 					canBeHit = false;

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="MB_bgChains.png">
+	<!-- Created with Adobe Animate version 22.0.5.191 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="bgChains0000" x="0" y="0" width="1132" height="319"/>
+	<SubTexture name="bgChains0001" x="0" y="0" width="1132" height="319"/>
+	<SubTexture name="bgChains0002" x="0" y="0" width="1132" height="319"/>
+	<SubTexture name="bgChains0003" x="0" y="0" width="1132" height="319"/>
+	<SubTexture name="bgChains0004" x="0" y="334" width="1132" height="319"/>
+	<SubTexture name="bgChains0005" x="0" y="334" width="1132" height="319"/>
+	<SubTexture name="bgChains0006" x="0" y="334" width="1132" height="319"/>
+	<SubTexture name="bgChains0007" x="0" y="334" width="1132" height="319"/>
+	<SubTexture name="bgChains0008" x="0" y="668" width="1132" height="319"/>
+	<SubTexture name="bgChains0009" x="0" y="668" width="1132" height="319"/>
+	<SubTexture name="bgChains0010" x="0" y="668" width="1132" height="319"/>
+	<SubTexture name="bgChains0011" x="0" y="668" width="1132" height="319"/>
+</TextureAtlas>

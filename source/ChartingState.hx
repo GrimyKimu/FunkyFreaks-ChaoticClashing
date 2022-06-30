@@ -1051,6 +1051,11 @@ class ChartingState extends MusicBeatState
 		});
 
 		var characters:Array<String> = CoolUtil.coolTextFile(Paths.txt('data/characterList'));		
+		for (index => words in characters)
+		{
+			var newRay = words.split(':');
+			characters[index] = newRay[0];
+		}
 		var gfVersions:Array<String> = CoolUtil.coolTextFile(Paths.txt('data/gfVersionList'));
 		var stages:Array<String> = CoolUtil.coolTextFile(Paths.txt('data/stageList'));
 		var noteStyles:Array<String> = CoolUtil.coolTextFile(Paths.txt('data/noteStyleList'));
@@ -1297,7 +1302,7 @@ class ChartingState extends MusicBeatState
 		if (!PlayState.isSM)
 			vocals.time = FlxG.sound.music.time;
 		curSection = section;
-		Debug.logTrace("Going too " + FlxG.sound.music.time + " | " + section + " | Which is at " + beat);
+		// Debug.logTrace("Going too " + FlxG.sound.music.time + " | " + section + " | Which is at " + beat);
 
 		if (FlxG.sound.music.time < 0)
 			FlxG.sound.music.time = 0;
@@ -2519,7 +2524,7 @@ class ChartingState extends MusicBeatState
 					var i = pressArray[p];
 					if (i && !delete)
 					{
-						addNote(new Note(Conductor.songPosition, p));
+						addNote(new Note(Conductor.songPosition, p, null, false, true, FlxG.keys.pressed.ALT));
 					}
 				}
 			}

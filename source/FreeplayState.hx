@@ -1,4 +1,5 @@
 package;
+import flixel.graphics.frames.FlxAtlasFrames;
 import lime.app.Application;
 import openfl.utils.Future;
 import openfl.media.Sound;
@@ -19,6 +20,8 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxMath;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
+import flixel.tweens.FlxEase;
+import flixel.util.FlxGradient;
 import lime.utils.Assets;
 
 
@@ -60,12 +63,13 @@ class FreeplayState extends MusicBeatState
 
 	var weeksBeaten:Array<Bool> = FlxG.save.data.weeksBeaten;
 	var bgVariety:FlxTypedGroup<FlxSprite>;
-	static var childArray:Array<String> = ["all","sheol","blitz","dari"/*, "sain"*/];
+	static var childArray:Array<String> = ["all","sheol","blitz","dari", "sain"];
 
 	static var exclusionaryZone:Int = 0;
 	var exclusionTimer:Float = 0;
 	var exludedText:FlxText;
-	var magenta:FlxSprite;
+	var greyBG:FlxSprite;
+	var bg:FlxSprite;
 
 	var mercyPNG:FlxSprite;
 
@@ -103,21 +107,43 @@ class FreeplayState extends MusicBeatState
 
 		// LOAD CHARACTERS
 
-		var bg:FlxSprite = new FlxSprite(0).makeGraphic(FlxG.width, FlxG.height, FlxColor.fromRGB(150, 150, 150));
+		bg = FlxGradient.createGradientFlxSprite(FlxG.width * 2, FlxG.width * 2, FlxColor.gradient(FlxColor.WHITE, FlxColor.PINK, 8, FlxEase.linear));
+		// var bg:FlxSprite = 
 		bg.scrollFactor.set();
 		bg.updateHitbox();
 		bg.screenCenter();
 		add(bg);
 
-		magenta = new FlxSprite(0).makeGraphic(FlxG.width, FlxG.height, FlxColor.fromRGB(200, 200, 200));
-		magenta.scrollFactor.set();
-		magenta.updateHitbox();
-		magenta.screenCenter();
-		magenta.visible = false;
-		add(magenta);
+		greyBG = new FlxSprite(0).makeGraphic(FlxG.width, FlxG.height, FlxColor.fromRGB(150, 150, 150));
+		greyBG.scrollFactor.set();
+		greyBG.updateHitbox();
+		greyBG.screenCenter();
+		add(greyBG);
 
 		bgVariety = new FlxTypedGroup<FlxSprite>();
 		add(bgVariety);
+
+		var varietyTex:FlxAtlasFrames = Paths.getSparrowAtlas('menuVariety/freeplayMenu');
+
+		for (w in 1...4)
+		{
+			var yes = new FlxSprite();
+			yes.frames = varietyTex;
+
+			var menacingString = "_menace";
+			if (weeksBeaten[w])
+				menacingString = "_beaten";
+
+			yes.alpha = 0.5;
+			yes.animation.addByPrefix('idle', childArray[w] + menacingString, 24, w == 1 ? true : false);
+			yes.scrollFactor.set();
+			yes.updateHitbox();
+			yes.antialiasing = FlxG.save.data.antialiasing;
+			yes.animation.play('idle');
+			// yes.scale.set(2.0,2.0);
+			yes.screenCenter();
+			bgVariety.add(yes);
+		}
 
 		grpSongs = new FlxTypedGroup<Alphabet>();
 		add(grpSongs);		
@@ -127,22 +153,7 @@ class FreeplayState extends MusicBeatState
 
 		populateSongData();
 
-		for (w in 1...4)
-		{
-			var menacingString = "_menace";
-			if (weeksBeaten[w])
-				menacingString = "_beaten";
-
-			var yes = new FlxSprite();
-			yes.frames = Paths.getSparrowAtlas('menuVariety/' + childArray[w] + 'Freeplay');
-			yes.alpha = 0.5;
-			yes.animation.addByPrefix('idle', childArray[w] + menacingString, 24, w == 1 ? true : false);
-			yes.scrollFactor.set();
-			yes.updateHitbox();
-			yes.antialiasing = FlxG.save.data.antialiasing;
-			yes.animation.play('idle');
-			bgVariety.add(yes);
-		}
+		
 
 		scoreText = new FlxText(FlxG.width * 0.7, 5, 0, "", 32);
 		// scoreText.autoSize = false;
@@ -406,6 +417,9 @@ class FreeplayState extends MusicBeatState
 
 		if (FlxG.sound.music != null)
 			Conductor.songPosition = FlxG.sound.music.time;
+		
+		bg.angle += 666 * elapsed;
+		greyBG.alpha = FlxMath.lerp(greyBG.alpha, Math.abs(Math.sin(Conductor.songPosition / 1800)), 0.05);
 	}
 
 	function loadAnimDebug(dad:Bool = true)
@@ -413,7 +427,6 @@ class FreeplayState extends MusicBeatState
 		// First, get the song data.
 		var hmm;
 		
-		FlxFlicker.flicker(magenta, 1.1, 0.15, false);
 		try
 		{
 			hmm = songData.get(songs[curSelected].songName)[0];
@@ -434,8 +447,6 @@ class FreeplayState extends MusicBeatState
 	function loadSong(isCharting:Bool = false)
 	{
 		loadSongInFreePlay(songs[curSelected].songName, curDifficulty, isCharting);
-
-		FlxFlicker.flicker(magenta, 1.1, 0.15, false);
 		clean();
 	}
 
@@ -686,7 +697,7 @@ class FreeplayState extends MusicBeatState
 
 		iconArray.forEach(function(icon)
 		{
-			icon.alpha = 0.6;
+			icon.alpha = 0.4;
 		});
 
 		iconArray.members[curSelected].alpha = 1;
@@ -698,11 +709,14 @@ class FreeplayState extends MusicBeatState
 			if (songs[curSelected].songCharacter.startsWith(childArray[lmaoInt]))
 			{
 				spr.alpha = 1.0;
-				spr.scale.set(1.1,1.1);
+				spr.scale.set(1.05,1.05);
 			}
 			else
 			{
-				spr.alpha = 0.25;
+				if (exclusionaryZone != 0)
+					spr.alpha = 0;
+				else
+					spr.alpha = 0.2;
 				spr.scale.set(1.0,1.0);
 			}
 
@@ -716,7 +730,7 @@ class FreeplayState extends MusicBeatState
 			item.targetY = bullShit - curSelected;
 			bullShit++;
 
-			item.alpha = 0.6;
+			item.alpha = 0.4;
 			// item.setGraphicSize(Std.int(item.width * 0.8));
 
 			if (item.targetY == 0)

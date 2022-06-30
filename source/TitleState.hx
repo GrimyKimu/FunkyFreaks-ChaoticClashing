@@ -40,6 +40,7 @@ class TitleState extends MusicBeatState
 	var ngSpr:FlxSprite;
 
 	var curWacky:Array<String> = [];
+	var wackyTwo:Array<String> = [];
 
 	var wackyImage:FlxSprite;
 
@@ -73,6 +74,10 @@ class TitleState extends MusicBeatState
 			FlxG.save.data.volDownBind = "MINUS";
 		if (FlxG.save.data.volUpBind == null)
 			FlxG.save.data.volUpBind = "PLUS";
+		if (FlxG.save.data.muteBind == null)
+			FlxG.save.data.muteBind = "ZERO"; // FlxG.save.data.fullscreenBind
+		if (FlxG.save.data.fullscreenBind == null)
+			FlxG.save.data.fullscreenBind = "F"; 
 
 		FlxG.sound.muteKeys = [FlxKey.fromString(FlxG.save.data.muteBind)];
 		FlxG.sound.volumeDownKeys = [FlxKey.fromString(FlxG.save.data.volDownBind)];
@@ -91,7 +96,7 @@ class TitleState extends MusicBeatState
 		Highscore.load();
 
 		curWacky = FlxG.random.getObject(getIntroTextShit());
-
+		wackyTwo = FlxG.random.getObject(getIntroTextShit());
 		trace('hello');
 
 		// DEBUG BULLSHIT
@@ -159,15 +164,15 @@ class TitleState extends MusicBeatState
 		add(gfDance);*/
 		add(logoBl);
 
-		bgVariety = new FlxTypedGroup<FlxSprite>();
-		add(bgVariety);
-
 		var childArray:Array<String> = ["","dari","blitz","sheol"];
 		var childMap:Map<String, FlxSprite> = [
 			"sheol" => new FlxSprite(FlxG.width * 0.65, FlxG.height * 0.18), 
 			"blitz" => new FlxSprite(FlxG.width * 0.6, FlxG.height * 0.2),
 			"dari" => new FlxSprite(FlxG.width * 0.43, FlxG.height * 0.2)
 		];
+
+		bgVariety = new FlxTypedGroup<FlxSprite>();
+		add(bgVariety);
 
 		var behindThem = new FlxSprite(FlxG.width * 0.395, FlxG.height * 0.11);
 		behindThem.frames = Paths.getSparrowAtlas('menuVariety/behindTitle');
@@ -178,6 +183,8 @@ class TitleState extends MusicBeatState
 		behindThem.updateHitbox();
 		behindThem.antialiasing = FlxG.save.data.antialiasing;
 		bgVariety.add(behindThem);
+
+		var varietyTex:FlxAtlasFrames = Paths.getSparrowAtlas('menuVariety/titleScreen');
 
 		for (w in 1...4)
 		{
@@ -197,10 +204,11 @@ class TitleState extends MusicBeatState
 			}
 
 			var yes = childMap[childArray[w]];
+			yes.frames = varietyTex;
+
 			yes.scale.set(.85, .85);
-			yes.frames = Paths.getSparrowAtlas('menuVariety/' + childArray[w] + 'Title');
-			yes.animation.addByIndices('danceLeft', menacingString, [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
-			yes.animation.addByIndices('danceRight', menacingString, [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
+			yes.animation.addByIndices('danceLeft', childArray[w] + menacingString, [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
+			yes.animation.addByIndices('danceRight', childArray[w] + menacingString, [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
 			yes.scrollFactor.set();
 			yes.updateHitbox();
 			yes.antialiasing = FlxG.save.data.antialiasing;
@@ -282,16 +290,17 @@ class TitleState extends MusicBeatState
 				FlxG.sound.playMusic(Paths.music('freakyMenu'));
 				FlxG.sound.music.loopTime = 9433;
 				FlxG.sound.music.endTime = 131787;
+				Conductor.changeBPM(102);
 			}
 			else
 			{
-				FlxG.sound.playMusic(Paths.music('freakyMenu-goner'));
-				FlxG.sound.music.loopTime = 12900;
-				FlxG.sound.music.endTime = 144990;
+				FlxG.sound.playMusic(Paths.music('grim grave'));
+				FlxG.sound.music.loopTime = 20820;
+				FlxG.sound.music.endTime = null;
+				Conductor.changeBPM(150);
 			}
 
 			FlxG.sound.music.fadeIn(4, 0, 0.7);
-			Conductor.changeBPM(102);
 			initialized = true;
 		}
 
@@ -349,9 +358,6 @@ class TitleState extends MusicBeatState
 			transitioning = true;
 			// FlxG.sound.music.stop();
 
-			MainMenuState.firstStart = true;
-			MainMenuState.finishedFunnyMove = false;
-
 			new FlxTimer().start(2, function(tmr:FlxTimer)
 			{
 				if (isDemo)
@@ -388,7 +394,9 @@ class TitleState extends MusicBeatState
 		}
 	}
 
-	var isDemo = true;
+	static var isDemo = true;
+	static var halfTime = false;
+	static var halfDancer = true;
 
 	function addMoreText(text:String)
 	{
@@ -411,27 +419,33 @@ class TitleState extends MusicBeatState
 	override function beatHit()
 	{
 		super.beatHit();
+		if (Conductor.bpm >= 135)
+			halfTime = true;
+		else
+			halfTime = false;
 
 		logoBl.animation.play('bump', true);
-		danceLeft = !danceLeft;
 
-		if (danceLeft)
+		if (halfDancer)
 		{
-			bgVariety.forEach(function(spr:FlxSprite)
-			{
-				spr.animation.play('danceRight');
-			});
-			// gfDance.animation.play('danceRight');
+			if (danceLeft)
+				bgVariety.forEach(function(spr:FlxSprite)
+				{
+					spr.animation.play('danceRight');
+				});
+			else
+				bgVariety.forEach(function(spr:FlxSprite)
+				{
+					spr.animation.play('danceLeft');
+				});
+
+			danceLeft = !danceLeft;
 		}
+
+		if (halfTime)
+			halfDancer = !halfDancer;
 		else
-		{
-			bgVariety.forEach(function(spr:FlxSprite)
-			{
-				spr.animation.play('danceLeft');
-			});
-			// gfDance.animation.play('danceLeft');
-		}
-		// FlxG.log.add(curBeat);
+			halfDancer = true;
 
 		if (!FlxG.save.data.weeksBeaten[0] || FlxG.save.data.weeksBeaten[5])
 			switch (curBeat)
@@ -475,20 +489,20 @@ class TitleState extends MusicBeatState
 			{
 				case 0:
 					deleteCoolText();
-				case 1:
-					createCoolText(['ninjamuffin99', 'phantomArcade', 'kawaisprite', 'evilsk8er']);
 				case 2:
-					addMoreText('their game hath been butchered');
-				case 3:
-					deleteCoolText();
+					createCoolText(['ninjamuffin99', 'phantomArcade', 'kawaisprite', 'evilsk8er']);
 				case 4:
+					addMoreText('their game hath been butchered');
+				case 6:
+					deleteCoolText();
+				case 8:
 					createCoolText(['Kade Engine']);
-				case 5:
+				case 10:
 					if (FlxG.random.bool())
 						addMoreText('Look man...');
 					else
 						addMoreText('Dude, bro...');
-				case 6:
+				case 12:
 					switch (FlxG.random.int(0, 4))
 					{
 						case 0:
@@ -502,36 +516,33 @@ class TitleState extends MusicBeatState
 						case 4:
 							addMoreText("Barely functioning");
 					}
-				case 7:
-					deleteCoolText();
-				case 8:
-					createCoolText([curWacky[0]]);
-				case 10:
-					addMoreText(curWacky[1]);
-				case 12:
-					deleteCoolText();
-				case 13:
-					addMoreText("You have made");
 				case 14:
-					addMoreText("a horrible");
-				case 15:
-					addMoreText("M I S T A K E");
-				case 16:
 					deleteCoolText();
-				case 17:
-					addMoreText("Friday Night Funkin'");
-				case 18:
-					addMoreText("Friday Blight Funkin'");
-				case 19:
-					addMoreText("Friday Night Chuckin'");
+				case 16:
+					createCoolText([curWacky[0]]);
 				case 20:
-					addMoreText("Friday Light Funkin'");
-					addMoreText("Freaky Night Funkin'");
-				case 21:
-					addMoreText("Friday Night Forking");
-					addMoreText("Funday Night Funkin'");
-					addMoreText("Friday Blight Funkin'");
-				case 22:
+					addMoreText(curWacky[1]);
+				case 24:
+					deleteCoolText();
+				case 26:
+					addMoreText("You have made");
+				case 28:
+					addMoreText("a horrible");
+				case 30:
+					addMoreText("M I S T A K E");
+				case 32:
+					deleteCoolText();
+				case 36:
+					createCoolText([wackyTwo[0]]);
+				case 38:
+					addMoreText(wackyTwo[1]);
+				case 40:
+					deleteCoolText();
+				case 42:
+					addMoreText("Friday Night Funkin'");
+				case 44:
+					addMoreText("You're going to die edition'");
+				case 46:
 					skipIntro();
 			}
 		
@@ -564,22 +575,22 @@ class TitleState extends MusicBeatState
 
 			// It always bugged me that it didn't do this before.
 			// Skip ahead in the song to the drop.
-			if (!FlxG.save.data.weeksBeaten[0] || FlxG.save.data.weeksBeaten[5])
-			{
-				if (!FlxG.sound.music.playing)
+			if (!FlxG.sound.music.playing)
+				if (!FlxG.save.data.weeksBeaten[0] || FlxG.save.data.weeksBeaten[5])
+				{
 					FlxG.sound.playMusic(Paths.music('freakyMenu'));
+					FlxG.sound.music.loopTime = 9400; // 9.4 seconds
+					FlxG.sound.music.endTime = 131787; 
+					Conductor.changeBPM(105);
+				}
+				else
+				{
+					FlxG.sound.playMusic(Paths.music('grim grave'));
+				FlxG.sound.music.loopTime = 20820;
+				FlxG.sound.music.endTime = null;
+				Conductor.changeBPM(150);
+				} 
 
-				FlxG.sound.music.loopTime = 9400; // 9.4 seconds
-				FlxG.sound.music.endTime = 131787; 
-			}
-			else
-			{
-				if (!FlxG.sound.music.playing)
-					FlxG.sound.playMusic(Paths.music('freakyMenu-goner'));
-
-				FlxG.sound.music.loopTime = 12900; // 12.9 seconds for "-goner" variation of title music
-				FlxG.sound.music.endTime = 144990;
-			} 
 			FlxG.sound.music.time = FlxG.sound.music.loopTime;
 
 			skippedIntro = true;

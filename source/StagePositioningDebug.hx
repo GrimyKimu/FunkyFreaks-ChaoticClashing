@@ -151,7 +151,7 @@ class StagePositioningDebug extends FlxState
 			}
 		}
 
-		if (FlxG.mouse.pressed && curChar.pixelsOverlapPoint(FlxG.mouse.getPosition()) && !dragging)
+		if (FlxG.mouse.pressed && /*curChar.pixelsOverlapPoint(FlxG.mouse.getPosition()) && */!dragging)
 		{
 			dragging = true;
 			updateMousePos();

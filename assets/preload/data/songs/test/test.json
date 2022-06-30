@@ -1,7 +1,7 @@
 {
 	"song": {
 		"sectionLengths": [],
-		"player1": "bf-marenol",
+		"player1": "bf-blitz",
 		"notes": [
 			{
 				"sectionNotes": [],
@@ -6533,13 +6533,13 @@
 				"mustHitSection": true
 			}
 		],
-		"player2": "sheol-horror",
+		"player2": "blitz-horror",
 		"song": "test",
 		"validScore": true,
-		"stage": "arg",
+		"stage": "blitzy",
 		"sections": 0,
 		"needsVoices": true,
-		"gfVersion": "gf-marenol",
+		"gfVersion": "gf-none",
 		"speed": 2.6,
 		"bpm": 160
 	}

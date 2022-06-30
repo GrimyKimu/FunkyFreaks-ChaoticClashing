@@ -1,9 +1,0 @@
-idle 0 0
-singUP -80 0
-singDOWN 40 -380
-singLEFT 10 -10
-singRIGHT -190 -70
-scarUP -20 0
-scarDOWN -111 -48
-scarLEFT 120 -20
-scarRIGHT -65 -15

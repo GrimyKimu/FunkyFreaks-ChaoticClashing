@@ -323,6 +323,7 @@ class StoryMenuState extends MusicBeatState
 
 				sainShallSpeak(doof);
 			}
+			/*
 			else
 			{
 				if (FlxG.sound.music != null)
@@ -337,6 +338,7 @@ class StoryMenuState extends MusicBeatState
 					}
 				}
 			}
+			*/
 		}
 		super.create();
 	}

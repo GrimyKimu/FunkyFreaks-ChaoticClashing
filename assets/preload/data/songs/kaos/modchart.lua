@@ -37,7 +37,7 @@ function update(elapsed)
 			-- only a simple repositioning, no fancy spreading or anything
 			local receptor = _G['receptor_'..i]
 	
-			receptor:tweenPos(receptor.defaultX - 275, receptor.defaultY, 4.0)
+			receptor:tweenPos(receptor.defaultX - 310, receptor.defaultY, 3.0)
 		end
 
 		for p = 0,3 do
@@ -49,7 +49,7 @@ function update(elapsed)
 			else
 				receptor:tweenAlpha(0.25, 3.0)
 			end
-			receptor:tweenPos(widthMod + (widthMod * p), receptor.defaultY, 3.5)
+			receptor:tweenPos(widthMod + (widthMod * p), receptor.defaultY, 2.5)
 		end
 	end
 	if curStep > 1776 then

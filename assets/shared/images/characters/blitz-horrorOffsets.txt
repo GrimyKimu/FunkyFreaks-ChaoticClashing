@@ -1,0 +1,10 @@
+idle 0 0
+singUP 70 20
+singDOWN -10 -110
+singLEFT 400 -30
+singRIGHT 20 -48
+cheer 46 0
+scarUP 111 0
+scarDOWN 0 0
+scarLEFT 127 0
+scarRIGHT 88 0

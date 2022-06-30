@@ -1760,6 +1760,86 @@ class LockWeeksOption extends Option
 	}
 }
 
+class DebugWeeksOption extends Option
+{
+	var confirm:Bool = false;
+
+	public function new(desc:String)
+	{
+		super();
+		if (OptionsMenu.isInPause)
+			description = "This option cannot be toggled in the pause menu.";
+		else
+			description = desc;
+	}
+
+	public override function press():Bool
+	{
+		if (OptionsMenu.isInPause)
+			return false;
+		if (!confirm)
+		{
+			confirm = true;
+			display = updateDisplay();
+			return true;
+		}
+		FlxG.save.data.weeksBeaten = [true, true, true, true, true];
+		StoryMenuState.savedChildren = [false,false,false,false];
+		FlxG.save.data.blitzDeaths = 0;
+		confirm = false;
+		display = updateDisplay();
+
+		FlxG.sound.music.stop();
+		FlxG.switchState(new TitleState());
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return confirm ? "'Defeat' all bosses instantly?" : "Debug Only: Unlock Story Progress";
+	}
+}
+
+class Act2Option extends Option
+{
+	var confirm:Bool = false;
+
+	public function new(desc:String)
+	{
+		super();
+		if (OptionsMenu.isInPause)
+			description = "This option cannot be toggled in the pause menu.";
+		else
+			description = desc;
+	}
+
+	public override function press():Bool
+	{
+		if (OptionsMenu.isInPause)
+			return false;
+		if (!confirm)
+		{
+			confirm = true;
+			display = updateDisplay();
+			return true;
+		}
+		FlxG.save.data.weeksBeaten = [true, false,false,false,false];
+		StoryMenuState.savedChildren = [false,false,false,false];
+		FlxG.save.data.blitzDeaths = 0;
+		confirm = false;
+		display = updateDisplay();
+
+		FlxG.sound.music.stop();
+		FlxG.switchState(new TitleState());
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return confirm ? "Revert to Start of Act 2?" : "Debug Only: Revert Story Progress";
+	}
+}
+
 class ResetScoreOption extends Option
 {
 	var confirm:Bool = false;

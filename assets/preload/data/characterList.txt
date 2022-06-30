@@ -1,6 +1,8 @@
 bf:0
 bf-worry:0
 bf-marenol:0
+bf-blitz:1
+bf-dari:0
 sheol:0
 sheol-angry:0
 sheol-horror:1
