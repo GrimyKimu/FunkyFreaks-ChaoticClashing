@@ -534,17 +534,13 @@ class FreeplayState extends MusicBeatState
 		super.stepHit();
 	}
 
-	var measureFinder:Int = 0;
 	var backAndForth:Int = 1;
 
 	override function beatHit()
 	{
 		super.beatHit();
 
-		measureFinder++;
 		backAndForth *= -1;
-		if (measureFinder > 3)
-			measureFinder = 0;
 
 		iconArray.forEach(function(icon)
 		{
@@ -579,9 +575,9 @@ class FreeplayState extends MusicBeatState
 				case 1:
 					spr.animation.play('idle', false);
 				case 2 | 3:
-					if (weeksBeaten[varInt] && measureFinder % 2 == 0)
+					if (weeksBeaten[varInt] && backAndForth == -1)
 						spr.animation.play('idle', true);
-					else if (!weeksBeaten[varInt] && measureFinder % 4 == 0)
+					else if (!weeksBeaten[varInt] && backAndForth == -1)
 						spr.animation.play('idle', true);
 			}
 
@@ -631,8 +627,6 @@ class FreeplayState extends MusicBeatState
 			curSelected = 0;
 			return;
 		}
-
-		measureFinder = 0;
 
 		#if !switch
 		// NGio.logEvent('Fresh');

@@ -1,34 +1,28 @@
 data:5
+bgm:LunchboxScary:6.5
 loud:(You can press the ESC-key to skip these cutscenes)
-normal:Blitz: ...
-normal:Blitz: I'm sure you'd much prefer if we spent our time together like this.
-normal:Blitz: Or perhaps not, you're quite loyal aren't you?
-normal:Blitz: Oh well.
+normal:Dari: ...
+normal:Dari: ... ...
 change:1
-normal:Blitz: Instead here we are, illusions of hope gone, the final strands of sanity soon to slip.
-normal:Blitz: Soon there will be endless torment for eternity, suffering for the one who has lost everything.
-normal:Blitz: But you? You will soon die, puppet...
-normal:Blitz: However-
-normal:Blitz: You will not die until after I remove your fingers.
-normal:Blitz: Your toes, your hands, your feet, your forearms, your calves, your shoulders, your thighs, your teeth, your ribs, your organs, your heart, your soul.
-normal:Blitz: They will to continue to find parts of your body for years to come-
-normal:Blitz: And you will not die until the very last bit of you is found.
-normal:Blitz: Until then, perhaps you will you understand in modicum, the full extant of this horror you brought about with your existance.
+normal:Dari: Ah,                                                  you...
+normal:Dari: Yes,   yes...
+change:-1
+normal:Dari: You are expecting some sort of shpeal of insanity, correct?
+normal:Dari: Please, temper your expectations.
+normal:Dari: I am all-knowing, truly in the sense of that phrase.
+normal:Dari: Eldritch epiphanies and poor reactions to them are not new to me.
+normal:Dari: After spending uncountably long amounts of time with infinite knowledge, you get used to it.
 change:1
-normal:Blitz: Is this fair? Is this karmic?
-normal:Blitz: You had no choice in this turn of events either, so who am I to judge?
-normal:Blitz: Most of the time, I am a good judge, only performing my hunt against those who hurt others in a way that cannot be described.
-normal:Blitz: But now?
+normal:Dari: Of course, realizing my existance as a simple character in a video game does not deter me in the slightest.
+normal:Dari: Infinite possibilities means that this is far from a rare occurance.
+normal:Dari: I am sure that other versions of me hardly react to such epiphanies.
 change:1
-normal:Blitz: I resent my fairness, I reject my decency.
-normal:Blitz: I dress for this black hunt, I dance for this cursed funeral.
-normal:Blitz: For I mourn for what I've lost, and for all that will never be.
-normal:Blitz: For my sister whose future was taken from her.
-normal:Blitz: For my elder sibling, whom can no longer exist in peace.
-normal:Blitz: For me, whose choices meant nothing
-normal:Blitz: But I shall continue to dance my special dance.
-normal:Blitz: For who else can dance the dance I wish to dance?
+normal:Dari: I digress. As a character in this game, I must stand before you as a "boss" in your way to the end of the game.
+normal:Dari: Looking ahead into the song, it seems my song is about as original as a twelve-year-old's original character(do not steal).
+normal:Dari: It is literally just a bunch of "haha funi" references.
+normal:Dari: But it IS fun, is it not?
 change:1
-normal:Blitz: Enough of this.
-normal:Blitz: Sing for me, puppet.
-normal:Blitz: Tell me for what reason I dance to this endless sonata.
+normal:Dari: Time to have some fun, no?
+normal:Dari: I still gotta look cool and badass, even if all I am doing is rap-battling in a dumb rhythm game.
+change:1
+normal:Dari: Here we go.

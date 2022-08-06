@@ -1,28 +1,18 @@
-data:4
+data:3
 bgm:sad girl slow:10.0
-loud:(You've done it! You've saved Blitz!)
-normal:Blitz: ...
-normal:Blitz: Perhaps I'm blowing this way out of the water.
-normal:Blitz: Perhaps I'm looking at this the wrong way.
+loud:(You've done it! You've "saved" Dari(?))
+normal:Dari: ...
+normal:Dari: There we go.
+normal:Dari: It is over.
 change:1
-normal:Blitz: You're not as bad as you seem, puppet.
-normal:Blitz: No, Boyfriend.
-normal:Blitz: You deserve some more respect.
-normal:Blitz: Throughout my nonsensical nihilistic breakdown, and the endless torment and death,
-normal:Blitz: You perservered in the face of utter pointlessness,                        and won.
+normal:Dari: Unfortunately, even though I am supposed to be "all-knowing", information can very easily be hidden from even me when it comes to video games.
+normal:Dari: I do not even know what will happen after you leave this cutscene, or if you have saved my siblings yet.
+normal:Dari: But all I do know, is that if you have beaten me, then you are enough of a gamer to blast your way into saving them at least.
+normal:Dari: Which means I always had hope in you.
 change:1
-normal:Blitz: I still mourn, for my thoughts and actions will now forever be tainted with the cursed knowledge of my lack of freedom.
-normal:Blitz: But perhaps I'll be able to live, not caring about the whims of something outside of my control.
-normal:Blitz: Hahaha...
-normal:Blitz: You hear that, father?
-normal:Blitz: You've been unable to do anything this entire time, but I never needed you to escape this hell.
-normal:Blitz: ...
-normal:Blitz: Allow me time to finish mourning, then maybe-
-normal:Blitz: Just maybe...
-normal:Blitz: I'll begin to live for myself again, in spite of this painful lack of freedom.
-normal:Blitz: ...
-change:1
-normal:Blitz: Yeah that's right.
-normal:Blitz: Screw nihilism.
-normal:Blitz: If nothing truly matters-
-normal:Blitz: Then I can do anything~
+normal:Dari: Alright, I feel it coming soon.
+normal:Dari: The end of this cutscene.
+normal:Dari: If this is the last time I get to acknowledge you, player, then-
+normal:Dari: Then it was an honor, and an incredibly entertaining "fight".
+normal:Dari: Well, it was certainly entertaining from MY perspective, anyway.
+normal:Dari: I cannot imagine just how truly terrible it might have been for you.

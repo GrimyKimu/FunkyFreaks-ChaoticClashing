@@ -8,6 +8,8 @@ sheol-angry:0
 sheol-horror:1
 dari:1
 dari-serious:1
+dari-ruv:1
 blitz:0
 blitz-horror:1
+blitz-gm:0
 sain:1

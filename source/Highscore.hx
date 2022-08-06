@@ -97,13 +97,13 @@ class Highscore
 		var daSong:String = song;
 
 		if (diff == 0)
-			daSong = '-easy';
+			daSong += '-easy';
 		else if (diff == 2)
-			daSong = '-hard';
+			daSong += '-hard';
 		else if (diff == 3)
-			daSong = '-false';
+			daSong += '-false';
 		else if (diff == 4)
-			daSong = '-true';
+			daSong += '-true';
 
 
 		return daSong;

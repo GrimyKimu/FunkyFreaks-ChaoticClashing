@@ -1,0 +1,5 @@
+data:1
+bgm:stop:1.0
+loud:In an alternate universe, where BF and GF have broken into a church that Darian is guarding.
+normal:BF: Oh shit!!
+normal:Dari: You two have made a terrible choice, coming here.

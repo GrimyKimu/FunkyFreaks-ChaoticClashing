@@ -1,0 +1,6 @@
+data:1
+bgm:stop:1.0
+loud:Keep going, you got this.
+normal:BF: ...!
+normal:Dari: Again?
+normal:BF: Again!!

@@ -97,7 +97,7 @@ class StoryMenuState extends MusicBeatState
 
 	var txtWeekTitle:FlxText;
 
-	var curWeek:Int = 0;
+	static var curWeek:Int = 0;
 
 	var txtTracklist:FlxText;
 
@@ -487,9 +487,7 @@ class StoryMenuState extends MusicBeatState
 				}
 
 				if (controls.ACCEPT)
-				{
 					selectWeek();
-				}
 			}
 
 			if (controls.BACK && !movedBack && !selectedWeek)
@@ -515,11 +513,10 @@ class StoryMenuState extends MusicBeatState
 	var movedBack:Bool = false;
 	var selectedWeek:Bool = false;
 	var stopspamming:Bool = false;
-	var isDemo = true;
 
 	function selectWeek()
 	{
-		if (weekUnlocked[curWeek] && isDemo ? curWeek == 0 : true)
+		if (weekUnlocked[curWeek] && curWeek != 2 /*<---- DEMO ONLY*/)
 		{
 			if (stopspamming == false)
 			{

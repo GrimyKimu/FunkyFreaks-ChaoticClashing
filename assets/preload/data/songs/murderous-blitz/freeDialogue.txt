@@ -1,4 +1,5 @@
 data:1
+bgm:sonata scary:2.5
 loud:(Why are you making them re-live this?)
 normal:Blitz: I mourn...?
 normal:Blitz: ...

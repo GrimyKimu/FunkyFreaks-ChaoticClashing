@@ -1,6 +1,5 @@
-data:2
+data:1
 bgm:kaos manifest:5.0
-change:1
 loud:Keep going, you got this.
 normal:BF: ...!
 loud:BF: I ain't done yet!

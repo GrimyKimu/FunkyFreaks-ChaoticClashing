@@ -527,7 +527,7 @@ class MainMenuState extends MusicBeatState
 
 	override function beatHit()
 	{
-		if (Conductor.bpm >= 140)
+		if (Conductor.bpm > 140)
 			halfTime = true;
 		else
 			halfTime = false;
@@ -558,7 +558,7 @@ class MainMenuState extends MusicBeatState
 			clockNum++;
 		});
 
-		if (halfDancer)
+		if (!halfDancer)
 		{
 			var lmaoInt:Int = 0;
 			bgVariety.forEach(function(spr:FlxSprite)
@@ -580,7 +580,7 @@ class MainMenuState extends MusicBeatState
 		if (halfTime)
 			halfDancer = !halfDancer;
 		else
-			halfDancer = true;
+			halfDancer = false;
 
 		super.beatHit();
 	}

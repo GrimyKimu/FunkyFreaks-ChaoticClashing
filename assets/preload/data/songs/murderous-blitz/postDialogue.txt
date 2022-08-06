@@ -9,13 +9,14 @@ normal:Blitz: You're not as bad as you seem, puppet.
 normal:Blitz: No, Boyfriend.
 normal:Blitz: You deserve some more respect.
 normal:Blitz: Throughout my nonsensical nihilistic breakdown, and the endless torment and death,
-normal:Blitz: You perservered in the face of utter pointlessness,                        and won.
+normal:Blitz: You perservered in the face of utter pointlessness,                                   and won.
+normal:Blitz: Your determination showed me the light of hope...
 change:1
 normal:Blitz: I still mourn, for my thoughts and actions will now forever be tainted with the cursed knowledge of my lack of freedom.
 normal:Blitz: But perhaps I'll be able to live, not caring about the whims of something outside of my control.
 normal:Blitz: Hahaha...
-normal:Blitz: You hear that, father?
-normal:Blitz: You've been unable to do anything this entire time, but I never needed you to escape this hell.
+loud:Blitz: You hear that, father!?
+loud:Blitz: You've been unable to do anything this entire time, but I never needed you to escape this hell!
 normal:Blitz: ...
 normal:Blitz: Allow me time to finish mourning, then maybe-
 normal:Blitz: Just maybe...

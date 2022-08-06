@@ -596,7 +596,7 @@ class Character extends FlxSprite
 					if (!PlayState.dad.dumbVar && PlayState.dad.animation.curAnim != null && animation.curAnim != null)
 					{
 						var screamVar:Bool = PlayState.dad.animation.curAnim.name == "cheer" || PlayState.dad.animation.curAnim.name.endsWith('-alt');
-						visible = PlayState.dad.visible && FlxG.random.bool(50);
+						visible = PlayState.storyDifficulty == 3 ? false : (PlayState.dad.visible && FlxG.random.bool(50));
 
 						if (PlayState.dad.animation.curAnim.name != animation.curAnim.name && (FlxG.random.bool(7.5) || screamVar))
 						{

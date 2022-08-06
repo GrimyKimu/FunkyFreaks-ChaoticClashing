@@ -1076,6 +1076,14 @@ class PlayState extends MusicBeatState
 		hpScars = new FlxTypedGroup<FlxSprite>();
 		add(hpScars);
 
+		scarText = new FlxText(healthBarBG.x + healthBarBG.width / 2, healthBarBG.y, 0, "", 20);
+		scarText.setFormat(Paths.font("vcr.ttf"), 42, FlxColor.WHITE, FlxTextAlign.CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		scarText.scrollFactor.set();
+		scarText.borderSize = 4;
+		scarText.borderQuality = 2;
+		add(scarText);
+		scarText.visible = false;
+
 		romanClocks = new FlxTypedGroup<FlxSprite>();
 		add(romanClocks);
 
@@ -1101,6 +1109,7 @@ class PlayState extends MusicBeatState
 		laneunderlay.cameras = [camHUD];
 		laneunderlayOpponent.cameras = [camHUD];
 		hpScars.cameras = [camHUD];
+		scarText.cameras = [camHUD];
 		
 		if (FlxG.save.data.songPosition)
 		{
@@ -1611,7 +1620,7 @@ class PlayState extends MusicBeatState
 
 		curSong = songData.song;
 
-		noGhost = Stage.curStage == 'blitzy' || Stage.curStage == 'bonkers' || Stage.curStage == 'arg' || curSong == "KittyCat-Sonata";
+		noGhost = dad.curCharacter.startsWith("blitz") || Stage.curStage == 'bonkers' || Stage.curStage == 'arg';
 
 		#if sys
 		if (SONG.needsVoices && !isSM)
@@ -2954,18 +2963,20 @@ class PlayState extends MusicBeatState
 			}
 
 			// Blitz's hp drain
-			if (hpScars.members.length >= 0)
+			if (hpScars.members.length > 0 && !inCutscene)
 			{
-				var canBleed = true;
+				var scarAmt = hpScars.members.length;
 
 				switch (curSong.toLowerCase()) //song-specific bleed mechanics
 				{
-					case 'kittycat-sonata':
-						if (curBeat > 547)
-							canBleed = false;
+					case 'kittycat-sonata' | 'game-over':
+						if (!inCutscene)
+							health -= .0035 * scarAmt * (PlayStateChangeables.mercyMode ? 0.5 : 1.0) * elapsed;
+
+						scarText.text = '$scarAmt';
+						scarText.color = FlxColor.interpolate(FlxColor.WHITE, FlxColor.RED, scarAmt / 35);
 
 					case 'murderous-blitz' | 'test':
-						canBleed = false;
 						var bleedLimit:Float = 0.1;
 
 						if (storyDifficulty == 3)
@@ -2973,11 +2984,12 @@ class PlayState extends MusicBeatState
 						else
 							bleedLimit = 0.04; // MercyMode = 100 mistake limit('cause extra life), else it's a 50 mistake limit
 
-						health = 2 - (bleedLimit * hpScars.members.length) + 0.001;
-				}
+						var newBlood = (2 / bleedLimit) - scarAmt;
+						scarText.text = '$newBlood';
+						scarText.color = FlxColor.interpolate(FlxColor.RED, FlxColor.WHITE, newBlood / (2 / bleedLimit));
 
-				if (canBleed && !inCutscene)
-					health -= .0035 * hpScars.members.length * (PlayStateChangeables.mercyMode ? 0.5 : 1.0) * elapsed;
+						health = 2 - (bleedLimit * scarAmt) + 0.001;
+				}
 			}
 
 			#if FEATURE_LUAMODCHART
@@ -3496,7 +3508,7 @@ class PlayState extends MusicBeatState
 										}
 										updateAccuracy();
 									}
-									else if (!daNote.wasGoodHit && !daNote.isSustainNote)
+									else if (!daNote.wasGoodHit && !daNote.isSustainNote && curSong.toLowerCase() != "murderous-blitz")
 									{
 										health -= 2.0 * elapsed;
 									}
@@ -4877,20 +4889,18 @@ class PlayState extends MusicBeatState
 	}
 
 	private var hpScars:FlxTypedGroup<FlxSprite>;
+	private var scarText:FlxText;
 	private var romanClocks:FlxTypedGroup<FlxSprite>;
 
-	function bleedAndDie(data:String, ?scarHeal:Int, ?bypass:Bool)
+	function bleedAndDie(data:String, ?bypass:Bool)
 	{
 		if (!bypass)
-			if (curSong.toLowerCase() != 'kittycat-sonata' && curSong.toLowerCase() != 'murderous-blitz')
+			if (!dad.curCharacter.startsWith("blitz"))
 				return;
 
-		if (scarHeal != null)
+		if (curSong.toLowerCase() == 'game-over' && storyDifficulty == 4)
 		{
-			new FlxTimer().start(0.1, function(timer) {
-				hpScars.remove(hpScars.members[0], true);
-			}, scarHeal);
-
+			health = -1;
 			return;
 		}
 
@@ -4905,11 +4915,10 @@ class PlayState extends MusicBeatState
 		
 		FlxG.sound.play(Paths.sound('bloody-slash'), 0.85);
 
-		// if (curSong.toLowerCase() != 'murderous-blitz')
-
 		redFlash(0.75);
 
 		hpScars.add(yes);
+		scarText.visible = true;
 
 		if (dad.animOffsets.exists('scar' + data))
 		{

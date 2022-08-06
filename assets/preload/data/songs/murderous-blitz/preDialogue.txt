@@ -1,4 +1,5 @@
 data:5
+bgm:sonata scary:2.5
 loud:(You can press the ESC-key to skip these cutscenes)
 normal:Blitz: ...
 normal:Blitz: I'm sure you'd much prefer if we spent our time together like this.
@@ -13,22 +14,25 @@ normal:Blitz: You will not die until after I remove your fingers.
 normal:Blitz: Your toes, your hands, your feet, your forearms, your calves, your shoulders, your thighs, your teeth, your ribs, your organs, your heart, your soul.
 normal:Blitz: They will to continue to find parts of your body for years to come-
 normal:Blitz: And you will not die until the very last bit of you is found.
-normal:Blitz: Until then, perhaps you will you understand in modicum, the full extant of this horror you brought about with your existance.
+normal:Blitz: Perhaps then you will you understand in modicum, the full extant of this horror you brought about with your existance.
 change:1
 normal:Blitz: Is this fair? Is this karmic?
 normal:Blitz: You had no choice in this turn of events either, so who am I to judge?
-normal:Blitz: Most of the time, I am a good judge, only performing my hunt against those who hurt others in a way that cannot be described.
+normal:Blitz: Most of the time, I am a good judge, I hunt those who hurt others in a way that cannot be described.
 normal:Blitz: But now?
 change:1
 normal:Blitz: I resent my fairness, I reject my decency.
 normal:Blitz: I dress for this black hunt, I dance for this cursed funeral.
-normal:Blitz: For I mourn for what I've lost, and for all that will never be.
+normal:Blitz: For I mourn for what we've lost, and for all that will never be.
 normal:Blitz: For my sister whose future was taken from her.
 normal:Blitz: For my elder sibling, whom can no longer exist in peace.
 normal:Blitz: For me, whose choices meant nothing
-normal:Blitz: But I shall continue to dance my special dance.
+normal:Blitz: But I shall continue to dance my special dance, chained and bound to a causality chosen for me.
 normal:Blitz: For who else can dance the dance I wish to dance?
+normal:Blitz: This dance I chose, yet have already been given by force.
 change:1
 normal:Blitz: Enough of this.
 normal:Blitz: Sing for me, puppet.
 normal:Blitz: Tell me for what reason I dance to this endless sonata.
+normal:Blitz: Speak the following words on every single mistake you make-
+normal:Blitz: " They mourn for what they've lost. "

@@ -1,0 +1,9 @@
+data:1
+bgm:moonlight sonata:5.0
+loud:Keep going, you got this.
+normal:BF: ...!
+loud:BF: I ain't done yet!
+normal:Blitz: You are no brave face.
+normal:Blitz: You are but a simple fool, who has the chance try and try again.
+normal:Blitz: Though I afford no such luxury, you will still continue to suffer endlessly.
+loud:BF: Haha! I'll win this time!
